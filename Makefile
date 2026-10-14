@@ -95,10 +95,10 @@ $(rom): $(rom_obj) src/layout.link
 
 ### Misc file-specific graphics rules
 
-src/gfx/booster_packs/colosseum2.2bpp: rgbgfx += -x 10
-src/gfx/booster_packs/evolution2.2bpp: rgbgfx += -x 10
-src/gfx/booster_packs/laboratory2.2bpp: rgbgfx += -x 10
-src/gfx/booster_packs/mystery2.2bpp: rgbgfx += -x 10
+src/gfx/booster_packs/colosseum.2bpp: rgbgfx += -x 10
+src/gfx/booster_packs/evolution.2bpp: rgbgfx += -x 10
+src/gfx/booster_packs/laboratory.2bpp: rgbgfx += -x 10
+src/gfx/booster_packs/mystery.2bpp: rgbgfx += -x 10
 
 src/gfx/cards/%.2bpp: rgbgfx += -Z -P
 
@@ -131,11 +131,6 @@ src/gfx/tilesets/rockclub.2bpp: rgbgfx += -x 4
 src/gfx/tilesets/scienceclub.2bpp: rgbgfx += -x 14
 src/gfx/tilesets/waterclub.2bpp: rgbgfx += -x 15
 
-src/gfx/titlescreen/japanese_title_screen.2bpp: rgbgfx += -x 15
-src/gfx/titlescreen/japanese_title_screen_cgb.2bpp: rgbgfx += -x 15
-src/gfx/titlescreen/japanese_title_screen_2.2bpp: rgbgfx += -x 12
-src/gfx/titlescreen/japanese_title_screen_2_cgb.2bpp: rgbgfx += -x 5
-src/gfx/titlescreen/title_screen.2bpp: rgbgfx += -x 4
 src/gfx/titlescreen/title_screen_cgb.2bpp: rgbgfx += -x 12
 
 
