@@ -74,8 +74,6 @@ IncrementPlayTimeCounter::
 ; preserves de and hl
 SetupTimer::
 	ld b, -68 ; Value for Normal Speed
-	call CheckForCGB
-	jr c, .set_timer
 	ldh a, [rKEY1]
 	and $80
 	jr z, .set_timer
@@ -89,13 +87,3 @@ SetupTimer::
 	ldh [rTAC], a
 	ret
 
-
-; preserves all registers except af
-; output:
-;	carry = set:  if the console isn't a Game Boy Color
-CheckForCGB::
-	ld a, [wConsole]
-	cp CONSOLE_CGB
-	ret z
-	scf
-	ret

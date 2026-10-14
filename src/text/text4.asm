@@ -179,7 +179,6 @@ DebugMenuText:
 	line "DUEL-MODUS"
 	line "VERDER SPELEN"
 	line "CGB TEST"
-	line "SGB RAND"
 	line "STANDAARD BG KARAKTER"
 	line "KIJK NAAR SPR"
 	line "V EFFECT"

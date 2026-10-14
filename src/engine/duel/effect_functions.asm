@@ -2622,14 +2622,14 @@ HandleColorChangeScreen:
 	ld l, a
 	lb bc, $30, TILE_SIZE
 	call LoadCardGfx
-	bank1call SetBGP6OrSGB3ToCardPalette
-	bank1call FlushAllPalettesOrSendPal23Packet
+	bank1call SetBGP6ToCardPalette
+	call FlushAllPalettes
 	ld a, $a0
 	lb hl, 6, 1
 	lb de, 9, 2
 	lb bc, 8, 6
 	call FillRectangle
-	bank1call ApplyBGP6OrSGB3ToCardImage
+	bank1call ApplyBGP6ToCardImage
 
 ; print card name and level at the top
 	ld a, 16
@@ -2683,9 +2683,6 @@ HandleColorChangeScreen:
 	lb bc, 2, 2
 	call FillRectangle
 
-	ld a, [wConsole]
-	cp CONSOLE_CGB
-	jr nz, .skip_vram1
 	pop hl
 	push hl
 	call BankswitchVRAM1
@@ -2695,7 +2692,6 @@ HandleColorChangeScreen:
 	call FillRectangle
 	call BankswitchVRAM0
 
-.skip_vram1
 	pop hl
 	pop bc
 	pop de

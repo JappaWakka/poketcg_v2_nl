@@ -4,10 +4,8 @@ LoadMapHeader:
 	push hl
 	push bc
 	ld a, [wCurMap]
-	ld c, a
 	add a
 	add a
-	add c
 	ld c, a
 	ld b, 0
 	ld hl, MapHeaders
@@ -16,8 +14,6 @@ LoadMapHeader:
 	ld [wCurTilemap], a
 	ld a, [hli]
 	ld [wCurMapInitialPalette], a ; always 0?
-	ld a, [hli]
-	ld [wCurMapSGBPals], a
 	ld a, [hli]
 	ld [wCurMapPalette], a
 	ld a, [hli]

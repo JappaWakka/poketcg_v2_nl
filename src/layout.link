@@ -114,8 +114,6 @@ ROMX $1b
 	"Text 15"
 ROMX $1c
 	"Text Offsets"
-ROMX $1d
-	"SGB"
 ROMX $1e
 	"Gfx 1"
 ROMX $1f

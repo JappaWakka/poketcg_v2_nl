@@ -82,13 +82,7 @@ Func_c998:
 	ld a, [wd3d0]
 	or a
 	ret z
-	ld b, $4
-	ld a, [wConsole]
-	cp CONSOLE_CGB
-	jr nz, .not_cgb
-	ld b, $e
-.not_cgb
-	ld a, b
+	ld a, SPRITE_ANIM_BLUE_NPC_UP
 	ld [wNPCAnim], a
 	ld a, $0
 	ld [wNPCAnimFlags], a
@@ -1534,13 +1528,7 @@ ScriptCommand_SetSpriteAttributes:
 	or c
 	ld [hl], a
 	pop bc
-	ld e, c
-	ld a, [wConsole]
-	cp CONSOLE_CGB
-	jr nz, .not_cgb
-	ld e, b
-.not_cgb
-	ld a, e
+	ld a, b
 	farcall SetNPCAnimation
 	jp IncreaseScriptPointerBy4
 

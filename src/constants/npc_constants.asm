@@ -21,7 +21,6 @@ DEF LOADED_NPC_LENGTH EQU const_value
 	const NPC_DATA_ID
 	const NPC_DATA_SPRITE_ID
 	const NPC_DATA_ANIM
-	const NPC_DATA_ANIM_CGB
 	const NPC_DATA_FLAGS
 	const NPC_DATA_SCRIPT_PTR
 	const_skip

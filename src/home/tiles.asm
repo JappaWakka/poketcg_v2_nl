@@ -181,12 +181,7 @@ LoadCardTypeHeaderTiles::
 ; (e.g. hand cards in a duel or cards from a booster pack)
 ; preserves bc and de
 LoadDuelCardSymbolTiles::
-	ld hl, DuelDmgSgbSymbolGraphics
-	ld a, [wConsole]
-	cp CONSOLE_CGB
-	jr nz, .copy
 	ld hl, DuelCgbSymbolGraphics
-.copy
 	ld de, v0Tiles1 + $50 tiles
 	ld b, $30
 	jr CopyFontsOrDuelGraphicsTiles
@@ -201,12 +196,7 @@ LoadDuelFaceDownCardTiles::
 LoadDuelCheckPokemonScreenTiles::
 	ld b, $24
 .got_num_tiles
-	ld hl, DuelDmgSgbSymbolGraphics + $30 tiles
-	ld a, [wConsole]
-	cp CONSOLE_CGB
-	jr nz, .copy
 	ld hl, DuelCgbSymbolGraphics + $30 tiles
-.copy
 	ld de, v0Tiles1 + $50 tiles
 	jr CopyFontsOrDuelGraphicsTiles
 
@@ -222,12 +212,7 @@ LoadPlacingThePrizesScreenTiles::
 
 ; loads the Deck and the Discard Pile icons
 LoadDeckAndDiscardPileIcons::
-	ld hl, DuelDmgSgbSymbolGraphics + $54 tiles
-	ld a, [wConsole]
-	cp CONSOLE_CGB
-	jr nz, .copy
 	ld hl, DuelCgbSymbolGraphics + $54 tiles
-.copy
 	ld de, v0Tiles1 + $50 tiles
 	ld b, $30
 	jr CopyFontsOrDuelGraphicsTiles
@@ -274,23 +259,6 @@ Func_212f::
 	ld hl, DuelOtherGraphics + $15 tiles
 	ld de, sGfxBuffer1 + $30 tiles
 	ld b, $8
-	call CopyFontsOrDuelGraphicsTiles
-	call GetCardSymbolData
-	sub $d0
-	ld l, a
-	ld h, $00
-	add hl, hl
-	add hl, hl
-	add hl, hl
-	add hl, hl ; *16
-	ld de, DuelDmgSgbSymbolGraphics
-	add hl, de
-	ld de, sGfxBuffer1 + $38 tiles
-	ld b, $4
-	call CopyFontsOrDuelGraphicsTiles
-	ld hl, DuelDmgSgbSymbolGraphics
-	ld de, sGfxBuffer4 + $10 tiles
-	ld b, $30
 	jr CopyFontsOrDuelGraphicsTiles
 
 
@@ -341,12 +309,7 @@ Copy1bppTiles::
 ; loads the symbols for Stage 1 Pokemon, Stage 2 Pokemon, and Trainer cards.
 ; unlike LoadDuelCardSymbolTiles, this excludes the Basic Pokemon symbol and all of the Energy symbols.
 ;LoadDuelCardSymbolTiles2::
-;	ld hl, DuelDmgSgbSymbolGraphics + $4 tiles
-;	ld a, [wConsole]
-;	cp CONSOLE_CGB
-;	jr nz, .copy
 ;	ld hl, DuelCgbSymbolGraphics + $4 tiles
-;.copy
 ;	ld de, v0Tiles1 + $54 tiles
 ;	ld b, $c
 ;	jr CopyFontsOrDuelGraphicsTiles

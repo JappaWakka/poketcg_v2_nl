@@ -18,7 +18,7 @@ ChallengeMachine_Reset:
 ChallengeMachine_Start::
 	xor a ; DOUBLE_SPACED
 	ld [wLineSeparation], a
-	call LoadConsolePaletteData
+	ld [wd317], a
 	call ChallengeMachine_Initialize
 
 	call EnableSRAM

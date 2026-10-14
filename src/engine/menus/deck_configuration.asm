@@ -375,9 +375,6 @@ DrawDeckIcon:
 	lb hl, 1, 2
 	lb bc, 2, 2 ; rectangle size
 	call FillRectangle
-	ld a, [wConsole]
-	cp CONSOLE_CGB
-	ret nz
 	ld a, $02 ; CGB Background Palette 2 (blue/green)
 	lb bc, 2, 2
 	lb hl, 0, 0
@@ -407,9 +404,6 @@ DrawDeckBoxTileAtDE:
 	lb hl, 1, 2
 	lb bc, 2, 2 ; rectangle size
 	call FillRectangle
-	ld a, [wConsole]
-	cp CONSOLE_CGB
-	ret nz
 	ld a, $04 ; CGB Background Palette 4 (orange/red)
 	lb bc, 2, 2
 	lb hl, 0, 0
@@ -1209,9 +1203,6 @@ FillBGMapLineWithA::
 	call BCCoordToBGMap0Address
 	ld b, SCREEN_WIDTH
 	call FillDEWithA
-	ld a, [wConsole]
-	cp CONSOLE_CGB
-	ret nz ; return if not CGB
 	ld a, $04 ; CGB Background Palette 4 (orange/red)
 	ld b, SCREEN_WIDTH
 	call BankswitchVRAM1
@@ -3342,17 +3333,11 @@ DrawCardTypeIcons:
 	call FillRectangle
 	pop af
 	call GetCardTypeIconPalette
-	ld b, a
-	ld a, [wConsole]
-	cp CONSOLE_CGB
-	jr nz, .not_cgb
-	ld a, b
 	lb bc, 2, 2
 	lb hl, 0, 0
 	call BankswitchVRAM1
 	call FillRectangle
 	call BankswitchVRAM0
-.not_cgb
 	pop hl
 	jr .loop
 
@@ -3490,16 +3475,12 @@ PrintTotalNumberOfCardsInCollection:
 ;	pop af
 ;	call GetCardTypeIconPalette
 ;	ld b, a
-;	ld a, [wConsole]
-;	cp CONSOLE_CGB
-;	jr nz, .skip_pal
 ;	ld a, b
 ;	lb bc, 2, 2
 ;	lb hl, 0, 0
 ;	call BankswitchVRAM1
 ;	call FillRectangle
 ;	call BankswitchVRAM0
-;.skip_pal
 ;	pop de
 ;	ret
 ;
