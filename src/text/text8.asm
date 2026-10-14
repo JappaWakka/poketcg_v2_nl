@@ -644,8 +644,8 @@ Text063c:
 	done
 
 Text063d:
-	text "Ik ben niet meer druk, dus ik kan je"
-	line "uitdaging wanneer dan ook aannemen!"
+	text "Ik ben niet meer druk, dus je kunt"
+	line "me wanneer je maar wilt uitdagen!"
 	done
 
 Text063e:
@@ -705,8 +705,8 @@ Text0645:
 	done
 
 Text0646:
-	text "Wat? Jij bent het, <RAMNAME>!"
-	line "Wat ben je aan het doen?"
+	text "Oh, jij bent het, <RAMNAME>!"
+	line "Wat doe je hier nou?"
 	line "Huh? Dat is een deck! Ben je..."
 	line "van plan om de Legendarische"
 	line "Pokémonkaarten te veroveren?"

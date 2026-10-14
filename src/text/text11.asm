@@ -68,10 +68,10 @@ Text079a:
 	done
 
 Text079b:
-	text "Ja!"
+	text "Hoera!"
 	line "Het moet mijn geluksdag zijn!"
-	line "Kom me opzoeken wanneer je maar"
-	line "wilt! Ik zal dan met je duelleren!"
+	line "Kom me opzoeken wanneer je wilt!"
+	line "Ik zal dan tegen je duelleren!"
 	done
 
 Text079c:

@@ -2,7 +2,7 @@ Text0703:
 	text "Alleen meisjes mogen lid worden"
 	line "van de Gras-Club."
 	line "Maar we nemen momenteel sowieso"
-	line "geen aanmel dingen aan. Sorry!"
+	line "geen aanmeldingen aan. Sorry!"
 	done
 
 Text0704:
@@ -823,7 +823,7 @@ Text0779:
 Text077a:
 	text "Ik ben hier aan het trainen bij de"
 	line "Steen-Club! Maar Mitch zei dat ik"
-	line "je moest verslaan voordat je met"
+	line "je moest verslaan voordat je tegen"
 	line "iemand hier kon duelleren!"
 	done
 
@@ -833,7 +833,7 @@ UnusedText077b: ; Unused
 
 Text077c:
 	text "Ga je nou wegrennen!?!"
-	line "Kom op! Vecht met me!"
+	line "Kom op! Vecht tegen me!"
 	done
 
 Text077d:
@@ -872,8 +872,8 @@ Text0781:
 Text0782:
 	text "Hoi, <RAMNAME>."
 	line "Wil je duelleren?"
-	line "De Legendarische Kaarten zullen"
-	line "uiteindelijk van mij zijn!"
+	line "De Legendarische Kaarten"
+	line "zullen straks van mij zijn!"
 	line "Wat denk je ervan?"
 	line "Wil je duelleren tegen mij?"
 	done
@@ -895,7 +895,7 @@ Text0785:
 	done
 
 Text0786:
-	text "Oké, hetzelfde als altijd!"
+	text "Oké, net als altijd!"
 	line "We spelen met 4 Prijzen."
 	line "Is dat goed?"
 	line "Oké dan, laten we beginnen!"
@@ -919,7 +919,7 @@ Text0789:
 Text078a:
 	text "Ik won alweer!"
 	line "Ik denk dat de Legendarische"
-	line "Pokémonkaarten uiteindelijk van"
+	line "Pokémonkaarten straks van"
 	line "mij zullen zijn!"
 	done
 
