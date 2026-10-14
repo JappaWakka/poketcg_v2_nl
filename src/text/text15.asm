@@ -913,3 +913,8 @@ Draw2CardsText:
 RivalText:
 	text "Rivaal"
 	done
+
+ExclusiveToGameBoyColorsText:
+	text "Dit spel is exclusief"
+	line "voor de Game Boy Color."
+	done

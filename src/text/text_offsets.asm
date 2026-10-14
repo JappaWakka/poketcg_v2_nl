@@ -3031,5 +3031,6 @@ TextOffsets::
 	textpointer EvolutionCategoryName                              ; Made this because I don't want EvolutionName to be used as both a category and an expansion set name
 	textpointer RivalText                                          ; Ronald didn't have a title which caused glitches for some reason
 	textpointer IceBreathDescriptionCont                           ; Dutch description was too long
+	textpointer ExclusiveToGameBoyColorsText
 	
 	
