@@ -574,19 +574,21 @@ DrawInPlayArea_ActiveCardGfx:
 ; load card gfx
 	call LoadCardDataToBuffer1_FromDeckIndex
 	lb de, $8a, $00
-	ld hl, wLoadedCard1Gfx
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	lb bc, $30, TILE_SIZE
-	call LoadCardGfx
-	bank1call SetBGP6ToCardPalette
+	call LoadLoadedCard1Gfx
+	bank1call SetBGP2ToCardPalette
+; draw player arena card
+	ld a, $a0
+	lb de, 6, 9
+	lb hl, 6, 1
+	lb bc, 8, 6
+	call FillRectangle
+	bank1call ApplyCardCGBAttributes
 
 .opponent1
 	ld a, DUELVARS_ARENA_CARD
 	call GetNonTurnDuelistVariable
 	cp -1 ; empty play area slot?
-	jr z, .draw
+	jr z, .flush_pals
 
 	push af
 	ld a, [wArenaCardsInPlayArea]
@@ -598,48 +600,21 @@ DrawInPlayArea_ActiveCardGfx:
 	rst SwapTurn
 	call LoadCardDataToBuffer1_FromDeckIndex
 	lb de, $95, $00
-	ld hl, wLoadedCard1Gfx
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	lb bc, $30, TILE_SIZE
-	call LoadCardGfx
-	bank1call SetBGP7ToCardPalette
-	rst SwapTurn
-
-.draw
-	ld a, [wArenaCardsInPlayArea]
-	or a
-	ret z ; no cards in the Arena
-
-	call FlushAllPalettes
-	ld a, [wArenaCardsInPlayArea]
-	and %00000001 ; test the player's Active Pokemon bit
-	jr z, .opponent2
-
-; draw the player's Active Pokemon
-	ld a, $a0 ; starting tile number (v0Tiles1 + $20 tiles)
-	lb de, 6, 9 ; screen coordinates for top left tile
-	lb hl, 6, 1
-	lb bc, 8, 6 ; width and height of image (in tiles)
-	call FillRectangle
-	bank1call ApplyBGP6ToCardImage
-
-.opponent2
-	ld a, [wArenaCardsInPlayArea]
-	and %00000010 ; test the opponent's Active Pokemon bit
-	ret z
-
-; draws the opponent's Active Pokemon
-	rst SwapTurn
+	call LoadLoadedCard1Gfx
+	bank1call SetBGP5ToCardPalette
 	ld a, $50 ; starting tile number (v0Tiles2 + $50 tiles)
 	lb de, 6, 2 ; screen coordinates for top left tile
 	lb hl, 6, 1
 	lb bc, 8, 6 ; width and height of image (in tiles)
 	call FillRectangle
-	bank1call ApplyBGP7ToCardImage
+	bank1call ApplyCardCGBAttributes
 	jp SwapTurn
 
+.flush_pals
+	ld a, [wArenaCardsInPlayArea]
+	or a
+	ret z  ; no arena cards in play
+	jp FlushAllPalettes
 
 ; draws the player's or opponent's Active Pokemon gfx at coordinates de,
 ; depending on wCheckMenuPlayAreaWhichDuelist.
@@ -670,13 +645,8 @@ DrawYourOrOppPlayArea_ActiveCardGfx:
 
 .draw
 	ld de, v0Tiles1 + $20 tiles ; destination offset of loaded gfx
-	ld hl, wLoadedCard1Gfx
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	lb bc, $30, TILE_SIZE
-	call LoadCardGfx
-	bank1call SetBGP6ToCardPalette
+	call LoadLoadedCard1Gfx
+	bank1call SetBGP2ToCardPalette
 	call FlushAllPalettes
 	pop de
 
@@ -685,7 +655,7 @@ DrawYourOrOppPlayArea_ActiveCardGfx:
 	lb hl, 6, 1
 	lb bc, 8, 6 ; width and height of image (in tiles)
 	call FillRectangle
-	bank1call ApplyBGP6ToCardImage
+	bank1call ApplyCardCGBAttributes
 	ret
 
 .no_pokemon
@@ -743,7 +713,7 @@ DrawPlayArea_PrizeCards:
 	lb bc, 2, 2 ; rectangle size
 	call FillRectangle
 
-	ld a, $02 ; CGB Background Palette 2 (blue/green)
+	xor a  ; grey colour
 	lb bc, 2, 2
 	lb hl, 0, 0
 	call BankswitchVRAM1
@@ -906,26 +876,10 @@ DrawPlayArea_BenchCards:
 	add a ; *4
 	add $e4
 	; a holds the correct stage gfx tile
-	ld b, a
-	push bc
-
 	lb hl, 1, 2
 	lb bc, 2, 2
 	call FillRectangle
-
-	pop bc
-
-	ld a, b
-	cp $ec ; tile offset for the Stage 2 icon (v0Tiles1 + $6c tiles)
-	jr z, .two_stage
-	cp $f0 ; tile offset for the Stage 2 without Stage 1 icon (v0Tiles1 + $70 tiles)
-	jr z, .two_stage
-
-	ld a, $02 ; CGB Background Palette 2 (blue/green)
-	jr .palette
-.two_stage
-	ld a, $01 ; CGB Background Palette 1 (red/yellow)
-.palette
+	xor a  ; grey colour
 	lb bc, 2, 2
 	lb hl, 0, 0
 	call BankswitchVRAM1
@@ -958,7 +912,7 @@ DrawPlayArea_BenchCards:
 	lb bc, 2, 2
 	call FillRectangle
 
-	ld a, $02 ; colour
+	ld a, $01 ; colour
 	lb bc, 2, 2
 	lb hl, 0, 0
 	call BankswitchVRAM1
@@ -1068,7 +1022,7 @@ DrawPlayArea_IconWithValue:
 	lb bc, 2, 2
 	call FillRectangle
 
-	ld a, $02 ; CGB Background Palette 2 (blue/green)
+	xor a  ; grey colour
 	lb bc, 2, 2
 	lb hl, 0, 0
 	call BankswitchVRAM1

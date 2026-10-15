@@ -169,7 +169,7 @@ CopyLine::
 ; Draws a bxc text box at de to print menu data in the overworld.
 ; Also used to print a text box during a duel.
 ; When talking to NPCs, DrawLabeledTextBox is used instead.
-DrawRegularTextBox:
+DrawRegularTextBox::
 	call DECoordToBGMap0Address
 	; top line (border) of the text box
 	ld a, SYM_BOX_TOP
@@ -243,6 +243,4 @@ DrawTextBoxSeparator::
 	ld a, [wConsole]
 	cp CONSOLE_CGB
 	jr z, CopyCurrentLineAttrCGB
-	cp CONSOLE_SGB
-	jr z, ColorizeTextBoxSGB
 	ret

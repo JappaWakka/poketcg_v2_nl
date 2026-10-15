@@ -959,7 +959,7 @@ wListFunctionPointer:: ; cd1d
 	ds $2
 
 ; Unused wram bytes?
-	ds $77
+	ds $37
 
 ; indicates that an alternate format should be used when displaying a card list.
 ; currently only used when opening a booster pack (if = USE_BOOSTER_PACK_DISPLAY).
@@ -1339,9 +1339,11 @@ wCurrentAIFlags:: ; ce21
 wEffectFunctionsBank:: ; ce22
 	ds $1
 
-; LoadCardGfx loads the card's palette here
+; LoadLoadedCard1Gfx loads the card's palette here
 wCardPalette:: ; ce23
-	ds CGB_PAL_SIZE ; ds $8
+	ds 3 palettes
+wCardAttrMap::
+	ds $30
 
 ; information about the text being currently processed, including font width,
 ; the rom bank, and the memory address of the next character to be printed.

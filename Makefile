@@ -34,7 +34,13 @@ clean: tidy
 	find src/gfx \
 	     \( -iname '*.1bpp' \
 	        -o -iname '*.2bpp' \
-	        -o -iname '*.pal' \) \
+	        -o -iname '*.pal' \
+	        -o -iname '*.attrmap' \) \
+	     -delete
+
+	find src/data \
+	     \( -iname '*.lz' \
+	        -o -iname '*.bgmap' \) \
 	     -delete
 
 	find src/data \
@@ -100,7 +106,7 @@ src/gfx/booster_packs/evolution.2bpp: rgbgfx += -x 10
 src/gfx/booster_packs/laboratory.2bpp: rgbgfx += -x 10
 src/gfx/booster_packs/mystery.2bpp: rgbgfx += -x 10
 
-src/gfx/cards/%.2bpp: rgbgfx += -Z -P
+src/gfx/cards/%.2bpp: rgbgfx += -Z
 
 src/gfx/duel/anims/result.2bpp: rgbgfx += -x 10
 src/gfx/duel/other.2bpp: rgbgfx += -x 7
@@ -137,6 +143,11 @@ src/gfx/titlescreen/title_screen_cgb.2bpp: rgbgfx += -x 12
 
 %.png: ;
 
+%.attrmap: %.png
+	$(RGBGFX) $(rgbgfx) -Z -P -A $<
+	tools/pal_fix $(tools/pal_fix) $*.pal
+	tools/attr_fix $(tools/attr_fix) $@
+
 %.pal: ;
 
 %.2bpp: %.png
@@ -148,7 +159,7 @@ src/gfx/titlescreen/title_screen_cgb.2bpp: rgbgfx += -x 12
 	$(RGBGFX) $(rgbgfx) -d1 -o $@ $<
 	$(if $(tools/gfx),\
 		tools/gfx $(tools/gfx) -d1 -o $@ $@)
-
+		
 %.bgmap: %.bin ../dimensions/%.dimensions
 	tools/bgmap $(tools/bgmap) $^ $@
 

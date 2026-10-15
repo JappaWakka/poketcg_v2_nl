@@ -114,31 +114,6 @@ _LoadScene::
 
 INCLUDE "data/scenes.asm"
 
-; preserves all registers except af
-LoadScene_SetCardPopAttrBlk:
-	push hl
-	push bc
-	push de
-	ld hl, SGBPacket_CardPop
-	call SendSGB
-	pop de
-	pop bc
-	pop hl
-	ret
-
-SGBPacket_CardPop:
-	sgb ATTR_BLK, 1
-	db 1 ; number of data sets
-	db ATTR_BLK_CTRL_OUTSIDE | ATTR_BLK_CTRL_LINE | ATTR_BLK_CTRL_INSIDE
-	db %101111 ; Color Palette Designation
-	db 0  ; x1
-	db 0  ; y1
-	db 19 ; x2
-	db 4  ; y3
-	ds 6 ; data set 2
-	ds 2 ; data set 3
-
-
 ; preserves bc and de
 ; input:
 ;	bc = coordinates at which to begin drawing the portrait

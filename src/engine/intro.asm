@@ -1,6 +1,7 @@
 PlayIntroSequence:
 	call DisableLCD
-	farcall LoadConsolePaletteData
+	xor a
+	ld [wd317], a
 	farcall InitMenuScreen
 	call EnableAndClearSpriteAnimations
 	ld hl, HandleAllSpriteAnimations

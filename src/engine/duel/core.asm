@@ -1216,6 +1216,7 @@ DisplayEnergyDiscardScreen:
 	call EmptyScreen
 	call LoadDuelCardSymbolTiles
 	call LoadDuelFaceDownCardTiles
+	call SetDefaultConsolePalettes
 	ld a, [wEnergyDiscardPlayAreaLocation]
 	ld hl, wCurPlayAreaSlot
 	ld [hli], a
@@ -1316,14 +1317,9 @@ OpenAttackPage:
 	call EmptyScreen
 	call FinishQueuedAnimations
 	ld de, v0Tiles1 + $20 tiles
-	call LoadLoaded1CardGfx
-	call SetOBP1ToCardPalette
-	call SetBGP6ToCardPalette
+	call LoadLoadedCard1Gfx
+	call SetBGP5ToCardPalette
 	call FlushAllPalettes
-	lb de, $38, $30 ; X Position and Y Position of top-left corner
-	call PlaceCardImageOAM
-	lb de, 6, 4
-	call ApplyBGP6ToCardImage
 	ldh a, [hCurMenuItem]
 	ld [wSelectedDuelSubMenuItem], a
 	add a
@@ -1648,6 +1644,7 @@ DisplayDrawNCardsScreen:
 	cp SHUFFLE_DECK
 	jr z, .portraits_drawn
 	call EmptyScreen
+	call SetDefaultConsolePalettes
 	call DrawDuelistPortraitsAndNames
 .portraits_drawn
 	ld a, DRAW_CARDS
@@ -1795,14 +1792,14 @@ DeckAndHandIconsTileData:
 
 DeckAndHandIconsCGBPalData:
 ; x, y, pals[], 0
-	db  8,  2, $02, $02, 0
-	db  8,  3, $02, $02, 0
-	db  2,  2, $02, $02, 0
-	db  2,  3, $02, $02, 0
-	db  7,  9, $02, $02, 0
-	db  7, 10, $02, $02, 0
-	db 13,  9, $02, $02, 0
-	db 13, 10, $02, $02, 0
+	db  8,  2, $3, $3, 0
+	db  8,  3, $3, $3, 0
+	db  2,  2, $3, $3, 0
+	db  2,  3, $3, $3, 0
+	db  7,  9, $3, $3, 0
+	db  7, 10, $3, $3, 0
+	db 13,  9, $3, $3, 0
+	db 13, 10, $3, $3, 0
 	db $ff
 
 
@@ -1859,10 +1856,10 @@ DuelHorizontalSeparatorTileData:
 
 DuelHorizontalSeparatorCGBPalData:
 ; x, y, pals[], 0
-	db 0, 4, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, 0
-	db 9, 5, $02, $02, 0
-	db 9, 6, $02, $02, 0
-	db 9, 7, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, $02, 0
+	db 0, 4, $1, $1, $1, $1, $1, $1, $1, $1, $1, $1, $1, 0
+	db 9, 5, $1, $1, 0
+	db 9, 6, $1, $1, 0
+	db 9, 7, $1, $1, $1, $1, $1, $1, $1, $1, $1, $1, $1, 0
 	db $ff
 
 
@@ -2603,17 +2600,7 @@ DrawDuelMainScene::
 	get_turn_duelist_var
 	ld de, v0Tiles1 + $50 tiles
 	call LoadPlayAreaCardGfx
-	call SetBGP7ToCardPalette
-	rst SwapTurn
-	ld a, DUELVARS_ARENA_CARD
-	get_turn_duelist_var
-	ld de, v0Tiles1 + $20 tiles
-	call LoadPlayAreaCardGfx
-	call SetBGP6ToCardPalette
-	call FlushAllPalettes
-	rst SwapTurn
-; next, draw the Pokemon in the Arena
-;.place_player_arena_pkmn
+	call SetBGP5ToCardPalette
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	inc a ; cp -1 (empty play area slot?)
@@ -2623,10 +2610,17 @@ DrawDuelMainScene::
 	lb de, 0, 5
 	lb bc, 8, 6
 	call FillRectangle
-	call ApplyBGP7ToCardImage
+	call ApplyCardCGBAttributes
+
 .place_opponent_arena_pkmn
+	call SwapTurn
 	ld a, DUELVARS_ARENA_CARD
 	call GetNonTurnDuelistVariable
+	ld de, v0Tiles1 + $20 tiles
+	call LoadPlayAreaCardGfx
+	call SetBGP2ToCardPalette
+	ld a, DUELVARS_ARENA_CARD
+	call GetTurnDuelistVariable
 	inc a ; cp -1 (empty play area slot?)
 	jr z, .place_other_elements
 	ld a, $a0 ; v0Tiles1 + $20 tiles
@@ -2634,8 +2628,11 @@ DrawDuelMainScene::
 	lb de, 12, 1
 	lb bc, 8, 6
 	call FillRectangle
-	call ApplyBGP6ToCardImage
+	call ApplyCardCGBAttributes
+	call SwapTurn
+
 .place_other_elements
+	call FlushAllPalettes
 	ld hl, DuelEAndHPTileData
 	call WriteDataBlocksToBGMap0
 	call DrawDuelHorizontalSeparator
@@ -3442,6 +3439,7 @@ DrawCardListScreenLayout:
 	call SetupText
 	call LoadSymbolsFont
 	call LoadDuelCardSymbolTiles
+	call SetDefaultConsolePalettes
 	; draw the surrounding box
 	lb de, 0, 0
 	lb bc, 20, 13
@@ -3452,7 +3450,6 @@ DrawCardListScreenLayout:
 	lb de, 12, 12
 	lb bc, 8, 6
 	call FillRectangle
-	call ApplyBGP6ToCardImage
 	ld hl, wPrintSortNumberInCardListPtr
 	call CallIndirect
 	ld a, [wDuelTempList]
@@ -3488,6 +3485,8 @@ DisplayCardList:
 	ld hl, CardListParameters ; other list params
 	call PrintCardListItems
 	call LoadSelectedCardGfx
+	lb de, 12, 12
+	call ApplyCardCGBAttributes
 	call EnableLCD
 .wait_button
 	call DoFrame
@@ -3745,6 +3744,7 @@ ReloadCardListItems:
 	ld a, $04 ; CGB BG Palette 4 (used for borders)
 	call WriteByteToBGMap0
 	call BankswitchVRAM0
+.next_line
 	pop bc
 	pop hl
 	inc e
@@ -4055,6 +4055,8 @@ CardListFunction:
 	and D_PAD
 	ret z ; return unless the D_PAD key was released this frame
 	call LoadSelectedCardGfx
+	lb de, 12, 12
+	call ApplyCardCGBAttributes
 	or a
 	ret
 .exit
@@ -4073,8 +4075,8 @@ LoadSelectedCardGfx:
 	call GetCardInDuelTempList
 	call LoadCardDataToBuffer1_FromCardID
 	ld de, v0Tiles1 + $20 tiles
-	call LoadLoaded1CardGfx
-	call SetBGP6ToCardPalette
+	call LoadLoadedCard1Gfx
+	call SetBGP5ToCardPalette
 	jp FlushAllPalettes
 
 
@@ -4166,15 +4168,11 @@ OpenCardPage:
 	call FinishQueuedAnimations
 	; load the graphics and display the card image of wLoadedCard1
 	call LoadDuelCardSymbolTiles
+	call SetDefaultConsolePalettes
 	ld de, v0Tiles1 + $20 tiles
-	call LoadLoaded1CardGfx
-	call SetOBP1ToCardPalette
-	call SetBGP6ToCardPalette
+	call LoadLoadedCard1Gfx
+	call SetBGP5ToCardPalette
 	call FlushAllPalettes
-	lb de, $38, $30 ; X Position and Y Position of top-left corner
-	call PlaceCardImageOAM
-	lb de, 6, 4
-	call ApplyBGP6ToCardImage
 	; display the initial card page for the card at wLoadedCard1
 	xor a
 	ld [wCardPageNumber], a
@@ -4462,43 +4460,6 @@ CardPageSwitch_TrainerEnd:
 	scf
 	ret
 
-
-; places OAM for a 8x6 image (64x48 pixels), using object size 8x16 and obj palette 1.
-; starting tile number is $a0 (v0Tiles1 + $20 tiles).
-; used to draw the image of a card in the check card screens.
-; input:
-;	de: screen coordinates for the top-left corner of the image
-PlaceCardImageOAM:
-	call Set_OBJ_8x16
-	ld l, $a0
-	ld c, 8 ; number of objects per row
-.next_column
-	ld b, 3 ; number of rows
-	push de
-.next_row
-	push bc
-	ld c, l ; tile number
-	ld b, 1 ; attributes (palette)
-	call SetOneObjectAttributes
-	pop bc
-	inc l
-	inc l ; next 8x16 tile
-	ld a, 16
-	add e ; Y Position += 16 (next 8x16 row)
-	ld e, a
-	dec b
-	jr nz, .next_row
-	pop de
-	ld a, 8
-	add d ; X Position += 8 (next 8x16 column)
-	ld d, a
-	dec c
-	jr nz, .next_column
-	ld a, $01
-	ld [wVBlankOAMCopyToggle], a
-	ret
-
-
 ; given the deck index of a card in the play area,
 ; loads the card's graphics (tiles and palette) to de
 ; input:
@@ -4508,80 +4469,75 @@ LoadPlayAreaCardGfx:
 	cp -1
 	ret z ; return if the play area slot is empty
 	call LoadCardDataToBuffer1_FromDeckIndex
-;	fallthrough
-
-; load the graphics (tiles and palette) of the card loaded in wLoadedCard1 to de
-; input:
-;	de = where in vram to copy the card's graphic data
-;	[wLoadedCard1Gfx] = pointer for the card's graphic data (2 bytes)
-LoadLoaded1CardGfx:
-	ld hl, wLoadedCard1Gfx
-	ld a, [hli]
-	ld h, [hl]
-	ld l, a
-	lb bc, $30, TILE_SIZE
-	jp LoadCardGfx
+	jp LoadLoadedCard1Gfx
 
 
-SetBGP7ToCardPalette:
-	ld a, $07 ; CGB BG Palette 7
-	jr CopyCGBCardPalette
+SetBGP5ToCardPalette:
+	ld a, $05 ; CGB BG Palette 5
+	jp SetCardPalette
 
 
-SetBGP6ToCardPalette:
-	ld a, $06 ; CGB BG Palette 6
-	jr CopyCGBCardPalette
-
-
-SetOBP1ToCardPalette:
-	ld a, %11100100
-	ld [wOBP0], a
-	ld a, $09 ; CGB Object Palette 1
+SetBGP2ToCardPalette:
+	ld a, $02 ; CGB BG Palette 2
 ;	fallthrough
 
 ; input:
 ;	a = which CGB palette to fill with the card's palette
-CopyCGBCardPalette:
+SetCardPalette:
+	ld c, a
 	add a
 	add a
 	add a ; a *= CGB_PAL_SIZE
 	ld e, a
 	ld d, $00
-	ld hl, wBackgroundPalettesCGB ; wObjectPalettesCGB - 8 palettes
+	ld hl, wBackgroundPalettesCGB
 	add hl, de
 	ld de, wCardPalette
-	ld b, CGB_PAL_SIZE
+	ld b, 3 palettes
 .copy_pal_loop
 	ld a, [de]
 	inc de
 	ld [hli], a
 	dec b
 	jr nz, .copy_pal_loop
+	; de: wCardAttrMap
+	ld b, $30
+.loop_set_attr_pal
+	ld a, [de]
+	add c
+	ld [de], a
+	inc de
+	dec b
+	jr nz, .loop_set_attr_pal
 	ret
 
-; input:
-;	de = screen coordinates of card image's top left tile
-ApplyBGP6ToCardImage:
-	ld a, $06 ; CGB BG Palette 6
-;	fallthrough
 
-; given the 8x6 card image with coordinates at de, fills its BGMap attributes with a
+; given the 8x6 card image with coordinates at de
+; using the rectangle card attributes in wCardAttrMap
 ; input:
 ;	a = which background palette to use
 ;	de = screen coordinates of card image's top left tile
 ApplyCardCGBAttributes:
 	call BankswitchVRAM1
-	lb hl, 0, 0
-	lb bc, 8, 6
-	call FillRectangle
+	call DECoordToBGMap0Address
+	ld d, h
+	ld e, l
+	ld hl, wCardAttrMap
+	ld c, 6
+.loop_copy_rows
+	ld b, 8
+	call SafeCopyDataHLtoDE
+	ld a, e
+	add BG_MAP_WIDTH - 8
+	ld e, a
+	ld a, d
+	adc 0
+	ld d, a
+	dec c
+	jr nz, .loop_copy_rows
 	jp BankswitchVRAM0
 
 ;	fallthrough
-
-ApplyBGP7ToCardImage:
-	ld a, $07 ; CGB BG Palette 7
-	jr ApplyCardCGBAttributes
-
 
 ; input:
 ;	[wLoadedCard1] = all of the Pokémon's data (card_data_struct)
@@ -4907,9 +4863,32 @@ DrawCardPageSurroundingBox:
 	pop hl
 	res 7, [hl]
 	lb de, 6, 4
-	jp ApplyBGP6ToCardImage
+	jr nc, .apply_attributes
+.apply_attributes
+	ld a, $a0
+	lb hl, 6, 1
+	lb bc, 8, 6
+	call FillRectangle
+	jp ApplyCardCGBAttributes
 
-
+; colorizes the card image at the respective sprite coordinates
+ColorizeCardImage:
+IF NEW_CARD_PAGE_LAYOUT
+	ld a, [wLoadedCard1Type]
+	cp TYPE_ENERGY
+ENDC
+	lb de, 6, 4
+IF NEW_CARD_PAGE_LAYOUT
+	jr nc, .apply_attributes
+	lb de, 1, 4
+ENDC
+.apply_attributes
+	ld a, $a0
+	lb hl, 6, 1
+	lb bc, 8, 6
+	call FillRectangle
+	jp ApplyCardCGBAttributes
+	
 CardPageRetreatWRTextData:
 	textitem 1, 14, RetreatCostText
 	textitem 1, 15, WeaknessText
@@ -5125,7 +5104,7 @@ DisplayEnergyOrTrainerCardPage:
 	call InitTextPrinting_ProcessTextFromPointerToID
 	; colorize the card image
 	lb de, 6, 4
-	call ApplyBGP6ToCardImage
+	call ColorizeCardImage
 	; display the card type header
 	ld a, $e0
 	lb hl, 1, 8
@@ -5162,13 +5141,13 @@ DrawLargePictureOfCard:
 	ld a, e
 	call LoadCardTypeHeaderTiles
 	ld de, v0Tiles1 + $20 tiles
-	call LoadLoaded1CardGfx
-	call SetBGP6ToCardPalette
+	call LoadLoadedCard1Gfx
+	call SetBGP5ToCardPalette
 	call FlushAllPalettes
 	ld hl, LargeCardTileData
 	call WriteDataBlocksToBGMap0
 	lb de, 6, 3
-	jp ApplyBGP6ToCardImage
+	jp ApplyCardCGBAttributes
 
 LargeCardTileData:
 	db  5,  0, $d0, $d4, $d4, $d4, $d4, $d4, $d4, $d4, $d4, $d1, 0 ; top border
@@ -5324,6 +5303,7 @@ DisplayPlayAreaScreen:
 .reload_screen
 	call ZeroObjectPositionsAndToggleOAMCopy
 	call EmptyScreen
+	call SetDefaultConsolePalettes
 	call LoadDuelCardSymbolTiles
 	call LoadDuelCheckPokemonScreenTiles
 	call PrintPlayAreaCardList
@@ -5886,10 +5866,10 @@ PrintPlayAreaCardHeader:
 
 FaceDownCardTileNumbers:
 ; starting tile number, cgb palette (grey, yellow/red, green/blue, pink/orange)
-	db $d0, $02 ; BASIC
-	db $d4, $02 ; STAGE1
-	db $d8, $01 ; STAGE2
-	db $dc, $01 ; STAGE2_WITHOUT_STAGE1
+	db $d0, $3 ; BASIC
+	db $d4, $3 ; STAGE1
+	db $d8, $2 ; STAGE2
+	db $dc, $2 ; STAGE2_WITHOUT_STAGE1
 
 
 ; given a Pokemon's status in a, prints the Poison symbol at bc if it's Poisoned
@@ -6071,6 +6051,7 @@ DisplayPlayAreaScreenToUsePkmnPower:
 	call EmptyScreen
 	call LoadDuelCardSymbolTiles
 	call LoadDuelCheckPokemonScreenTiles
+	call SetDefaultConsolePalettes
 	ld de, wDuelTempList
 	call SetListPointer
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
@@ -9091,13 +9072,6 @@ HandleStrikesBack_AgainstNormalAttack:
 ;	call SetDiscardPileScreenTexts
 ;	jp DisplayCardList
 ;
-;
-; colorizes both card images in the main duel scene
-;Func_5a81:
-;	lb de, 0, 5
-;	call ApplyBGP7ToCardImage
-;	lb de, 12, 1
-;	jp ApplyBGP6ToCardImage
 ;
 ;
 ;Func_616e:

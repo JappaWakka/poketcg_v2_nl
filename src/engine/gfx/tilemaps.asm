@@ -49,13 +49,13 @@ Tilemaps:
 	tilemap GameBoyLinkTilemap,                TILESET_GAMEBOY_LINK                ; TILEMAP_GAMEBOY_LINK
 	tilemap GameBoyLinkConnectingTilemap,      TILESET_GAMEBOY_LINK                ; TILEMAP_GAMEBOY_LINK_CONNECTING
 	tilemap GameBoyPrinterTilemap,             TILESET_GAMEBOY_PRINTER             ; TILEMAP_GAMEBOY_PRINTER
-	tilemap ColosseumTilemap,                  TILESET_COLOSSEUM_1                 ; TILEMAP_COLOSSEUM
-	tilemap EvolutionTilemap,                  TILESET_EVOLUTION_1                 ; TILEMAP_EVOLUTION
-	tilemap MysteryTilemap,                    TILESET_MYSTERY_1                   ; TILEMAP_MYSTERY
-	tilemap LaboratoryTilemap,                 TILESET_LABORATORY_1                ; TILEMAP_LABORATORY
-	tilemap CharizardIntroTilemap,             TILESET_CHARIZARD_INTRO_1           ; TILEMAP_CHARIZARD_INTRO
-	tilemap ScytherIntroTilemap,               TILESET_SCYTHER_INTRO_1             ; TILEMAP_SCYTHER_INTRO
-	tilemap AerodactylIntroTilemap,            TILESET_AERODACTYL_INTRO_1          ; TILEMAP_AERODACTYL_INTRO
+	tilemap ColosseumTilemap,                  TILESET_COLOSSEUM                   ; TILEMAP_COLOSSEUM
+	tilemap EvolutionTilemap,                  TILESET_EVOLUTION                   ; TILEMAP_EVOLUTION
+	tilemap MysteryTilemap,                    TILESET_MYSTERY                     ; TILEMAP_MYSTERY
+	tilemap LaboratoryTilemap,                 TILESET_LABORATORY                  ; TILEMAP_LABORATORY
+	tilemap CharizardIntroTilemap,             TILESET_CHARIZARD_INTRO             ; TILEMAP_CHARIZARD_INTRO
+	tilemap ScytherIntroTilemap,               TILESET_SCYTHER_INTRO               ; TILEMAP_SCYTHER_INTRO
+	tilemap AerodactylIntroTilemap,            TILESET_AERODACTYL_INTRO            ; TILEMAP_AERODACTYL_INTRO
 	tilemap SolidTiles1Tilemap,                TILESET_SOLID_TILES_1               ; TILEMAP_SOLID_TILES_1
 	tilemap SolidTiles2Tilemap,                TILESET_SOLID_TILES_1               ; TILEMAP_SOLID_TILES_2
 	tilemap SolidTiles3Tilemap,                TILESET_SOLID_TILES_1               ; TILEMAP_SOLID_TILES_3

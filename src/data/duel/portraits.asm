@@ -1,7 +1,6 @@
 MACRO portrait
 	db \1 ; tileset
 	db \2 ; palette
-	dw \3 ; SGB pals
 ENDM
 
 PortraitGfxData:
