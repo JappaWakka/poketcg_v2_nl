@@ -375,7 +375,7 @@ DrawDeckIcon:
 	lb hl, 1, 2
 	lb bc, 2, 2 ; rectangle size
 	call FillRectangle
-	ld a, $02 ; CGB Background Palette 2 (blue/green)
+	ld a, $03 ; CGB Background Palette 2 (blue/green)
 	lb bc, 2, 2
 	lb hl, 0, 0
 	call BankswitchVRAM1
@@ -404,7 +404,7 @@ DrawDeckBoxTileAtDE:
 	lb hl, 1, 2
 	lb bc, 2, 2 ; rectangle size
 	call FillRectangle
-	ld a, $04 ; CGB Background Palette 4 (orange/red)
+	ld a, $01 ; CGB Background Palette 1 (orange/red)
 	lb bc, 2, 2
 	lb hl, 0, 0
 	call BankswitchVRAM1
@@ -1195,7 +1195,7 @@ DrawCardTypeIconsAndPrintCardCounts:
 
 
 ; draws the same tile across an entire line in BG Map
-; if CGB, also fills the line with background palette 4 in VRAM1
+; if CGB, also fills the line with background palette 1 in VRAM1
 ; input:
 ;	a = TX_SYMBOL (SYM_* constant)
 ;	bc = coordinates to print line
@@ -1203,7 +1203,7 @@ FillBGMapLineWithA::
 	call BCCoordToBGMap0Address
 	ld b, SCREEN_WIDTH
 	call FillDEWithA
-	ld a, $04 ; CGB Background Palette 4 (orange/red)
+	ld a, $01 ; CGB Background Palette 1 (orange/red)
 	ld b, SCREEN_WIDTH
 	call BankswitchVRAM1
 	call FillDEWithA

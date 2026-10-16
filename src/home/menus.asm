@@ -234,7 +234,7 @@ DrawCardSymbol::
 
 
 CardSymbolTable::
-; starting tile number, cgb palette (grey, yellow/red, green/blue, pink/orange)
+; starting tile number, cgb palette (monochrome, yellow/red, green/blue, pink/orange)
 	db ICON_TILE_FIRE,            $02 ; TYPE_ENERGY_FIRE
 	db ICON_TILE_GRASS,           $03 ; TYPE_ENERGY_GRASS
 	db ICON_TILE_LIGHTNING,       $02 ; TYPE_ENERGY_LIGHTNING

@@ -4453,7 +4453,7 @@ ApplyCardCGBAttributes:
 	ld b, 8
 	call SafeCopyDataHLtoDE
 	ld a, e
-	add BG_MAP_WIDTH - 8
+	add TILEMAP_WIDTH - 8
 	ld e, a
 	ld a, d
 	adc 0
@@ -5816,7 +5816,7 @@ PrintPlayAreaCardHeader:
 	jp WriteByteToBGMap0
 
 FaceDownCardTileNumbers:
-; starting tile number, cgb palette (grey, yellow/red, green/blue, pink/orange)
+; starting tile number, cgb palette (monochrome, yellow/red, green/blue, pink/orange)
 	db $d0, $3 ; BASIC
 	db $d4, $3 ; STAGE1
 	db $d8, $2 ; STAGE2

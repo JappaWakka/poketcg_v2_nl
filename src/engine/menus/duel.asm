@@ -710,7 +710,7 @@ DrawPlayArea_PrizeCards:
 	lb bc, 2, 2 ; rectangle size
 	call FillRectangle
 
-	xor a  ; grey colour
+	xor a  ; CGB Background Palette 0 (monochrome)
 	lb bc, 2, 2
 	lb hl, 0, 0
 	call BankswitchVRAM1
@@ -876,7 +876,7 @@ DrawPlayArea_BenchCards:
 	lb hl, 1, 2
 	lb bc, 2, 2
 	call FillRectangle
-	xor a  ; grey colour
+	xor a  ; CGB Background Palette 0 (monochrome)
 	lb bc, 2, 2
 	lb hl, 0, 0
 	call BankswitchVRAM1
@@ -909,7 +909,7 @@ DrawPlayArea_BenchCards:
 	lb bc, 2, 2
 	call FillRectangle
 
-	ld a, $01 ; colour
+	ld a, $01 ; CGB Background Palette 1 (red/orange)
 	lb bc, 2, 2
 	lb hl, 0, 0
 	call BankswitchVRAM1
@@ -1019,7 +1019,7 @@ DrawPlayArea_IconWithValue:
 	lb bc, 2, 2
 	call FillRectangle
 
-	xor a  ; grey colour
+	xor a  ; CGB Background Palette 0 (monochrome)
 	lb bc, 2, 2
 	lb hl, 0, 0
 	call BankswitchVRAM1

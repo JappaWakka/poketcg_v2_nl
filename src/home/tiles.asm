@@ -170,7 +170,7 @@ LoadCardOrDuelMenuBorderTiles::
 LoadCardTypeHeaderTiles::
 	ld d, a
 	ld e, 0
-	ld hl, DuelCardHeaderGraphics
+	ld hl, DuelCardHeaderGraphics - $4000
 	add hl, de
 	ld de, v0Tiles1 + $60 tiles
 	ld b, $10
@@ -181,7 +181,7 @@ LoadCardTypeHeaderTiles::
 ; (e.g. hand cards in a duel or cards from a booster pack)
 ; preserves bc and de
 LoadDuelCardSymbolTiles::
-	ld hl, DuelCgbSymbolGraphics
+	ld hl, DuelCgbSymbolGraphics - $4000
 	ld de, v0Tiles1 + $50 tiles
 	ld b, $30
 	jr CopyFontsOrDuelGraphicsTiles
@@ -196,7 +196,7 @@ LoadDuelFaceDownCardTiles::
 LoadDuelCheckPokemonScreenTiles::
 	ld b, $24
 .got_num_tiles
-	ld hl, DuelCgbSymbolGraphics + $30 tiles
+	ld hl, DuelCgbSymbolGraphics + $30 tiles - $4000
 	ld de, v0Tiles1 + $50 tiles
 	jr CopyFontsOrDuelGraphicsTiles
 
@@ -212,7 +212,7 @@ LoadPlacingThePrizesScreenTiles::
 
 ; loads the Deck and the Discard Pile icons
 LoadDeckAndDiscardPileIcons::
-	ld hl, DuelCgbSymbolGraphics + $54 tiles
+	ld hl, DuelCgbSymbolGraphics + $54 tiles - $4000
 	ld de, v0Tiles1 + $50 tiles
 	ld b, $30
 	jr CopyFontsOrDuelGraphicsTiles
