@@ -2592,8 +2592,8 @@ DrawDuelMainScene::
 	call ZeroObjectPositionsAndToggleOAMCopy
 	call EmptyScreen
 	call LoadSymbolsFont
-	lb de, $38, $9f
-	call SetupText
+;	lb de, $38, $9f
+;	call SetupText
 	ld a, DUEL_MAIN_SCENE
 	ld [wDuelDisplayedScreen], a
 	ld a, DUELVARS_ARENA_CARD
@@ -2603,7 +2603,7 @@ DrawDuelMainScene::
 	call SetBGP5ToCardPalette
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
-	inc a ; cp -1 (empty play area slot?)
+	cp -1
 	jr z, .place_opponent_arena_pkmn
 	ld a, $d0 ; v0Tiles1 + $50 tiles
 	lb hl, 6, 1
@@ -2621,7 +2621,7 @@ DrawDuelMainScene::
 	call SetBGP2ToCardPalette
 	ld a, DUELVARS_ARENA_CARD
 	call GetTurnDuelistVariable
-	inc a ; cp -1 (empty play area slot?)
+	cp -1
 	jr z, .place_other_elements
 	ld a, $a0 ; v0Tiles1 + $20 tiles
 	lb hl, 6, 1
