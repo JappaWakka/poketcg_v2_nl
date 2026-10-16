@@ -318,13 +318,13 @@ ProceduresForSendingCardsText:
 	done
 
 CardSendingProceduresText:
-	text "1. Kies de kaart die je wilt sturen."
+	text "1) Kies de kaart die je wilt sturen."
 	line "   Druk links/rechts om er meer"
 	line "   te kiezen."
-	line "2. Kies al de kaarten. Druk dan op"
+	line "2) Kies al de kaarten. Druk dan op"
 	line "   de START-knop om het menu te"
 	line "   openen."
-	line "3. Druk op ”Stuur” om het proces"
+	line "3) Druk op ”Stuur” om het proces"
 	line "   af te maken."
 	done
 

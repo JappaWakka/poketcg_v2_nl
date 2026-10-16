@@ -2471,7 +2471,7 @@ PrintNumberValueInCursorYPos:
 ; input:
 ;	e = card ID
 RemoveCardFromDeckAndUpdateCount:
-	call RemoveCardFromDeck
+	call RemoveCardFromCurDeckCards
 	ret nc
 	push de
 	call PrintCardTypeCounts
@@ -2487,7 +2487,7 @@ RemoveCardFromDeckAndUpdateCount:
 ; input:
 ;	e = ID of the card to remove from the deck
 ;	carry = set:  if the card was removed from the deck
-RemoveCardFromDeck:
+RemoveCardFromCurDeckCards:
 	call GetCountOfCardInCurDeck
 	or a
 	ret z ; card is not in the deck
@@ -2745,10 +2745,8 @@ PrintCurDeckNumberAndName:
 	; print the deck number in the menu in the form "#."
 ;	ld hl, wDefaultText
 ;	call ConvertToNumericalDigits
-;	ld a, TX_FULLWIDTH3
-;	ld [hli], a
 ;	ldfw [hl], "." ; period punctuation mark
-;	ld [hli], a
+;	inc hl
 ;	ld [hl], TX_END
 ;	lb de, 3, 2
 ;	ld hl, wDefaultText

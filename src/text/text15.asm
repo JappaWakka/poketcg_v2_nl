@@ -850,22 +850,7 @@ GirlText:
 	text " Meisje"
 	done
 
-NewIntroText1:
-	text "Oh! Waarom zo'n haast, <RAMNAME>?"
-	line "Wat?"
-	line "Je zou graag het Pokémon"
-	line "Ruilkaartspel willen spelen?"
-	line "Nou, spelen is natuurlijk veel"
-	line "leuker dan alleen de kaarten"
-	line "verzamelen!"
-	done
-
-NewIntroText2:
-	text "Het spel leren via een Oefenduel?"
-	line ""
-	done
-
-NewIntroText3:
+DeclinedPracticeDuelText:
 	text "Nou, als je van gedachten verandert,"
 	line "zal Sam je graag helpen."
 	line "Hij kan veel vragen over het spel"
@@ -876,6 +861,7 @@ NewIntroText3:
 	line "kaarttafel links van je."
 	done
 
+; printed in a narrow text box (10 tiles per line)
 ChooseBasicPokemonText:
 	text "Kies een"
 	line "Basis-Pokémon."
@@ -886,6 +872,7 @@ ChooseBasicPokemonFromDeckText:
 	line "je deck."
 	done
 
+; printed in a narrow text box (10 tiles per line)
 ChooseEvolutionCardText:
 	text "Kies een"
 	line "Evolutiekaart."
@@ -896,6 +883,7 @@ ChooseEvolutionCardFromDeckText:
 	line "je deck."
 	done
 
+; printed in a narrow text box (10 tiles per line)
 ChooseTrainerCardText:
 	text "Kies een"
 	line "Trainerkaart."

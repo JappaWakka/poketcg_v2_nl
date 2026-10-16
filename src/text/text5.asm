@@ -279,7 +279,7 @@ Man1PlayerReceivePikachuAltLv16Text:
 	line "en me zoveel kaarten hebt gegeven,"
 	line "neem alsjeblieft dit cadeau van me"
 	line "aan als bedankje van mij aan jou."
-	line "Het is een nv16 Pikachu."
+	line "Het is een [Lv.]16 Pikachu."
 	line "Zorg er goed voor!"
 	done
 

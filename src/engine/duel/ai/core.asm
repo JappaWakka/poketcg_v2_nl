@@ -535,8 +535,8 @@ CheckIfCardCanBePlayed:
 	jr z, .trainer_card
 
 ; energy card
-	ld a, [wAlreadyPlayedEnergy]
-	or a
+	ld a, [wOncePerTurnFlags]
+	and PLAYED_ENERGY_THIS_TURN
 	ret z
 	scf
 	ret
@@ -1152,8 +1152,8 @@ TrySetUpBossStartingPlayArea:
 ; input:
 ;	a = AI Pokémon's play area location offset (PLAY_AREA_* constant)
 ; output:
-;	carry = set:  if the Player's Active Pokémon isn't a Mr. Mime or
-;	              if the Pokémon in the given location can damage it anyway
+;	carry = set:  if the Player's Active Pokémon isn't a Mr. Mime with a working Invisible Wall
+;	           OR if the Pokémon in the given location can damage it anyway
 CheckDamageToMrMime:
 	ld b, a
 	rst SwapTurn
@@ -1164,6 +1164,10 @@ CheckDamageToMrMime:
 	cp MR_MIME
 	scf
 	ret nz ; return carry if the Defending Pokémon isn't a Mr. Mime
+	rst SwapTurn
+	call CheckIsIncapableOfUsingPkmnPower_ArenaCard
+	rst SwapTurn
+	ret c ; return carry if Invisible Wall isn't working
 	ld a, b
 	jp CheckIfCanDamageDefendingPokemon
 
@@ -1540,7 +1544,7 @@ CheckForEvolutionInDeck:
 	dec d ; go through deck indices in reverse order
 	ld a, d ; DUELVARS_CARD_LOCATIONS + current deck index
 	get_turn_duelist_var
-	cp CARD_LOCATION_DECK
+	or a ; cp CARD_LOCATION_DECK
 	jr nz, .not_in_deck
 	call CheckIfCanEvolveInto
 	jr nc, CheckForEvolutionInList.set_carry
@@ -1576,7 +1580,7 @@ CheckCardEvolutionInHandOrDeck:
 	dec d ; go through deck indices in reverse order
 	ld a, d ; DUELVARS_CARD_LOCATIONS + current deck index
 	get_turn_duelist_var
-	cp CARD_LOCATION_DECK
+	or a ; cp CARD_LOCATION_DECK
 	jr z, .deck_or_hand
 	cp CARD_LOCATION_HAND
 	jr nz, .next

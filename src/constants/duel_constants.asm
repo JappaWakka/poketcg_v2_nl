@@ -24,6 +24,13 @@ DEF TURN_PLAYER_TIED  EQU $3
 DEF DUEL_WIN  EQU $0
 DEF DUEL_LOSS EQU $1
 
+; wOncePerTurnFlags constants
+DEF PLAYED_ENERGY_THIS_TURN_F       EQU 0
+DEF UNABLE_TO_RETREAT_THIS_TURN_F   EQU 1
+
+DEF PLAYED_ENERGY_THIS_TURN         EQU 1 << PLAYED_ENERGY_THIS_TURN_F
+DEF UNABLE_TO_RETREAT_THIS_TURN     EQU 1 << UNABLE_TO_RETREAT_THIS_TURN_F
+
 ; wPlayerDuelVariables or wOpponentDuelVariables constants
 DEF DUELVARS_CARD_LOCATIONS                   EQUS "LOW(wPlayerCardLocations)"               ; 00
 DEF DUELVARS_PRIZE_CARDS                      EQUS "LOW(wPlayerPrizeCards)"                  ; 3c
@@ -33,6 +40,11 @@ DEF DUELVARS_NUMBER_OF_CARDS_NOT_IN_DECK      EQUS "LOW(wPlayerNumberOfCardsNotI
 DEF DUELVARS_ARENA_CARD                       EQUS "LOW(wPlayerArenaCard)"                   ; bb
 DEF DUELVARS_BENCH                            EQUS "LOW(wPlayerBench)"                       ; bc
 DEF DUELVARS_ARENA_CARD_FLAGS                 EQUS "LOW(wPlayerArenaCardFlags)"              ; c2
+DEF DUELVARS_BENCH1_CARD_FLAGS                EQUS "LOW(wPlayerBench1CardFlags)"             ; c3
+DEF DUELVARS_BENCH2_CARD_FLAGS                EQUS "LOW(wPlayerBench2CardFlags)"             ; c4
+DEF DUELVARS_BENCH3_CARD_FLAGS                EQUS "LOW(wPlayerBench3CardFlags)"             ; c5
+DEF DUELVARS_BENCH4_CARD_FLAGS                EQUS "LOW(wPlayerBench4CardFlags)"             ; c6
+DEF DUELVARS_BENCH5_CARD_FLAGS                EQUS "LOW(wPlayerBench5CardFlags)"             ; c7
 DEF DUELVARS_ARENA_CARD_HP                    EQUS "LOW(wPlayerArenaCardHP)"                 ; c8
 DEF DUELVARS_BENCH1_CARD_HP                   EQUS "LOW(wPlayerBench1CardHP)"                ; c9
 DEF DUELVARS_BENCH2_CARD_HP                   EQUS "LOW(wPlayerBench2CardHP)"                ; ca
@@ -86,6 +98,7 @@ DEF CARD_LOCATION_DECK         EQU $00
 DEF CARD_LOCATION_HAND         EQU $01
 DEF CARD_LOCATION_DISCARD_PILE EQU $02
 DEF CARD_LOCATION_PRIZE        EQU $08
+DEF CARD_LOCATION_JUST_DRAWN   EQU $0f
 DEF CARD_LOCATION_ARENA        EQU $10
 DEF CARD_LOCATION_BENCH_1      EQU $11
 DEF CARD_LOCATION_BENCH_2      EQU $12
@@ -96,8 +109,6 @@ DEF CARD_LOCATION_BENCH_5      EQU $15
 ; card location flags (DUELVARS_CARD_LOCATIONS)
 DEF CARD_LOCATION_PLAY_AREA_F  EQU 4 ; includes arena and bench
 DEF CARD_LOCATION_PLAY_AREA    EQU 1 << CARD_LOCATION_PLAY_AREA_F
-DEF CARD_LOCATION_JUST_DRAWN_F EQU 6
-DEF CARD_LOCATION_JUST_DRAWN   EQU 1 << CARD_LOCATION_JUST_DRAWN_F
 
 ; play area location offsets (CARD_LOCATION_* - CARD_LOCATION_PLAY_AREA)
 DEF PLAY_AREA_ARENA   EQU $0
@@ -115,8 +126,8 @@ DEF DUELIST_TYPE_AI_OPP   EQU $80 ; $80 + [wOpponentDeckID]
 ; status conditions (DUELVARS_ARENA_CARD_STATUS)
 ; two statuses can be combined if they are identified by a different nybble
 DEF NO_STATUS       EQU $00
-DEF CONFUSED        EQU $01
-DEF ASLEEP          EQU $02
+DEF ASLEEP          EQU $01
+DEF CONFUSED        EQU $02
 DEF PARALYZED       EQU $03
 DEF POISONED        EQU $80
 DEF DOUBLE_POISONED EQU $c0
@@ -155,6 +166,9 @@ DEF SUBSTATUS2_CONVERSION2        EQU $0b
 
 DEF SUBSTATUS3_THIS_TURN_DOUBLE_DAMAGE_F EQU 0
 DEF SUBSTATUS3_HEADACHE_F                EQU 1
+
+DEF SUBSTATUS3_THIS_TURN_DOUBLE_DAMAGE   EQU 1 << SUBSTATUS3_THIS_TURN_DOUBLE_DAMAGE_F
+DEF SUBSTATUS3_HEADACHE                  EQU 1 << SUBSTATUS3_HEADACHE_F
 
 ; DUELVARS_ARENA_CARD_FLAGS constants
 DEF USED_PKMN_POWER_THIS_TURN_F EQU 5

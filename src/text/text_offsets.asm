@@ -53,7 +53,7 @@ TextOffsets::
 	textpointer DiscardName                                        ; 0x0031
 	textpointer NumberSymbolText                                   ; 0x0032
 	textpointer UsedText                                           ; 0x0033
-	textpointer UnusedText0034                                     ; 0x0034
+	textpointer AttackDescriptionEllipsisText                      ; 0x0034
 	textpointer PokemonsAttackText                                 ; 0x0035
 	textpointer ResistanceLessDamageText                           ; 0x0036
 	textpointer WeaknessMoreDamageText                             ; 0x0037
@@ -141,10 +141,10 @@ TextOffsets::
 	textpointer ClearOpponentNameText                              ; 0x0089
 	textpointer SelectComputerOpponentText                         ; 0x008a
 	textpointer NumberOfPrizesText                                 ; 0x008b
-	textpointer UnusedText008c                                     ; 0x008c
-	textpointer UnusedText008d                                     ; 0x008d
-	textpointer UnusedText008e                                     ; 0x008e
-	textpointer UnusedText008f                                     ; 0x008f
+	textpointer LvSymbolText                                       ; 0x008c
+	textpointer HPText                                             ; 0x008d
+	textpointer HPSymbolText                                       ; 0x008e
+	textpointer ESymbolText                                        ; 0x008f
 	textpointer UnusedText0090                                     ; 0x0090
 	textpointer UnusedText0091                                     ; 0x0091
 	textpointer Player2Text                                        ; 0x0092
@@ -345,7 +345,7 @@ TextOffsets::
 	textpointer Choose2CardsFromHandToDiscardText                  ; 0x0155
 	textpointer Choose2HandCardsFromHandToReturnToDeckText         ; 0x0156
 	textpointer ChooseCardToPlaceInHandText                        ; 0x0157
-	textpointer ChoosePokemonToAttachDefenderToText                ; 0x0158
+	textpointer YouMustAttachThisCardTo1OfYourPokemonText          ; 0x0158
 	textpointer UnusedText0159                                     ; 0x0159
 	textpointer ChoosePokemonToReturnToTheDeckText                 ; 0x015a
 	textpointer ChoosePokemonToPlaceInPlayText                     ; 0x015b
@@ -1509,7 +1509,7 @@ TextOffsets::
 	textpointer Text05e1                                           ; 0x05e1
 	textpointer Text05e2                                           ; 0x05e2
 	textpointer Text05e3                                           ; 0x05e3
-	textpointer Text05e4                                           ; 0x05e4
+	textpointer DoYouWantToTryAPracticeGameText                    ; 0x05e4
 	textpointer Text05e5                                           ; 0x05e5
 	textpointer Text05e6                                           ; 0x05e6
 	textpointer Text05e7                                           ; 0x05e7
@@ -2994,16 +2994,14 @@ TextOffsets::
 	textpointer AreYouBoyOrGirlText                                ; 0x0bae
 	textpointer BoyText                                            ; 0x0baf
 	textpointer GirlText                                           ; 0x0bb0
-	textpointer NewIntroText1                                      ; 0x0bb1
-	textpointer NewIntroText2                                      ; 0x0bb2
-	textpointer NewIntroText3                                      ; 0x0bb3
-	textpointer ChooseBasicPokemonText                             ; 0x0bb4
-	textpointer ChooseBasicPokemonFromDeckText                     ; 0x0bb5
-	textpointer ChooseEvolutionCardText                            ; 0x0bb6
-	textpointer ChooseEvolutionCardFromDeckText                    ; 0x0bb7
-	textpointer ChooseTrainerCardText                              ; 0x0bb8
-	textpointer ChooseTrainerCardFromDeckText                      ; 0x0bb9
-	textpointer Draw2CardsText                                     ; 0x0bba
+	textpointer DeclinedPracticeDuelText                           ; 0x0bb1
+	textpointer ChooseBasicPokemonText                             ; 0x0bb2
+	textpointer ChooseBasicPokemonFromDeckText                     ; 0x0bb3
+	textpointer ChooseEvolutionCardText                            ; 0x0bb4
+	textpointer ChooseEvolutionCardFromDeckText                    ; 0x0bb5
+	textpointer ChooseTrainerCardText                              ; 0x0bb6
+	textpointer ChooseTrainerCardFromDeckText                      ; 0x0bb8
+	textpointer Draw2CardsText                                     ; 0x0bb9
 	textpointer EnergyTransDescriptionCont                         ; Dutch description was too long
 	textpointer GrowlDescriptionCont                               ; Dutch description was too long
 	textpointer FlyDescriptionCont                                 ; Dutch description was too long
@@ -3031,5 +3029,4 @@ TextOffsets::
 	textpointer EvolutionCategoryName                              ; Made this because I don't want EvolutionName to be used as both a category and an expansion set name
 	textpointer RivalText                                          ; Ronald didn't have a title which caused glitches for some reason
 	textpointer IceBreathDescriptionCont                           ; Dutch description was too long
-	
 	

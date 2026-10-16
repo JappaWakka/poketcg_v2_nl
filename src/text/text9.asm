@@ -315,7 +315,7 @@ FoundLv9SlowpokeText:
 	text "<RAMNAME>"
 	line "keek in de muur!"
 	line "<RAMNAME>"
-	line "vond een nv9 Slowpoke!"
+	line "vond een [Lv.]9 Slowpoke!"
 	done
 
 Text06a3:

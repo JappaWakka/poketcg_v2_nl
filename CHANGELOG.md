@@ -12,6 +12,14 @@
 <br/>
 
 ## Bug Fixes For Base Game
+
+- **[December 14, 2025](https://github.com/Sha0den/poketcg_v2/commit/d77dc82d0dec8e1a840b58cf40d78382e566fafb):** 5 Files Changed
+    - Account for Pokémon Powers being disabled when deciding if a Haunter's Transparency or Mew's Neutralizing Shield can prevent Ninetales or Victreebel's Lure attack
+    - Account for Pokémon Powers being disabled when running some AI checks for retreating and for playing PlusPower or an Evolution card (mainly Invisible Wall)
+    - Have AI use the Evolved Pokémon's actual HP when running checks to determine if it should play an Evolution card
+
+<br/>
+
 - **[December 6, 2024](https://github.com/Sha0den/poketcg_v2/commit/6cb8f87e0433424b3f0b59ee83fa595a59a84838):** 5 Files Changed
     - Have AI compare amount of attached Energy with each of a Pokémon's attacks when deciding whether a Pokémon is set up, rather than checking if its second attack is usable
         - *this avoids the problem of some Pokémon not having a second attack and also ignores looking at temporary effects that prevent attacking, such as status/substatus/amnesia*
@@ -86,12 +94,14 @@
 
 - **[May 6, 2024](https://github.com/Sha0den/improvedpoketcg/commit/4da8cb3a494cfec17fbe2de9a57e4c2e3c6924c6):** 9 Files Changed (8 are Code Optimization)
     - Fix "Ninetails" typo
+    - *A lot more typos were fixed on [May 21, 2024](https://github.com/Sha0den/poketcg_v2/commit/4ac1004d0f7b04743060b5fb916a9fb7640f7cea), [June 7, 2024](https://github.com/Sha0den/poketcg_v2/commit/2414fbf2b12b0fed4b4a3b5fb40cbde95f443ef0), [June 8, 2025](https://github.com/Sha0den/poketcg_v2/commit/f17fcbab1f162220e3cccd2dbdf6eb217a534831), [June 23, 2025](https://github.com/Sha0den/poketcg_v2/commit/6499592040fd7aa41c10a291737bb1d55fc8f6e8), [June 26, 2025](https://github.com/Sha0den/poketcg_v2/commit/7bba92a147bf110ca356f0b7685ae155cf653c50), and [September 26, 2025](https://github.com/Sha0den/poketcg_v2/commit/97f5158c992b3dba198991775d77959f665fd599)*
 
 <br/>
 
 - **[April 15, 2024](https://github.com/Sha0den/improvedpoketcg/commit/2a907f7c823e298803449fb872d10db0aff2d1d6):** 1 File Changed
     - Fix the AI not checking the Unable_Retreat substatus before retreating (credit to Oats)
-    - This was updated in [this commit](https://github.com/Sha0den/poketcg_v2/commit/2c24787cac54a6e85f9f4914c733ab8a980d9a37) (it no longer prevents Switch from being played)
+    - *This was updated in [this commit](https://github.com/Sha0den/poketcg_v2/commit/2c24787cac54a6e85f9f4914c733ab8a980d9a37) (it no longer prevents Switch from being played)*
+        - *Check out [bugs_and_glitches.md](https://github.com/pret/poketcg/blob/master/bugs_and_glitches.md) for specific instructions*
 
 <br/>
 
@@ -123,7 +133,103 @@
 
 
 ## Code Optimization
-- **July 14, 2025:** 3 Files Changed
+
+- **[December 29, 2025](https://github.com/Sha0den/poketcg_v2/commit/ebd50b15f152dc621d9341eae7a88fc8ad25b39a):** 3 Files Changed
+    - Merge and optimize a variety of selection effects in src/engine/duel/effect_functions.asm
+    - Return a handful of loads to hCurSelectionItem that were mistakenly removed in the previous commit
+
+<br/>
+
+- **[December 22, 2025](https://github.com/Sha0den/poketcg_v2/commit/2b7901085ea8be6451ad72956ac08bfd8ee3cf27):** 5 Files Changed
+    - Further optimize functions related to Pokémon Powers, mainly src/engine/duel/ai/pkmn_powers.asm and src/engine/duel/effect_functions.asm
+    - *A handful of mistakenly removed loads to hCurSelectionItem were restored in the following commit (I mixed up that label with hCurMenuItem)*
+
+<br/>
+
+- **[December 20, 2025](https://github.com/Sha0den/poketcg_v2/commit/4c90ebbd182eea9acee65cc74f58a3a973cc929b):** 3 Files Changed
+    - Create `LoadLoaded1CardGfx_UseDefaultSettings` function in src/engine/duel/core.asm to save some space and cut a few bank1calls
+
+<br/>
+
+- **[December 18, 2025](https://github.com/Sha0den/poketcg_v2/commit/958734f73b49ad63037b6818a69d3f1800208134):** 1 File Changed
+    - Further optimize deck search effect functions and clean up `ConvertSpecialTrainerCardToPokemon` in src/engine/duel/effect_functions2.asm
+
+<br/>
+
+- **[December 17, 2025](https://github.com/Sha0den/poketcg_v2/commit/51ffbb115a94fb2650584ec4123adb29a775c44c):** 6 Files Changed
+    - Refactor effect functions for drawing cards from the deck to both simplify things and to account for Omanyte's Clairvoyance Pokémon Power
+    - Fix the "Draw 1 cards." text glitch
+
+<br/>
+
+- **[December 16, 2025](https://github.com/Sha0den/poketcg_v2/commit/3187aa268853ca7e4c2bb506fb40a9421d84d35a):** 4 Files Changed
+    - Refactor the effect functions for Potion *(and Super Potion)*, creating more generic functions that could be used for other similar effects
+
+<br/>
+
+- **[December 15, 2025](https://github.com/Sha0den/poketcg_v2/commit/5eabe6308e88b9ed453f399853498b22247bbb21):** 6 Files Changed
+    - Replace `ld a, CARD_LOCATION_DECK` and `cp CARD_LOCATION_DECK` with `xor a` and `or a`
+
+<br/>
+
+- **[October 18, 2025](https://github.com/Sha0den/poketcg_v2/commit/34597c85041dc4956a33b833d85c70f47dc1aeab):** 5 Files Changed
+    - Move `CheckSkipDelayAllowed` function from src/engine/duel/core.asm to src/home/frames.asm and add `WaitAFrames_AllowSkipDelay` function in same file
+    - Add `WaitForAnimationToFinish_AllowSkipDelay` function to src/home/duel.asm
+    - Replace some frequently used code in src/engine/duel/core.asm with calls to the above functions
+    - Reference the above functions to allow players to skip even more duel delays by holding the B button (e.g. coin flip animations, artificial AI delays, etc.)
+
+<br/>
+
+- **[October 17, 2025](https://github.com/Sha0den/poketcg_v2/commit/e2d701aeb193a385fc6938146b27ef4cadf547d9):** 1 File Changed
+    - Refactor `AddCardToHand` and `PutCardInDiscardPile` to match the more optimized `ReturnCardToDeck`
+    - Refactor `EmptyPlayAreaSlot` and `PutHandPokemonCardInPlayArea` to make better use of the fact that the play area duel variables are placed together
+
+<br/>
+
+- **[October 16, 2025](https://github.com/Sha0den/poketcg_v2/commit/eace7a43c072901a0fd6ae853e74e3e2bfeaf4e2):** 5 Files Changed
+    - Various optimizations and comment changes in src/home/duel.asm. Significant changes include:
+        - Refactor `RemoveCardFromDeck`, `RemoveCardFromHand`, and `RemoveCardFromDiscardPile` so that they work better and more similarly
+        - Delete the `GetCardIDFromDeckIndex_bc` function and refactor the former calls in `ShuffleDeck`
+        - Delete the `CopyAttackDataAndDamage_FromCardID` function and replace the single call in effect functions
+    - Rework `CARD_LOCATION_JUST_DRAWN` into a normal 8-bit ID rather than a bit flag
+    - Also fix a typo in `ParalyzeBookText` and add further input comments to the `HandleEnergyBurn` function in src/home/card_color.asm
+    - *This commit caused a problem with `PokemonBreeder_EvolveEffect` ([Link to Bug Fix](https://github.com/Sha0den/poketcg_v2/commit/bbd34879eca53454b381665d0d5725676bbf0ed0))*
+
+<br/>
+
+- **[October 14, 2025](https://github.com/Sha0den/poketcg_v2/commit/cf02a1af01e796a3c9a290dec747bbbebac8fda0):** 5 Files Changed
+    - Rename `RemoveCardFromDeck` in src/engine/menus/deck_configuration.asm to `RemoveCardFromCurDeckCards`
+    - Rename `SearchCardInDeckAndAddToHand` in src/home/duel.asm to `RemoveCardFromDeck`
+    - Rename `MoveDiscardPileCardToHand` in src/home/duel.asm to `RemoveCardFromDiscardPile`
+    - Rename `MoveHandCardToDiscardPile` in src/home/duel.asm to `TryToDiscardCardFromHand`
+    - Rename `DealConfusionDamageToSelf` in src/home/duel.asm to `DealDamageToSelf`
+    - Create `MoveCardFromDeckToHand` function in src/home/duel.asm and use it to replace `call RemoveCardFromDeck` + `call AddCardToHand`
+    - Create `MoveCardFromDiscardPileToHand` function in src/home/duel.asm and use it to replace `call RemoveCardFromDiscardPile` + `call AddCardToHand`
+    - Create `MoveCardFromHandToDiscardPile` function in src/home/duel.asm and use it to replace `call RemoveCardFromHand` + `call PutCardInDiscardPile`
+    - Create `MoveCardFromHandToTopOfDeck` function in src/home/duel.asm and use it to replace `call RemoveCardFromHand` + `call ReturnCardToDeck`
+
+<br/>
+
+- **[September 22, 2025](https://github.com/Sha0den/poketcg_v2/commit/6fc7f1ef380ed7c2e525f9ec133f483a3e7be361):** 2 Files Changed
+    - Merge effect commands for Leer and Tail Wag
+    - Rename various effect commands to make them more obvious (e.g. "MayDrawCard" -> "FlipToDrawCard")
+
+<br/>
+
+- **[September 21, 2025](https://github.com/Sha0den/poketcg_v2/commit/919888a50c83f6ed11df09f61972550b5334f328):** 3 Files Changed
+    - Swap ASLEEP/CONFUSED constants to match the text symbol order
+    - Refactor `CheckPrintCnfSlpPrz` in src/engine/duel/core.asm
+    - Add a few comments related to checking duel variables for NO_STATUS
+
+<br/>
+
+- **[September 9, 2025](https://github.com/Sha0den/poketcg_v2/commit/f04e024524167326b82ecd11c6009363915ff69c):** 6 Files Changed
+    - Replace kanji in Fullwidth0 fonts (0_2_digits_kanji1.png) with main ascii characters ($20-$7e) and prioritize those over the ones in Fullwidth3
+        - *FW0 fonts only need 1 byte per character for text data, whereas FW3 fonts need 2*
+
+<br/>
+
+- **[July 14, 2025](https://github.com/Sha0den/poketcg_v2/commit/c2f366cd0edbe88e7695d1d0ce77c8a29faf1c6a):** 3 Files Changed
     - Implement various optimizations in src/audio/music1.asm, src/audio/music2.asm, and src/audio/sfx.asm
     - Several unreferenced functions in those files were also commented out and placed at the end of its respective file
 
@@ -409,14 +515,14 @@
 
 - **[October 19, 2024](https://github.com/Sha0den/poketcg_v2/commit/1926adefc60d7ab79ab845eca4308e801035f9ba):** 1 File Changed
     - Condense the Pokémon Power checks being performed during `HandleStrikesBack_AgainstDamagingAttack`
-    - The changes were spread out over two commits because I mistakenly thought that the developers overlooked something. [SECOND COMMIT](https://github.com/Sha0den/poketcg_v2/commit/012e2841921122bdf43c6cdd115436ef9f90a076)
+    - *The changes were spread out over two commits because I mistakenly thought that the developers overlooked something. [SECOND COMMIT](https://github.com/Sha0den/poketcg_v2/commit/012e2841921122bdf43c6cdd115436ef9f90a076)*
 
 <br/>
 
 - **[October 18, 2024](https://github.com/Sha0den/poketcg_v2/commit/eaecc5cb00bca6f7489955f6980cf0151712fb1f):** 13 Files Changed
     - Try to standardize the function comments that are used in the engine/duel/ai files (excluding the decks folder)
     - Plus several more code changes in said files (only big change was to `_AIProcessHandTrainerCards`)
-    - A small (but very important) mistake in `_AIProcessHandTrainerCards` was fixed in [This Commit](https://github.com/Sha0den/poketcg_v2/commit/bacaa181c7e2fc484b038c37ee17a5f345540796) and [This Commit](https://github.com/Sha0den/poketcg_v2/commit/f5567f7a3860ed5dc502bcf75458002735427448)
+    - *A small (but very important) mistake in `_AIProcessHandTrainerCards` was fixed in [This Commit](https://github.com/Sha0den/poketcg_v2/commit/bacaa181c7e2fc484b038c37ee17a5f345540796) and [This Commit](https://github.com/Sha0den/poketcg_v2/commit/f5567f7a3860ed5dc502bcf75458002735427448)*
 
 <br/>
 
@@ -424,7 +530,7 @@
     - Countless optimizations and refactoring in engine/duel/ai files
     - Several functions in said files were relocated and a few others were completely removed
     - Numerous corrections were also made and some of the functions were even expanded
-    - Small AI Energy reversion to fix Rain Dance in [This Commit](https://github.com/Sha0den/poketcg_v2/commit/e489039247565544d26dc6339812820cb3708bf6)
+    - *Small AI Energy reversion to fix Rain Dance in [This Commit](https://github.com/Sha0den/poketcg_v2/commit/e489039247565544d26dc6339812820cb3708bf6)*
 
 <br/>
 
@@ -436,6 +542,7 @@
 - **[October 9, 2024](https://github.com/Sha0den/poketcg_v2/commit/f7a85492e5f41651962c34b31d88123e2e979956):** 3 Files Changed
     - Thoroughly review engine/duel/core.asm, updating comments, code, and even some labels
     - Change the name of a subroutine in home/copy.asm into `CopyNBytesFromDEToHL` and use it in a couple of other files
+    - *This commit mishandled a push/pop in `HandleStrikesBack_AgainstNormalAttack` ([Link to Bug Fix](https://github.com/Sha0den/poketcg_v2/commit/bbd34879eca53454b381665d0d5725676bbf0ed0))*
 
 <br/>
 
@@ -443,6 +550,8 @@
     - Thoroughly review the effect functions files, optimizing and occasionally correcting miscellaneous code
     - Update various comments in the effect functions files (also correct `RemoveCardFromDuelTempList`'s output comments in home/duel.asm)
     - Reorder a lot of the individual effect commands (EFFECTCMDTYPE_*) to reflect the actual order of execution
+    - *This commit made it impossible for the AI to properly use Porygon's Conversion 2 attack ([Link to Bug Fix](https://github.com/Sha0den/poketcg_v2/commit/ed452d2ef754469d53ba8d608803cf620e90524f))*
+    - *This commit also made it impossible for the AI to handle a forced switch from an attack like Whirlwind ([Link to Bug Fix](https://github.com/Sha0den/poketcg_v2/commit/141cff8fd083f30a7f3142f00148e6359ce36f00))*
 
 <br/>
 
@@ -481,7 +590,7 @@
 
 - **[September 5, 2024](https://github.com/Sha0den/poketcg_v2/commit/623ad9e66c831b60fb67885debddb175175639cd):** 3 Files Changed
     - Make some changes to the effect functions files pertaining to hram labels and eliminate some unnecessary functions in the process.
-    - A missing `ret` was added in [this commit](https://github.com/Sha0den/poketcg_v2/commit/b009fbaf8dc9aceeb71fbfa9fbbd1ae14c7826b0).
+    - *A missing `ret` was added in [This Commit](https://github.com/Sha0den/poketcg_v2/commit/b009fbaf8dc9aceeb71fbfa9fbbd1ae14c7826b0).*
 
 <br/>
 
@@ -628,7 +737,7 @@
 
 - **[August 11, 2024](https://github.com/Sha0den/poketcg_v2/commit/edc9a809d7096e625af1e26e41cea6bc2b79693f):** 11 Files Changed
     - Refactor and better organize all functions associated with writing numbers
-    - [This commit](https://github.com/Sha0den/poketcg_v2/commit/c1249198e62a2e53fecb4c4feabf0c1097870614) swapped the FULLWIDTH3 fonts for TX_SYMBOL fonts in the fullwidth text functions, to avoid overwriting the numbers on screen with other font tiles once VRAM runs out of space for new font tiles
+    - *[This Commit](https://github.com/Sha0den/poketcg_v2/commit/c1249198e62a2e53fecb4c4feabf0c1097870614) swapped the FULLWIDTH3 fonts for TX_SYMBOL fonts in the fullwidth text functions, to avoid overwriting the numbers on screen with other font tiles once VRAM runs out of space for new font tiles*
 
 <br/>
 
@@ -645,7 +754,7 @@
 
 - **[August 5, 2024](https://github.com/Sha0den/poketcg_v2/commit/6f6424caf4c5ad4e6853d33f379a3188d97d7483):** 1 File Changed
     - Review and clean up engine/menus/deck_machine.asm
-    - This file also had a small bug which was fixed in [this commit](https://github.com/Sha0den/poketcg_v2/commit/a75667fb625f0a177c98922351a605e7ee6356b4)
+    - *This file also had a small bug which was fixed in [This Commit](https://github.com/Sha0den/poketcg_v2/commit/a75667fb625f0a177c98922351a605e7ee6356b4)*
 
 <br/>
 
@@ -751,7 +860,7 @@
 
 - **[June 22, 2024](https://github.com/Sha0den/poketcg_v2/commit/fbbd4f3f7422ba5a9abcd6878e842c0aec178e02):** 19 Files Changed
     - Delete `Func_7415`, `SetNoLineSeparation`, and `SetOneLineSeparation` from engine/duel.core.asm, replacing any calls with the 2 lines of code from the deleted function
-    - Move `Func_61a1` to engine/duel/effect_functions.asm
+    - Move `SetupPlayAreaScreen` to engine/duel/effect_functions.asm
     - Move `ZeroObjectPositionsAndToggleOAMCopy` to home/objects.asm
     - Move `WaitAttackAnimation` to home/duel.asm
     - Move `SetCardListHeader` and `SetCardListInfoBoxText` to home/menus.asm
@@ -818,7 +927,7 @@
 - **[June 17, 2024](https://github.com/Sha0den/poketcg_v2/commit/2b8bfd555bbb4076890d0f962847224401c8e90d):** 51 Files Changed
     - Try to standardize the function comments that are used in the home bank files
     - Also eliminate some redundant code and swap out a few more `ld` instructions with `ldh`
-    - Further adjustments made in [This Commit](https://github.com/Sha0den/poketcg_v2/commit/acf60372628574a3e4c5d03c47c1ee058f1fe5ec)
+    - *Further adjustments made in [This Commit](https://github.com/Sha0den/poketcg_v2/commit/acf60372628574a3e4c5d03c47c1ee058f1fe5ec)*
 
 <br/>
 
@@ -953,12 +1062,44 @@
 
 
 ## Miscellaneous Changes
+
+- **December 31, 2025:** 6 Files Changed
+    - Further edit a variety of texts (mostly duel-related), adjusting line breaks, correcting a few errors, and even rewriting some texts to be more descriptive
+
+<br/>
+
+- **[October 11, 2025](https://github.com/Sha0den/poketcg_v2/commit/9261880af434b4074709323b8daceaddd9f15df5):** 2 Files Changed
+    - Create a left-facing cursor icon and add it to the text symbols (`CURSOR_L`)
+    - Relocate `CURSOR_D` and `POKEMON` text symbols so that all 4 cursors are grouped together after the status symbols
+
+<br/>
+
+- **[October 10, 2025](https://github.com/Sha0den/poketcg_v2/commit/931b668efad1476731b25b2082b68c57563df7d2):** 13 Files Changed
+    - Make `wAlreadyPlayedEnergy` and `wConfusionRetreatCheckWasUnsuccessful` into bit flags on a single wram byte (wOncePerTurnFlags)
+    - Plus a minor optimization in `CheckSelfConfusionDamage` and a few extra comments in src/wram.asm
+
+<br/>
+
+- **[October 9, 2025](https://github.com/Sha0den/poketcg_v2/commit/b2931545551de449bfccf76c90f6e67ff230272b):** 6 Files Changed
+    - Various improvements from my [Speed up the start of the game tutorial](https://github.com/pret/poketcg/wiki/Speed-up-the-start-of-the-game):
+        - Revise the optional tutorial changes from [This Commit](https://github.com/Sha0den/improvedpoketcg/commit/b37fdd04d9d228a46be2e27ecf64407bcf1a5302)
+        - Pressing the B button will now skip the delay for all Message Speeds other than 1
+        - I also decreased the default text speed to 4 (1 extra frame per font tile)
+
+<br/>
+
+- **[October 7, 2025](https://github.com/Sha0den/poketcg_v2/commit/f3b054372fcc8772b6edd73cedbea3cbc0a54cbe):** 5 Files Changed
+    - Free up another text symbol by removing the reference mark (※); it's still in the fullwidth3 fonts
+    - Adjust attack menu to display a centered ellipsis (•••) below the attack name when an attack has an effect (rather than a reference mark to the far right)
+    - Create `CountEnergyInAttackCost` and add it to the Unreferenced Functions section in src/engine/duel/core.asm (I decided not to adjust attack cost printing)
+
+<br/>
+
 - **[September 26, 2025](https://github.com/Sha0den/poketcg_v2/commit/97f5158c992b3dba198991775d77959f665fd599):** 7 Files Changed
     - Print the default `ReceivedPromotionalCardText` upon receiving a Flying/Surfing Pikachu and delete their custom text entries
         - This effectively just replaces "Flyin' Pikachu" with "Flying Pikachu Lv12" and "Surfin' Pikachu" with "Surfing Pikachu Lv13!"
     - Undo changes to one of the lines of text in the practice duel and recapitalize various instances of the phrase "Card Master"
     - Also fix a lot more typos from the original game
-
 
 <br/>
 
@@ -1022,7 +1163,7 @@
     - Create `InitTextPrinting_ProcessCenteredText` function for printing center aligned text and use it in `YesOrNoMenuWithText` (also add SFX after choosing "Yes" or "No")
     - Create `WriteOneByteNumberInHalfwidthTextFormat_TrimLeadingZeros` function and add it to home/write_number.asm
     - Create some clear functions in home/tiles.asm to be used as alternatives to `EmptyScreen` for minor screen transitions
-    - [The following commit](https://github.com/Sha0den/poketcg_v2/commit/b9549e134b73b6189cc7b01f388529c54c840fea) reverted the center alignment change to `YesOrNoMenuWithText` because it didn't account for ramtext or adjust the coordinates for background scrolling (I might revisit the idea later)
+    - *[The following commit](https://github.com/Sha0den/poketcg_v2/commit/b9549e134b73b6189cc7b01f388529c54c840fea) reverted the center alignment change to `YesOrNoMenuWithText` because it didn't account for ramtext or adjust the coordinates for background scrolling (I might revisit the idea later)*
 
 <br/>
 
@@ -1038,7 +1179,7 @@
     - Officially add Double Colorless Energy to the Mystery set and remove the code that allows any Energy card to be included in a booster, regardless of set
         - *Energy cards are still treated differently in the card album to ensure they appear at the end of the set list*
     - Optimize many of the functions in engine/booster_packs.asm
-    - Further changes were made to the card album Energy code in the [following commit](https://github.com/Sha0den/poketcg_v2/commit/973dac5db8b51079e527d73bd80d9a7960146a44), to more easily adapt to possible changes to the card pool
+    - *Further changes were made to the card album Energy code in the [following commit](https://github.com/Sha0den/poketcg_v2/commit/973dac5db8b51079e527d73bd80d9a7960146a44), to more easily adapt to possible changes to the card pool*
 
 <br/>
 
@@ -1122,7 +1263,7 @@
     - Move a lot of texts from text3.asm to text2.asm (Needed more space for Glossary)
     - Move a lot of texts from text2.asm to text1.asm
     - Make some minor adjustments to several of the title menu texts in text3.asm
-    - The newly added `DrawTextBoxSeparator` function was later fixed in [This Commit](https://github.com/Sha0den/poketcg_v2/commit/1125a231a37aa3217d2684badcbfff5776fad9bc).
+    - *The newly added `DrawTextBoxSeparator` function was later fixed in [This Commit](https://github.com/Sha0den/poketcg_v2/commit/1125a231a37aa3217d2684badcbfff5776fad9bc).*
 
 <br/>
 
@@ -1147,12 +1288,13 @@
 
 - **[May 15, 2024](https://github.com/Sha0den/improvedpoketcg/commit/9901b4b04b2df70f8eb4918b05c20da6bc281efc):** 2 Files Changed
     - Give Text Offsets its own bank (instead of sharing one with Text 1)
-    - Text pointers were later adjusted in [This Commit](https://github.com/Sha0den/poketcg_v2/commit/09f3400366b809053a31210ddc368f6273896608)
+    - *Text pointers were later adjusted in [This Commit](https://github.com/Sha0den/poketcg_v2/commit/09f3400366b809053a31210ddc368f6273896608)*
 
 <br/>
 
 - **[May 12, 2024](https://github.com/Sha0den/improvedpoketcg/commit/a22046c5fd4ddf967e4ea0793a79abbdf80cc7aa):** 4 Files Changed
     - Add text speed constants and increase the default text speed to the fastest setting
+    - *The default text speed was eventually decreased to 4 in a later commit*
 
 <br/>
 
@@ -1183,13 +1325,13 @@
 
 - **[April 16, 2024](https://github.com/Sha0den/improvedpoketcg/commit/31a2cf426dfcccbd4d25b5af3d18a77845a01dc2):** 3 Files Changed
     - Update fullwidth and halfwidth font graphics and some of the box messages
-    - Further Adjustments to box_messages.png in [This Commit](https://github.com/Sha0den/improvedpoketcg/commit/673f4965565af76c3ff95c26988b2b024d04e380)
+    - *Further Adjustments to box_messages.png in [This Commit](https://github.com/Sha0den/improvedpoketcg/commit/673f4965565af76c3ff95c26988b2b024d04e380)*
 
 <br/>
 
 - **[April 16, 2024](https://github.com/Sha0den/improvedpoketcg/commit/180ea5c9b6e0965a32b3cdc37b474b8b8a97c8ef):** 1 File Changed
     - Replace the word "Hand" with the hand icon from the duel graphics in the play area screens
-    - *Note that the "11" in the first line of `_DrawPlayAreaToPlacePrizeCards.player_icon_coordinates` should also be changed to "10" (applied in [this commit](https://github.com/Sha0den/poketcg_v2/commit/6499592040fd7aa41c10a291737bb1d55fc8f6e8))*
+    - *Note that the "11" in the first line of `_DrawPlayAreaToPlacePrizeCards.player_icon_coordinates` should also be changed to "10" (applied in [This Commit](https://github.com/Sha0den/poketcg_v2/commit/6499592040fd7aa41c10a291737bb1d55fc8f6e8))*
 
 <br/>
 
@@ -1208,11 +1350,12 @@
 
 
 ## New Features
+
 - **[November 23, 2024](https://github.com/Sha0den/poketcg_v2/commit/1ddbd58ad2236e388cd5cfc7c7d2b50ad42de644):** 12 Files Changed
     - Redesign the deck naming screen to allow more variety when naming
         - *Keyboard now has 3 layouts (switch between them by pressing SELECT or the Uppercase/Lowercase/Accents buttons)*
     - Update and reformat the halfwidth/fullwidth3 font graphics and redistribute the graphics data to account for the larger size
-    - [The following commit](https://github.com/Sha0den/poketcg_v2/commit/36efe66857cb965b1d7883a930afa9415766c032) replaces the original player naming screen with the new deck naming screen (also makes the player name use halfwidth font)
+    - *[The following commit](https://github.com/Sha0den/poketcg_v2/commit/36efe66857cb965b1d7883a930afa9415766c032) replaces the original player naming screen with the new deck naming screen (also makes the player name use halfwidth font)*
 
 <br/>
 
@@ -1225,7 +1368,7 @@
 
 - **[August 22, 2024](https://github.com/Sha0den/poketcg_v2/commit/f621d292bce067b1f346896554dde4f944a1949d):** 22 Files Changed
     - Use [Electro's tutorial](https://github.com/pret/poketcg/wiki/Add-female-player-character) to add the option to play as Mint, the female protagonist from the sequel
-    - *Some texts with gender-specific pronouns were eventually fixed in [this commit](https://github.com/Sha0den/poketcg_v2/commit/6499592040fd7aa41c10a291737bb1d55fc8f6e8)*
+    - *Some texts with gender-specific pronouns were eventually fixed in [This Commit](https://github.com/Sha0den/poketcg_v2/commit/6499592040fd7aa41c10a291737bb1d55fc8f6e8)*
 
 <br/>
 
@@ -1239,12 +1382,13 @@
     - Add support for common accented characters (halfwidth and fullwidth)
     - Expand the halfwidth font graphics (at the cost of some kanji)
     - *This commit caused a major text display glitch ([Link to Bug Fix](https://github.com/Sha0den/improvedpoketcg/commit/dbe0431ed7e5492ea5fed6cfe99c48872abe4698))*
-    - [The deck naming screen update](https://github.com/Sha0den/poketcg_v2/commit/1ddbd58ad2236e388cd5cfc7c7d2b50ad42de644) includes more edits to halfwidth and fullwidth font data (also redistributed data in src/gfx.asm and updated pointers in home/tiles.asm as a more sensible alternative to commenting out some of the Japanese font data)
+    - *[The deck naming screen update](https://github.com/Sha0den/poketcg_v2/commit/1ddbd58ad2236e388cd5cfc7c7d2b50ad42de644) includes more edits to halfwidth and fullwidth font data (also redistributed data in src/gfx.asm and updated pointers in home/tiles.asm as a more sensible alternative to commenting out some of the Japanese font data)*
 
 <br/>
 
 - **[May 14, 2024](https://github.com/Sha0den/improvedpoketcg/commit/b37fdd04d9d228a46be2e27ecf64407bcf1a5302):** 3 Files Changed
     - The practice game with Sam at the start of the game is now optional
+        - *Please reference my tutorial at [https://github.com/pret/poketcg/wiki/Speed-up-the-start-of-the-game](https://github.com/pret/poketcg/wiki/Speed-up-the-start-of-the-game) if attempting to copy this change to another repository (the original code isn't optimized)*
 
 <br/>
 
@@ -1261,7 +1405,7 @@
 - **[April 15, 2024](https://github.com/Sha0den/improvedpoketcg/commit/ae0ee380fe2c32211f527c5a6d395c6484121a49):** 1 File Changed
     - Replace damage counter display with "current HP/max HP"
     - The maximum HP value of a Pokémon is now 250 (was 120)
-    - Reference the engine/duel/core.asm from the current version of poketcg_v2 if attempting to copy this change to another repository (some optimizations were made)
+        - *Please reference my tutorial at [https://github.com/pret/poketcg/wiki/Replace-damage-counters-with-numbers-to-allow-higher-HP-values-(120-→-250)](https://github.com/pret/poketcg/wiki/Replace-damage-counters-with-numbers-to-allow-higher-HP-values-(120-→-250)) if attempting to copy this change to another repository (the original code isn't optimized)*
 
 <br/>
 
@@ -1276,6 +1420,34 @@
 
 
 ## Other Bug Fixes And Commit Reversions
+
+- **[October 30 2025](https://github.com/Sha0den/poketcg_v2/commit/bbd34879eca53454b381665d0d5725676bbf0ed0):** 2 Files Changed
+    - Fix a small glitch in `HandleStrikesBack_AgainstNormalAttack` (I messed up the ordering for a push/pop during one of the optimizations)
+        - *This is a bug fix for [This Commit](https://github.com/Sha0den/poketcg_v2/commit/f7a85492e5f41651962c34b31d88123e2e979956)*
+    - Fix a small glitch in `PokemonBreeder_EvolveEffect` (since `EvolvePokemonCard` needed to return with hl pointing to w*CardStage)
+        - *This is a bug fix for [This Commit](https://github.com/Sha0den/poketcg_v2/commit/eace7a43c072901a0fd6ae853e74e3e2bfeaf4e2)*
+
+<br/>
+
+- **[October 14 2025](https://github.com/Sha0den/poketcg_v2/commit/141cff8fd083f30a7f3142f00148e6359ce36f00):** 1 File Changed
+    - Fix AI output for `DuelistSelectForcedSwitch` function (AI will now switch after being attacked with Ram, Terror Strike, or Whirlwind)
+    - *This is a bug fix for [This Commit](https://github.com/Sha0den/poketcg_v2/commit/3fe70f141410ba19fc361755f4e83b2beeb99f0f)*
+
+<br/>
+
+- **[October 9, 2025](https://github.com/Sha0den/poketcg_v2/commit/dd19fa91a96f86da2a85af35e17a4d16477573b7):** 1 File Changed
+    - Undo "bugfix" for `Func_fc279` in src/audio/sfx.asm (which actually caused audio glitches), and instead delete the function and inline the 1 relevant load
+    - *This completely undoes [This Commit](https://github.com/Sha0den/poketcg_v2/commit/a2f7df8d521655fa22a13e21c3713ffb5b101c72)*
+
+<br/>
+
+- **[September 25 2025](https://github.com/Sha0den/poketcg_v2/commit/ed452d2ef754469d53ba8d608803cf620e90524f):** 2 Files Changed
+    - Implement a few fixes related to loading opponent's card data without first calling `SwapTurn` (AI will now correctly use Conversion 2 once more)
+        - The instance in src/engine/duel/ai/retreat.asm was actually present in the base game
+    - *This is a bug fix for [This Commit](https://github.com/Sha0den/poketcg_v2/commit/3fe70f141410ba19fc361755f4e83b2beeb99f0f)*
+
+<br/>
+
 - **[July 1 2025](https://github.com/Sha0den/poketcg_v2/commit/c0d1e2dbe78107ac2feaea493df94e5ef96c3bfc):** 1 File Changed
     - Fix a small issue with the deck building screen where the static card type cursor at the top of the screen wasn't always being redrawn after exiting the menu
     - *This is a bug fix for [This Commit](https://github.com/Sha0den/poketcg_v2/commit/4dd1d90c9d5908ce6522bd3407af88b68fddbd4d)*

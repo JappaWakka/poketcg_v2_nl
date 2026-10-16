@@ -398,7 +398,7 @@ OriginalGameBoyCardsBookName:
 OriginalGameBoyCardsBookText:
 	text "Het Pokémon Ruilkaartspel voor de"
 	line "Game Boy bevat veel originele"
-	line "kaarten zoals de nv14 Meowth-kaart"
+	line "kaarten zoals de [Lv.]14 Meowth-kaart"
 	line "die de Kattenmep-aanval gebruikt."
 	line "Er zijn veel nieuwe kaarten om te"
 	line "ontdekken, dus ga naar ze op zoek!"
@@ -453,7 +453,7 @@ LegendaryPokemonCardsVol1BookName:
 
 LegendaryPokemonCardsVol1BookText:
 	text "De eerste van de Legendarische"
-	line "Pokémonkaarten is de nv37 Moltres."
+	line "Pokémonkaarten is de [Lv.]37 Moltres."
 	line "Als die gespeeld wordt, zal die Vuur"
 	line "Energiekaarten aan de speler's hand"
 	line "toevoegen!"
@@ -470,7 +470,7 @@ LegendaryPokemonCardsVol2BookName:
 
 LegendaryPokemonCardsVol2BookText:
 	text "De tweede Legendarische Pokémonkaart"
-	line "is de nv68 Zapdos."
+	line "is de [Lv.]68 Zapdos."
 	line "Met Donderpiek wordt er door simpel-"
 	line "weg deze kaart op de Bank te leggen"
 	line "schade gedaan aan een andere"
@@ -487,7 +487,7 @@ LegendaryPokemonCardsVol3BookName:
 
 LegendaryPokemonCardsVol3BookText:
 	text "De derde Legendarische Pokémonkaart"
-	line "is de nv37 Articuno."
+	line "is de [Lv.]37 Articuno."
 	line "Zijn Snelvriezen kan de tegen-"
 	line "stander's Pokémon voor één beurt"
 	line "onschadelijk maken nadat de kaart"
@@ -504,7 +504,7 @@ LegendaryPokemonCardsVol4BookName:
 
 LegendaryPokemonCardsVol4BookText:
 	text "De vierde Legendarische Pokémonkaart"
-	line "is de nv41 Dragonite."
+	line "is de [Lv.]41 Dragonite."
 	line "Als die gespeeld wordt, verwijdert"
 	line "zijn Genezende wind-kracht 2 schade-"
 	line "tellers van elk van de speler's"
@@ -652,7 +652,7 @@ RonaldChallengeCup1NotStarted1Text:
 RonaldChallengeCup1NotStarted2Text:
 	text "Ik ben degene die alle 3 de"
 	line "tegenstanders gaat verslaan!"
-	line "De kostbare nv60 Mewtwo-kaart"
+	line "De kostbare [Lv.]60 Mewtwo-kaart"
 	line "is van mij! Wacht maar af en kijk"
 	line "maar hoe ik win! Tot ziens!"
 	line "Ha ha ha ha ha ha!"
@@ -681,7 +681,7 @@ RonaldChallengeCup1LostInactive1Text:
 RonaldChallengeCup1LostInactive2Text:
 	text "Het Uitdagingstoernooi is voorbij!"
 	line "Ik versloeg 3 tegenstanders en won"
-	line "de prijs - een nv60 Mewtwo!"
+	line "de prijs - een [Lv.]60 Mewtwo!"
 	line "Tot ziens! Ha ha ha ha ha ha!"
 	done
 
@@ -693,7 +693,7 @@ RonaldChallengeCup1Missed1Text:
 RonaldChallengeCup1Missed2Text:
 	text "Het Uitdagingstoernooi is voorbij!"
 	line "Ik versloeg 3 tegenstanders en won"
-	line "de prijs - een nv60 Mewtwo!"
+	line "de prijs - een [Lv.]60 Mewtwo!"
 	line "Je zou kunnen proberen mee te doen"
 	line "aan het volgende Toernooi, maar je"
 	line "maakt geen kans want die win ik ook!"
@@ -709,7 +709,7 @@ RonaldChallengeCup2NotStarted2Text:
 	text "Het maakt niet uit wie er meedoet"
 	line "aan het Uitdagingstoernooi, ik zal"
 	line "de winnaar zijn! De prijs van dit"
-	line "Toernooi, de nv8 Mew, zal van"
+	line "Toernooi, de [Lv.]8 Mew, zal van"
 	line "mij zijn! Waarom geef je het niet"
 	line "op en ga je naar huis?!"
 	line "Tot ziens! Ha ha ha ha ha ha!"
@@ -739,7 +739,7 @@ RonaldChallengeCup2LostInactive2Text:
 	line "Wat? Wie heeft er gewonnen?"
 	line "Wie denk je nou zelf!?! Ik,"
 	line "natuurlijk! De prijs is van"
-	line "mij! nv8 Mew!"
+	line "mij! [Lv.]8 Mew!"
 	line "Tot ziens! Ha ha ha ha ha ha!"
 	done
 
@@ -751,7 +751,7 @@ RonaldChallengeCup2Missed1Text:
 RonaldChallengeCup2Missed2Text:
 	text "Het Uitdagingstoernooi is voorbij!"
 	line "Jammer dat je niet kon deelnemen!"
-	line "Die nv8 Mew-prijs is van mij!"
+	line "Die [Lv.]8 Mew-prijs is van mij!"
 	line "Je moet echt meedoen aan het"
 	line "volgende Toernooi! Aan de andere"
 	line "kant, waarom zou je ook, aangezien"
@@ -809,14 +809,14 @@ Clerk12ChallengeCup1ActiveText:
 	text "Het eerste Uitdagingstoernooi is"
 	line "van start gegaan! Versla 3"
 	line "tegenstanders om de waanzinnige"
-	line "prijs te winnen, een nv60 Mewtwo!"
+	line "prijs te winnen, een [Lv.]60 Mewtwo!"
 	done
 
 Clerk12ChallengeCup2ActiveText:
 	text "Het tweede Uitdagingstoernooi is"
 	line "van start gegaan! Versla 3"
 	line "tegenstanders om de waanzinnige"
-	line "prijs te winnen, een nv8 Mew!"
+	line "prijs te winnen, een [Lv.]8 Mew!"
 	done
 
 Clerk12ChallengeCup3ActiveText:
@@ -907,7 +907,7 @@ RonaldChallengeCup1PlayerLostText:
 	text "Ha ha ha! Wat dacht je daarvan!?!"
 	line "Ik win!!"
 	line "Nog 2 tegenstanders te gaan en dan"
-	line "is die nv8 Mew van mij!"
+	line "is die [Lv.]8 Mew van mij!"
 	done
 
 Clerk12ChallengeCupRound1PlayerWonText:
@@ -952,13 +952,13 @@ Clerk12ChallengeCupRound3ChallengerText:
 RonaldChallengeCup2BeforeDuelText:
 	text "Hé, <RAMNAME>!"
 	line "Ik ga niet van jou verliezen!"
-	line "Die nv60 Mewtwo is van mij!!!"
+	line "Die [Lv.]60 Mewtwo is van mij!!!"
 	done
 
 RonaldChallengeCup1BeforeDuelText:
 	text "<RAMNAME>!"
 	line "Ik ga je verslaan!"
-	line "Die nv8 Mew is van mij!!!"
+	line "Die [Lv.]8 Mew is van mij!!!"
 	done
 
 Clerk12ChallengeCupRound3DuelReadyText:

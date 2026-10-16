@@ -2,8 +2,8 @@
 ; output:
 ;	carry = set:  if the AI decided to retreat
 AIDecideWhetherToRetreat:
-	ld a, [wConfusionRetreatCheckWasUnsuccessful]
-	or a
+	ld a, [wOncePerTurnFlags]
+	and UNABLE_TO_RETREAT_THIS_TURN
 	ret nz ; return no carry if flipped tails after trying to retreat while Confused
 	ld [wAIPlayEnergyCardForRetreat], a ; FALSE
 	call LoadDefendingPokemonColorWRAndPrizeCards
@@ -276,7 +276,11 @@ AIDecideWhetherToRetreat:
 	call _GetCardIDFromDeckIndex
 	rst SwapTurn
 	cp MR_MIME
-	jr nz, .check_retreat_cost
+	jr nz, .check_retreat_cost ; skip ahead if the Defending Pokémon isn't Mr. Mime
+	rst SwapTurn
+	call CheckIsIncapableOfUsingPkmnPower_ArenaCard
+	rst SwapTurn
+	jr c, .check_retreat_cost ; skip ahead if Mr. Mime's Invisible Wall isn't working
 
 ; if the Active Pokémon can't damage the opponent's Mr. Mime,
 ; then look for a Pokémon on the AI's Bench that can damage it.
@@ -524,7 +528,11 @@ AIDecideBenchPokemonToSwitchTo:
 	call _GetCardIDFromDeckIndex
 	rst SwapTurn
 	cp MR_MIME
-	jr nz, .check_defending_weak
+	jr nz, .check_defending_weak ; skip ahead if the Defending Pokémon isn't Mr. Mime
+	rst SwapTurn
+	call CheckIsIncapableOfUsingPkmnPower_ArenaCard
+	rst SwapTurn
+	jr c, .check_defending_weak ; skip ahead if Mr. Mime's Invisible Wall isn't working
 	xor a ; FIRST_ATTACK_OR_PKMN_POWER
 	call EstimateDamage_VersusDefendingCard
 	ld a, [wDamage]
@@ -642,6 +650,8 @@ AIDecideBenchPokemonToSwitchTo:
 
 ; increase this Pokémon's score by 5 if it's a Mr Mime or
 ; if it's a MewLv8 and the Defending Pokémon's stage isn't Basic.
+	call CheckIfPkmnPowersAreCurrentlyDisabled
+	jr c, .check_if_has_bench_utility
 	ldh a, [hTempPlayAreaLocation_ff9d]
 	add DUELVARS_ARENA_CARD
 	get_turn_duelist_var
@@ -650,9 +660,11 @@ AIDecideBenchPokemonToSwitchTo:
 	jr z, .raise_score
 	cp MEW_LV8
 	jr nz, .check_if_has_bench_utility
+	rst SwapTurn
 	ld a, DUELVARS_ARENA_CARD
-	call GetNonTurnDuelistVariable
+	get_turn_duelist_var
 	call LoadCardDataToBuffer2_FromDeckIndex
+	rst SwapTurn
 	ld a, [wLoadedCard2Stage]
 	or a ; cp BASIC
 	jr z, .check_if_has_bench_utility
@@ -745,8 +757,8 @@ AITryToRetreat:
 ; finally, check if there are any Energy cards in the AI's hand.
 ; if all of the checks are successful, then attach an Energy card
 ; to the Active Pokémon before moving on to the next section.
-	ld a, [wAlreadyPlayedEnergy]
-	or a
+	ld a, [wOncePerTurnFlags]
+	and PLAYED_ENERGY_THIS_TURN
 	jr nz, .check_id
 	xor a ; PLAY_AREA_ARENA
 	ldh [hTempPlayAreaLocation_ff9d], a

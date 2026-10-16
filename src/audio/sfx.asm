@@ -7,8 +7,11 @@ SFX_PlaySFX:
 	ld b, $0
 	ld a, [wSFXIsPlaying]
 	or a
-	call nz, Func_fc279
-	ld a, TRUE
+	jr z, .no_sfx_playing
+	xor a
+	ld [wdd8c], a
+.no_sfx_playing
+	inc a ; TRUE
 	ld [wSFXIsPlaying], a
 	ld hl, SFXHeaderPointers
 	add hl, bc
@@ -466,21 +469,6 @@ SFX_end:
 	pop hl
 	ret
 
-; bug, these instructions are supposed to be
-; loading to hardware registers, not loading from them
-Func_fc279:
-	ld a, $8
-	ldh a, [rAUD1ENV]
-	ldh a, [rAUD2ENV]
-	ldh a, [rAUD3LEVEL]
-	ldh a, [rAUD4ENV]
-	ld a, $80
-	ldh a, [rAUD1HIGH]
-	ldh a, [rAUD2HIGH]
-	ldh a, [rAUD4GO]
-	xor a
-	ld [wdd8c], a
-	ret
 
 INCLUDE "audio/sfx_headers.asm"
 
