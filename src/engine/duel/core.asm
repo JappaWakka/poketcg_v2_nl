@@ -2615,7 +2615,7 @@ DrawDuelMainScene::
 .place_opponent_arena_pkmn
 	call SwapTurn
 	ld a, DUELVARS_ARENA_CARD
-	call GetNonTurnDuelistVariable
+	get_turn_duelist_var
 	ld de, v0Tiles1 + $20 tiles
 	call LoadPlayAreaCardGfx
 	call SetBGP2ToCardPalette
