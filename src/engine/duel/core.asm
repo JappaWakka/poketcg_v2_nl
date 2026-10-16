@@ -4462,8 +4462,6 @@ ApplyCardCGBAttributes:
 	jr nz, .loop_copy_rows
 	jp BankswitchVRAM0
 
-;	fallthrough
-
 ; input:
 ;	[wLoadedCard1] = all of the Pokémon's data (card_data_struct)
 DisplayCardPage_PokemonOverview:

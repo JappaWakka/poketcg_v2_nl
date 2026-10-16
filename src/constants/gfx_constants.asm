@@ -1,6 +1,10 @@
 ; cgb palette size
 DEF palettes EQUS "* PAL_SIZE"
 
+; background map size
+DEF BG_MAP_WIDTH  EQU 32 ; tiles
+DEF BG_MAP_HEIGHT EQU 32 ; tiles
+
 DEF NUM_BACKGROUND_PALETTES EQU 8
 DEF NUM_OBJECT_PALETTES     EQU 8
 

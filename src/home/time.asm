@@ -74,8 +74,6 @@ IncrementPlayTimeCounter::
 ; preserves de and hl
 SetupTimer::
 	ld b, -68 ; Value for Normal Speed
-	call CheckForCGB
-	jr c, .set_timer
 	ldh a, [rSPD]
 	and SPD_DOUBLE
 	jr z, .set_timer

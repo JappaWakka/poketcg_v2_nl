@@ -644,7 +644,7 @@ DrawYourOrOppPlayArea_ActiveCardGfx:
 	rst SwapTurn
 
 .draw
-	bank1call LoadLoaded1CardGfx_UseDefaultSettings
+	bank1call LoadLoadedCard1Gfx_UseDefaultSettings
 	pop de
 
 ; draw card gfx

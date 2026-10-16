@@ -2703,13 +2703,13 @@ HandleColorChangeScreen:
 	call InitTextPrinting_ProcessText
 
 ; draw card gfx
-	bank1call LoadLoaded1CardGfx_UseDefaultSettings
+	bank1call LoadLoadedCard1Gfx_UseDefaultSettings
 	ld a, $a0
 	lb hl, 6, 1
 	lb de, 9, 2
 	lb bc, 8, 6
 	call FillRectangle
-	bank1call ApplyBGP6OrSGB3ToCardImage
+	bank1call ApplyCardCGBAttributes
 
 ; list all the colors
 	ld hl, ShiftMenuData
