@@ -953,6 +953,40 @@
 
 
 ## Miscellaneous Changes
+- **[September 26, 2025](https://github.com/Sha0den/poketcg_v2/commit/97f5158c992b3dba198991775d77959f665fd599):** 7 Files Changed
+    - Print the default `ReceivedPromotionalCardText` upon receiving a Flying/Surfing Pikachu and delete their custom text entries
+        - This effectively just replaces "Flyin' Pikachu" with "Flying Pikachu Lv12" and "Surfin' Pikachu" with "Surfing Pikachu Lv13!"
+    - Undo changes to one of the lines of text in the practice duel and recapitalize various instances of the phrase "Card Master"
+    - Also fix a lot more typos from the original game
+
+
+<br/>
+
+- **[September 20, 2025](https://github.com/Sha0den/poketcg_v2/commit/51165185bfb986bb2992500a00ff3fb4d61858c4):** 6 Files Changed
+    - Create a 16x8 (technically 13x7) HP symbol for the duel screens and update the previous E symbol I made to match it
+    - Rearrange the PlusPower/Defender symbols on the various duel screens
+        - They're stacked vertically on the right side of the play area and card page screens (PlusPower after Energy and Defender after HP)
+        - They're listed directly below the Pokémon's HP on the main duel screen (Defender is placed several tiles to the right if PlusPower is also attached)
+    - Rewrite `PrintPlayAreaCardAttachedEnergies` to make the maximum amount of symbols that are printed an input variable (rather than always capping at 8)
+        - The main duel screen still uses the original limit, but as many as 10 symbols can now be shown on the play area and card page screens
+    - Create `PrintCurrentAndMaxHP` function to remove some duplicate code
+    - *[The following commit](https://github.com/Sha0den/poketcg_v2/commit/af4a9239f21365c4b45ed81f0376857af6597476) included the changes made to src/engine/duel/core.asm (I somehow managed to exclude yet another file)*
+
+<br/>
+
+- **[September 17, 2025](https://github.com/Sha0den/poketcg_v2/commit/4ba7e23c1410e359a15fbad803037c3e83880125):** 18 Files Changed
+    - Free up 3 text symbols by using traditional fullwidth/halfwidth fonts for the Lv, HP, and E symbols
+    - Redesign the Lv and E symbols
+    - *[The following commit](https://github.com/Sha0den/poketcg_v2/commit/f119425f4f051891b2868fb3745ef57de419612e) added the changes to `0_2_digits_kanji1.png` (I somehow forgot to include the file.)*
+    - *And [the commit after that](https://github.com/Sha0den/poketcg_v2/commit/d293c1a9d0c0bc9d4d06592f54ec138868cae35d) fixed the warning message that was shown after compiling the rom*
+
+<br/>
+
+- **[September 7, 2025](https://github.com/Sha0den/poketcg_v2/commit/40ff8b442ae20d9fa2cb7228b94b713088d13110):** 2 Files Changed
+    - Speed up animations for shuffling decks, drawing cards, flipping coins, and the Firegiver Pokémon Power (credit to JappaWakka/Paperfire88)
+
+<br/>
+
 - **[July 10, 2025](https://github.com/Sha0den/poketcg_v2/commit/1e8542517507c7fade1863725401a36ee39eac13):** 1 File Changed
     - Make text capitalization more consistent in the Credits sequence (Titles are all caps, but names use standard casing)
 
