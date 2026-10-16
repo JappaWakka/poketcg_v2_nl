@@ -165,14 +165,13 @@ AIPlay_TrainerCard_TwoVars:
 
 
 
-; Potion uses 'AIPlay_TrainerCard_TwoVars'
+; Potion uses 'AIPlay_TrainerCard_TwoVars' but hTemp_ffa0 isn't used
 
 
 ; if there are no plans to retreat the Active Pokémon and the AI doesn't intend
 ; to use a high recoil attack, then it will use Potion on the Active Pokémon,
 ; but only if doing so will prevent that Pokémon from being KO'd in the following turn.
 ; output:
-;	a = amount of damage to heal, if any (usually 20)
 ;	[wce1a] = PLAY_AREA_ARENA:  if the AI decided to play Potion
 ;	carry = set:  if the AI decided to play Potion
 AIDecide_Potion_Phase07:
@@ -216,7 +215,6 @@ AIDecide_Potion_Phase07:
 ; play Potion on the Active Pokémon if it will prevent the KO.
 	ld a, e ; PLAY_AREA_ARENA
 	ld [wce1a], a
-	ld a, l
 	ccf
 	ret
 
@@ -224,7 +222,6 @@ AIDecide_Potion_Phase07:
 ; AI still prioritizes the Active Pokémon, especially if it can prevent a KO,
 ; but it's now willing to consider Benched Pokémon as possible targets.
 ; output:
-;	a = amount of damage to heal, if any (usually 20)
 ;	[wce1a] = target Pokémon's play area location offset (PLAY_AREA_* constant)
 ;	carry = set:  if the AI decided to play Potion
 AIDecide_Potion_Phase10:
@@ -283,23 +280,19 @@ AIDecide_Potion_Phase10:
 	call CountPrizes
 	rst SwapTurn
 	dec a ; cp 1
-	jr z, .skip_random
+	scf
+	ret z ; play Potion if the Player has 1 Prize left
 	; randomly decide to not play Potion 30% of the time.
 	ld a, 10
 	call Random
 	cp 3
 	ccf
-	ret nc
-.skip_random
-	ld a, 20
-	scf
 	ret
 
 ; only decide to use Potion on the Active Pokémon
 ; if the AI does not intend to use a High Recoil recoil.
 .active_card
 	call AICheckIfAttackIsHighRecoil
-	ld a, 20
 	ccf
 	ret
 
@@ -339,14 +332,6 @@ AIPlay_SuperPotion:
 	ldh [hTempPlayAreaLocation_ffa1], a
 	call AIPickEnergyCardToDiscard
 	ldh [hTemp_ffa0], a
-	ld a, [wAITrainerCardParameter]
-	ld e, a
-	call GetCardDamageAndMaxHP
-	cp 40
-	jr c, .play_card
-	ld a, 40
-.play_card
-	ldh [hPlayAreaEffectTarget], a
 	ld a, OPPACTION_EXECUTE_TRAINER_EFFECTS
 	bank1call AIMakeDecision
 	ret
@@ -536,6 +521,7 @@ AIDecide_Defender_Phase13:
 ; prevent its Active Pokémon from being KO'd in the following turn.
 .check_if_defender_prevents_ko
 	sub 20 - 1 ; Defender's damage reduction minus 1 (so carry will be set if final HP = 0)
+	ret c ; play Defender if the KOing attack's damage was only 10
 	ld d, a
 	ld a, DUELVARS_ARENA_CARD_HP
 	get_turn_duelist_var
@@ -752,16 +738,17 @@ AIDecide_Pluspower_Phase14:
 	ld a, [wDamage]
 	add 10 ; add PlusPower boost
 	cp 30 ; minimum damage prevented by Invisible Wall
-	ret c
+	ret c ; play PlusPower if the attack's damage is still less than 30
 	rst SwapTurn
 	ld a, DUELVARS_ARENA_CARD
 	get_turn_duelist_var
 	call _GetCardIDFromDeckIndex
-	rst SwapTurn
 	cp MR_MIME
-	ret z
-; damage is >= 30 but Defending Pokémon isn't Mr. Mime
 	scf
+	jr nz, .done ; play PlusPower if the Defending Pokémon isn't a Mr. Mime
+	call CheckIsIncapableOfUsingPkmnPower_ArenaCard
+.done
+	rst SwapTurn
 	ret
 
 
@@ -866,8 +853,7 @@ AIDecide_GustOfWind:
 ; can't play Gust of Wind if there are no Pokémon on the Player's Bench.
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	call GetNonTurnDuelistVariable
-	dec a
-	or a
+	cp 1
 	ret z ; return no carry if the Player doesn't have any Benched Pokémon
 
 ; don't play Gust of Wind if it was already played previously in the turn.
@@ -960,7 +946,7 @@ AIDecide_GustOfWind:
 	ld [wce06], a
 	xor a
 	ld [wce08], a
-	ld e, a ; PLAY_AREA_ARENA
+	ld e, a ; PLAY_AREA_BENCH_1 - 1
 	ld a, DUELVARS_NUMBER_OF_POKEMON_IN_PLAY_AREA
 	call GetNonTurnDuelistVariable
 	ld d, a
@@ -2607,7 +2593,7 @@ AIDecide_EnergySearch:
 
 .start
 ; can't play Energy Search if there are no Basic Energy cards left in the AI's deck.
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call FindBasicEnergyCardsInLocation
 	ccf
 	ret nc
@@ -4282,15 +4268,15 @@ AIDecide_Pokeball:
 ; card IDs in order of decreasing priority
 .fire_charge
 	ld e, CHANSEY
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret c
 	ld e, TAUROS
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret c
 	ld e, JIGGLYPUFF_LV12
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	jp LookForCardIDInLocation_Bank8
 
 
@@ -4298,15 +4284,15 @@ AIDecide_Pokeball:
 ; card IDs in order of decreasing priority
 .hard_pokemon
 	ld e, RHYHORN
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret c
 	ld e, RHYDON
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret c
 	ld e, ONIX
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	jp LookForCardIDInLocation_Bank8
 
 
@@ -4314,23 +4300,23 @@ AIDecide_Pokeball:
 ; card IDs in order of decreasing priority
 .pikachu
 	ld e, PIKACHU_LV14
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret c
 	ld e, PIKACHU_LV16
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret c
 	ld e, PIKACHU_ALT_LV16
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret c
 	ld e, PIKACHU_LV12
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret c
 	ld e, FLYING_PIKACHU
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	jp LookForCardIDInLocation_Bank8
 
 
@@ -4351,11 +4337,11 @@ AIDecide_Pokeball:
 	call LookForCardIDInHandList_Bank8
 	jr c, .lightning
 	ld e, CHARMANDER
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret c
 	ld e, MAGMAR_LV31
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret c
 
@@ -4370,11 +4356,11 @@ AIDecide_Pokeball:
 	call LookForCardIDInHandList_Bank8
 	jr c, .fighting
 	ld e, PIKACHU_LV12
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret c
 	ld e, MAGNEMITE_LV13
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret c
 
@@ -4389,11 +4375,11 @@ AIDecide_Pokeball:
 	call LookForCardIDInHandList_Bank8
 	jr c, .psychic
 	ld e, DIGLETT
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret c
 	ld e, MACHOP
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret c
 
@@ -4408,11 +4394,11 @@ AIDecide_Pokeball:
 	call LookForCardIDInHandList_Bank8
 	jr c, .done_etcetera
 	ld e, GASTLY_LV8
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret c
 	ld e, JYNX
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret c
 .done_etcetera
@@ -4527,7 +4513,7 @@ AIDecide_ComputerSearch_RockCrusher:
 
 ; don't play Computer Search unless there's a Professor Oak card in the AI's deck.
 	ld e, PROFESSOR_OAK
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret nc
 
@@ -4581,7 +4567,7 @@ AIDecide_ComputerSearch_RockCrusher:
 ; also removes Geodude from hand list so that it is not discarded.
 .graveler
 	ld e, GRAVELER
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	jr nc, .golem
 	ld [wce06], a
@@ -4602,7 +4588,7 @@ AIDecide_ComputerSearch_RockCrusher:
 ; and if there's no Golem card in the hand, proceed.
 .golem
 	ld e, GOLEM
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	jr nc, .dugtrio
 	ld [wce06], a
@@ -4620,7 +4606,7 @@ AIDecide_ComputerSearch_RockCrusher:
 ; and a Dugtrio in the deck but not the hand.
 .dugtrio
 	ld e, DUGTRIO
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret nc
 	ld [wce06], a
@@ -4688,7 +4674,7 @@ AIDecide_ComputerSearch_WondersOfScience:
 ; if there's a Professor Oak in the deck, then store its deck index
 ; and move on to choosing cards in the hand to discard.
 	ld e, PROFESSOR_OAK
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	jr nc, .look_in_hand
 	jr CheckHandForTwoTrainerCards
@@ -4710,7 +4696,7 @@ AIDecide_ComputerSearch_WondersOfScience:
 ; and move on to choosing cards in the hand to discard.
 .target_grimer
 	ld e, GRIMER
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret nc
 	jr CheckHandForTwoTrainerCards
@@ -4719,7 +4705,7 @@ AIDecide_ComputerSearch_WondersOfScience:
 ; and move on to choosing cards in the hand to discard.
 .target_muk
 	ld e, MUK
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret nc
 	jr CheckHandForTwoTrainerCards
@@ -4743,19 +4729,19 @@ AIDecide_ComputerSearch_FireCharge:
 ; but if a copy was found, then check the hand for Trainer cards to discard.
 .chansey
 	ld e, CHANSEY
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret nc
 	jr CheckHandForTwoTrainerCards
 .tauros
 	ld e, TAUROS
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret nc
 	jr CheckHandForTwoTrainerCards
 .jigglypuff
 	ld e, JIGGLYPUFF_LV12
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret nc
 ;	fallthrough
@@ -4890,7 +4876,7 @@ AIDecide_PokemonTrader_LegendaryArticuno:
 	jr c, .dewgong
 
 	ld e, SEEL
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	jr c, .check_hand
 
@@ -4900,7 +4886,7 @@ AIDecide_PokemonTrader_LegendaryArticuno:
 	ccf
 	ret nc
 	ld e, DEWGONG
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret nc
 
@@ -4988,7 +4974,7 @@ AIDecide_PokemonTrader_LegendaryDragonite:
 ; don't play Pokémon Trader if Kangaskhan isn't in the deck.
 .kangaskhan
 	ld e, KANGASKHAN
-	ld a, CARD_LOCATION_DECK
+	xor a ; CARD_LOCATION_DECK
 	call LookForCardIDInLocation_Bank8
 	ret nc
 

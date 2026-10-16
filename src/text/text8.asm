@@ -76,10 +76,8 @@ Text05e3:
 	line "Speel eens een potje met hem!"
 	done
 
-
-Text05e4:
-	text "Oké, Dr. Mason."
-	line "Hallo, <RAMNAME>."
+DoYouWantToTryAPracticeGameText:
+	text "Het spel leren via een Oefenduel?"
 	done
 
 Text05e5:
@@ -360,22 +358,22 @@ Text060e:
 
 Text060f:
 	text "Hé! Kleintje!"
-	line "Ik heb een nv20 Electabuzz, maar"
+	line "Ik heb een [Lv.]20 Electabuzz, maar"
 	line "wat ik echt zou willen hebben is"
-	line "een nv35 Electabuzz!"
+	line "een [Lv.]35 Electabuzz!"
 	line "Zeg, kleintje! Heb jij een"
-	line "nv35 Electabuzz?"
+	line "[Lv.]35 Electabuzz?"
 	done
 
 Text0610:
 	text "Hé! Kleintje! Daar ben je weer!"
-	line "Heb je een nv35 Electabuzz?"
+	line "Heb je een [Lv.]35 Electabuzz?"
 	line "Kom op! Ruil hem tegen mijn"
-	line "nv20 Electabuzz!"
+	line "[Lv.]20 Electabuzz!"
 	done
 
 Text0611:
-	text "Jouw nv35 Electabuzz ruilen?"
+	text "Jouw [Lv.]35 Electabuzz ruilen?"
 	done
 
 Text0612:
@@ -389,13 +387,13 @@ Text0613:
 	text "Hé, kleintje, het is niet cool"
 	line "om te liegen!"
 	line "Je hebt helemaal geen"
-	line "nv35 Electabuzz!"
+	line "[Lv.]35 Electabuzz!"
 	line "Je zou nog eens gewond kunnen raken"
 	line "als je tegen me liegt, kleintje!"
 	done
 
 Text0614:
-	text "Je gaat je nv35 Electabuzz met"
+	text "Je gaat je [Lv.]35 Electabuzz met"
 	line "me ruilen?"
 	line "Supercool!... Hé! Wacht, kleintje!"
 	line "Die kaart zit nog in je deck!"
@@ -406,9 +404,9 @@ Text0614:
 	done
 
 Text0615:
-	text "Je gaat je nv35 Electabuzz met"
+	text "Je gaat je [Lv.]35 Electabuzz met"
 	line "me ruilen? Supercool, kleintje!"
-	line "Oké, ik ruil er mijn nv20"
+	line "Oké, ik ruil er mijn [Lv.]20"
 	line "Electabuzz voor."
 	done
 
@@ -419,8 +417,8 @@ Text0616:
 
 Text0617:
 	text "Wauw! Cool, kleintje! Bedankt"
-	line "voor die nv35 Electabuzz!"
-	line "Mijn nv20 Electabuzz is een"
+	line "voor die [Lv.]35 Electabuzz!"
+	line "Mijn [Lv.]20 Electabuzz is een"
 	line "coole kaart!"
 	line "Zoek de spanning op met Electabuzz!"
 	done

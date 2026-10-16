@@ -190,8 +190,8 @@ UnableToUseItText:
 	done
 
 NoEnergyCardsAttachedText:
-	text "Er zijn geen aangehechte"
-	line "Energiekaarten aanwezig."
+	text "Er zijn geen Energiekaarten"
+	line "aan die Pokémon gehecht."
 	done
 
 IsThisOKText:
@@ -214,8 +214,8 @@ UsedText:
 	text "<RAMTEXT> gebruikt."
 	done
 
-UnusedText0034: ; Unused
-	text "Ontving schade"
+AttackDescriptionEllipsisText:
+	text "•••"
 	done
 
 PokemonsAttackText:
@@ -296,6 +296,7 @@ DrewNPrizesText:
 	text "<RAMNAME> pakte <RAMNUM> Prijskaart(en)."
 	done
 
+; Unused
 DuelistPlacedACardText:
 	text "<RAMNAME> plaatste"
 	line "een <RAMTEXT>."
@@ -352,8 +353,8 @@ DamageToSelfDueToConfusionText:
 	done
 
 ChooseEnergyCardToDiscardText:
-	text "Kies de Energiekaart"
-	line "die je weg wilt gooien."
+	text "Kies de Energiekaart die je weg"
+    line "wilt gooien."
 	done
 
 ChooseNextActivePokemonText:
@@ -362,8 +363,7 @@ ChooseNextActivePokemonText:
 	done
 
 PressStartWhenReadyText:
-	text "Druk op START"
-	line "als je klaar bent."
+	text "Druk op START als je klaar bent."
 	done
 
 YouPlayFirstText:
@@ -379,6 +379,7 @@ TransmissionErrorText:
 	line "Start opnieuw vanaf het begin."
 	done
 
+; printed in a narrow text box (10 tiles per line)
 ChooseTheCardYouWishToExamineText:
 	text "Kies de kaart die"
 	line "je wilt bekijken."
@@ -460,8 +461,7 @@ EachPlayerDraw7CardsText:
 	done
 
 Drew7CardsText:
-	text "<RAMNAME>"
-	line "pakte 7 kaarten."
+	text "<RAMNAME> pakte 7 kaarten."
 	done
 
 DeckHasXCardsText:
@@ -493,11 +493,13 @@ ChooseUpTo5BasicPkmnToPlaceOnBenchText:
 	line "kiezen om op je Bank te plaatsen."
 	done
 
+; printed in a narrow text box (10 tiles per line)
 PleaseChooseAnActivePokemonText:
 	text "Kies je"
 	line "Actieve Pokémon."
 	done
 
+; printed in a narrow text box (10 tiles per line)
 ChooseYourBenchPokemonText:
 	text "Kies je Pokémon"
 	line "voor op de Bank."
@@ -596,6 +598,7 @@ UnusedText0083: ; Unused
 	text "????"
 	done
 
+; printed in a narrow text box (10 tiles per line)
 PlayCheckText:
 	text "  Speel"
 	line "  Bekijk"
@@ -605,6 +608,7 @@ UnusedText0085: ; Unused
 	text "????"
 	done
 
+; printed in a narrow text box (10 tiles per line)
 SelectCheckText:
 	text "  Selecteer"
 	line "  Bekijk"
@@ -630,20 +634,20 @@ NumberOfPrizesText:
 	text "Hoeveelheid Prijskaarten"
 	done
 
-UnusedText008c: ; Unused
-	text "Willekeurig 1"
+LvSymbolText:
+	textfw "[Lv.]"
 	done
 
-UnusedText008d: ; Unused
-	text "Willekeurig 2"
+HPText:
+	text "IP"
 	done
 
-UnusedText008e: ; Unused
-	text "Willekeurig 3"
+HPSymbolText:
+	textfw "[HP]"
 	done
 
-UnusedText008f: ; Unused
-	text "Willekeurig 4"
+ESymbolText:
+	textfw "[E]"
 	done
 
 UnusedText0090: ; Unused
@@ -804,11 +808,13 @@ DuelistDeckText:
 	text "<RAMNAME>'s Deck"
 	done
 
+; printed in a narrow text box (10 tiles per line)
 PleaseSelectHandText:
 	text "Kies een kaart uit"
 	line "je hand."
 	done
 
+; printed in a narrow text box (10 tiles per line)
 PleaseSelectCardText:
 	text "Kies een kaart."
 	done
@@ -819,7 +825,8 @@ NoPokemonWithDamageCountersText:
 	done
 
 NoDamageCountersText:
-	text "Er zijn geen schadetellers."
+	text "Er zijn geen schadetellers"
+    line "om te verwijderen."
 	done
 
 NoEnergyAttachedToOpponentsActiveText:
@@ -923,20 +930,15 @@ NotEnoughPsychicEnergyText:
 NotEnoughWaterEnergyText:
 	text "Niet genoeg <WATER> Energie."
 	done
-
-NoAttackMayBeChosenText:
-	text "Er mogen geen aanvallen worden"
-	line "gekozen."
-	done
 	
 NoTrainerCardsInDiscardPileText:
 	text "Er zitten geen Trainerkaarten"
 	line "in je weggooistapel."
 	done
 
-NoAttackMayBeChoosenText:
-	text "Er mogen geen aanvallen"
-	line "gekozen worden."
+NoAttackMayBeChosenText:
+	text "De Verdedigende Pokémon heeft"
+	line "geen aanvallen om te kiezen."
 	done
 
 YouDidNotReceiveAnAttackToMirrorMoveText:
@@ -950,11 +952,11 @@ ThisAttackCannotBeUsedTwiceText:
 	done
 
 NoWeaknessText:
-	text "Geen Zwakte."
+	text "Geen Zwakte om te wijzigen."
 	done
 
 NoResistanceText:
-	text "Geen Weerstand."
+	text "Geen Weerstand om te wijzigen."
 	done
 
 OnlyOncePerTurnText:
@@ -976,7 +978,8 @@ ThereIsNoEnergyCardAttachedText:
 	done
 
 NoGrassEnergyText:
-	text "Geen <GRASS> Energie."
+	text "Er is aan geen van je Pokémon"
+    line "<GRASS> Energie gehecht."
 	done
 
 CannotUseSinceTheresOnly1PkmnText:

@@ -284,11 +284,11 @@ WonTheMedalText:
 	done
 
 VenusaurLv64TradeCardName:
-	text "nv64 Venusaur"
+	text "[Lv.]64 Venusaur"
 	done
 
 MewLv15TradeCardName:
-	text "nv15 Mew"
+	text "[Lv.]15 Mew"
 	done
 
 UnusedText038e: ; Unused
@@ -653,51 +653,51 @@ AaronNPCName:
 	done
 	
 MewtwoTradeCardName:
-	text "nv60 Mewtwo"
+	text "[Lv.]60 Mewtwo"
 	done
 
 MewTradeCardName:
-	text "nv8 Mew"
+	text "[Lv.]8 Mew"
 	done
 
 ArcanineTradeCardName:
-	text "nv34 Arcanine"
+	text "[Lv.]34 Arcanine"
 	done
 
 PikachuTradeCardName:
-	text "nv16 Pikachu"
+	text "[Lv.]16 Pikachu"
 	done
 
 SurfingPikachuTradeCardName:
-	text "nv13 Surfende Pikachu"
+	text "[Lv.]13 Surfende Pikachu"
 	done
 
 ElectabuzzTradeCardName:
-	text "nv20 Electabuzz"
+	text "[Lv.]20 Electabuzz"
 	done
 
 SlowpokeTradeCardName:
-	text "nv9 Slowpoke"
+	text "[Lv.]9 Slowpoke"
 	done
 
 JigglypuffTradeCardName:
-	text "nv12 Jigglypuff"
+	text "[Lv.]12 Jigglypuff"
 	done
 
 ZapdosLegendaryCardName:
-	text "nv68 Zapdos"
+	text "[Lv.]68 Zapdos"
 	done
 
 MoltresLegendaryCardName:
-	text "nv37 Moltres"
+	text "[Lv.]37 Moltres"
 	done
 
 ArticunoLegendaryCardName:
-	text "nv37 Articuno"
+	text "[Lv.]37 Articuno"
 	done
 
 DragoniteLegendaryCardName:
-	text "nv41 Dragonite"
+	text "[Lv.]41 Dragonite"
 	done
 
 SuperEnergyRetrievalTradeCardName:
@@ -705,7 +705,7 @@ SuperEnergyRetrievalTradeCardName:
 	done
 
 FlyingPikachuTradeCardName:
-	text "nv12 Vliegende Pikachu"
+	text "[Lv.]12 Vliegende Pikachu"
 	done
 
 LightningAndFireDeckChoiceText:

@@ -176,11 +176,11 @@ PrintScrollableText::
 	jr .go
 .nonzero_text_speed
 	ld a, [wTextSpeed]
-	cp TEXT_SPEED_3
+	cp TEXT_SPEED_1
 	jr nc, .apply_delay
-	; if TEXT_SPEED_4, then pressing the B button will skip the delay
+	; unless TEXT_SPEED_1 is selected, then pressing the B button will skip the delay
 	ldh a, [hKeysHeld]
-	and B_BUTTON
+	and PAD_B
 	jr nz, .skip_delay
 .apply_delay
 	call DoFrame
@@ -509,10 +509,10 @@ PrintText::
 	ld b, a
 	ld a, [wTextSpeed]
 	inc a
-	cp 3
+	cp TEXT_SPEED_1 + 1
 	jr nc, .apply_delay
-	; if TEXT_SPEED_4, then pressing the B button will skip the delay
-	bit B_BUTTON_F, b
+	; unless TEXT_SPEED_1 is selected, then pressing the B button will skip the delay
+	bit B_PAD_B, b
 	jr nz, .skip_delay
 	jr .apply_delay
 .text_delay_loop

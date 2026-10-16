@@ -9,7 +9,7 @@ _SetDefaultConsolePalettes::
 	call CopyNBytesFromDEToHL
 	ld de, CGBDefaultPalettes
 	ld hl, wObjectPalettesCGB
-	ld c, CGB_PAL_SIZE
+	ld c, PAL_SIZE
 	call CopyNBytesFromDEToHL
 	jp FlushAllPalettes
 

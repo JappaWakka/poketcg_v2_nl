@@ -7,8 +7,11 @@ SFX_PlaySFX:
 	ld b, $0
 	ld a, [wSFXIsPlaying]
 	or a
-	call nz, Func_fc279
-	ld a, TRUE
+	jr z, .no_sfx_playing
+	xor a
+	ld [wdd8c], a
+.no_sfx_playing
+	inc a ; TRUE
 	ld [wSFXIsPlaying], a
 	ld hl, SFXHeaderPointers
 	add hl, bc
@@ -146,7 +149,7 @@ SFX_frequency:
 	ld [hl], $0
 	or d
 	ld d, a
-	ld hl, rNR11
+	ld hl, rAUD1LEN
 	ld a, c
 	add a
 	add a
@@ -179,7 +182,7 @@ SFX_envelope:
 	ld a, [hli]
 	ld e, a
 	push hl
-	ld hl, rNR12
+	ld hl, rAUD1ENV
 	ld a, c
 	add a
 	add a
@@ -193,7 +196,7 @@ SFX_envelope:
 SFX_duty:
 	swap a
 	ld e, a
-	ld hl, rNR11
+	ld hl, rAUD1LEN
 	ld a, c
 	add a
 	add a
@@ -328,7 +331,7 @@ SFX_ApplyPitchOffset:
 	ld [hl], $0
 	or d
 	ld d, a
-	ld hl, rNR11
+	ld hl, rAUD1LEN
 	ld a, c
 	add a
 	add a
@@ -376,7 +379,7 @@ Func_fc1cd:
 	ld [hl], $0
 	or e
 	ld e, a
-	ld hl, rNR41
+	ld hl, rAUD4LEN
 	xor a
 	ld [hli], a
 	inc hl
@@ -394,8 +397,8 @@ SFX_wave:
 	ld a, [hli]
 	ld h, [hl]
 	ld l, a
-	ld a, $0
-	ldh [rNR30], a
+	ld a, AUD3ENA_OFF
+	ldh [rAUD3ENA], a
 	ld b, d
 	ld de, $ff30
 .asm_fc215
@@ -408,8 +411,8 @@ SFX_wave:
 	jr nz, .asm_fc215
 	ld a, $1
 	ld [wMusicWaveChange], a
-	ld a, $80
-	ldh [rNR30], a
+	ld a, AUD3ENA_ON
+	ldh [rAUD3ENA], a
 	ld b, $0
 	pop hl
 	jp ExecuteNextSFXCommand
@@ -456,9 +459,9 @@ SFX_end:
 	add c
 	ld e, a
 	ld d, b ; 0
-	ld hl, rNR12
+	ld hl, rAUD1ENV
 	add hl, de
-	ld a, $8
+	ld a, AUD1ENV_UP
 	ld [hli], a
 	inc hl
 	swap a
@@ -466,19 +469,6 @@ SFX_end:
 	pop hl
 	ret
 
-Func_fc279:
-	ld a, $8
-	ldh a, [rNR12]
-	ldh a, [rNR22]
-	ldh a, [rNR32]
-	ldh a, [rNR42]
-	ld a, $80
-	ldh a, [rNR14]
-	ldh a, [rNR24]
-	ldh a, [rNR44]
-	xor a
-	ld [wdd8c], a
-	ret
 
 INCLUDE "audio/sfx_headers.asm"
 

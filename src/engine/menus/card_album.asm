@@ -240,7 +240,7 @@ CreateCardSetListAndInitListCoords:
 	push af
 	cp CARD_SET_PROMOTIONAL
 	jr nz, .laboratory
-	ldfw de, "P"
+	ldfw a, "P"
 	jr .got_prefix
 .laboratory
 	cp CARD_SET_LABORATORY
@@ -250,22 +250,19 @@ CreateCardSetListAndInitListCoords:
 .mystery
 	cp CARD_SET_MYSTERY
 	jr nz, .evolution
-	ldfw de, "M"
+	ldfw a, "M"
 	jr .got_prefix
 .evolution
 	cp CARD_SET_EVOLUTION
 	jr nz, .colosseum
-	ldfw de, "E"
+	ldfw a, "E"
 	jr .got_prefix
 .colosseum
 	ldfw de, "S"
 	; fallthrough
 
 .got_prefix
-	ld hl, wCurDeckName
-	ld [hl], d
-	inc hl
-	ld [hl], e
+	ld [wCurDeckName], a
 	pop af
 	ret
 
@@ -420,7 +417,7 @@ PrintCardSetListEntries:
 	jr nz, .got_index
 	ld a, SYM_0
 .got_index
-	ld hl, wCurDeckName + 2 ; skip prefix
+	ld hl, wCurDeckName + 1 ; skip prefix
 	ld [hl], TX_SYMBOL
 	inc hl
 	ld [hli], a ; tens place
@@ -439,14 +436,13 @@ PrintCardSetListEntries:
 	ret
 
 .phantom_card
-; phantom cards get only "××" in their index number
-	ld hl, wCurDeckName + 2
-	ldfw [hl], "?"
-	inc hl
-	ldfw [hl], "?"
-	inc hl
-	ld [hl], TX_SYMBOL
-	inc hl
+; phantom cards get only "??" in their index number
+	ld hl, wCurDeckName + 1 ; skip prefix
+	ldfw a, "?"
+	ld [hli], a
+	ld [hli], a
+	ld a, TX_SYMBOL
+	ld [hli], a
 	xor a ; SYM_SPACE
 	ld [hli], a
 	ld [hl], a ; TX_END
@@ -494,14 +490,14 @@ HandleCardAlbumCardPage:
 .handle_input
 	ldh a, [hDPadHeld]
 	ld b, a
-	and BUTTONS
+	and PAD_BUTTONS
 	jr nz, .exit
 	xor a ; FALSE
 	ld [wMenuInputSFX], a
 	ld a, [wCardListNumCursorPositions]
 	ld c, a
 	ld a, [wCardListCursorPos]
-	bit D_UP_F, b
+	bit B_PAD_UP, b
 	jr z, .check_d_down
 
 	push af
@@ -527,7 +523,7 @@ HandleCardAlbumCardPage:
 	jr .got_new_pos
 
 .check_d_down
-	bit D_DOWN_F, b
+	bit B_PAD_DOWN, b
 	jr z, .open_card_page
 	ld hl, wMenuInputSFX
 	ld [hl], SFX_CURSOR
@@ -627,7 +623,7 @@ CardAlbum:
 .loop_input_2
 	call DoFrame
 	ldh a, [hKeysPressed]
-	and B_BUTTON
+	and PAD_B
 	jr z, .loop_input_2
 	ld a, SFX_CANCEL
 	call PlaySFX
@@ -669,7 +665,7 @@ CardAlbum:
 	call HandleLeftRightInCardList
 	jr c, .loop_input_3
 	ldh a, [hDPadHeld]
-	and START
+	and PAD_START
 	jr z, .loop_input_3
 	; START button was pressed
 .open_card_page
@@ -826,9 +822,9 @@ CardAlbum:
 
 .OnlySelectSetIfListIsNotEmpty
 	ldh a, [hKeysPressed]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	ret z
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a_pressed
 	; B button pressed
 	ld a, -1

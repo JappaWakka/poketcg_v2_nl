@@ -644,10 +644,7 @@ DrawYourOrOppPlayArea_ActiveCardGfx:
 	rst SwapTurn
 
 .draw
-	ld de, v0Tiles1 + $20 tiles ; destination offset of loaded gfx
-	call LoadLoadedCard1Gfx
-	bank1call SetBGP2ToCardPalette
-	call FlushAllPalettes
+	bank1call LoadLoaded1CardGfx_UseDefaultSettings
 	pop de
 
 ; draw card gfx
@@ -1092,9 +1089,9 @@ HandleCheckMenuInput_YourOrOppPlayArea:
 	and %10000000
 	ldh a, [hDPadHeld]
 	jr nz, .check_vertical
-	bit D_LEFT_F, a ; test left button
+	bit B_PAD_LEFT, a ; test left button
 	jr nz, .horizontal
-	bit D_RIGHT_F, a ; test right button
+	bit B_PAD_RIGHT, a ; test right button
 	jr z, .check_vertical
 
 ; handle horizontal input
@@ -1124,9 +1121,9 @@ HandleCheckMenuInput_YourOrOppPlayArea:
 	jr .erase
 
 .check_vertical
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr nz, .vertical
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jr z, .skip
 
 ; handle vertical input
@@ -1157,9 +1154,9 @@ HandleCheckMenuInput_YourOrOppPlayArea:
 
 .skip
 	ldh a, [hKeysPressed]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr z, .sfx
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a_pressed
 	; B button pressed
 	ld a, -1 ; cancel
@@ -1527,16 +1524,16 @@ YourOrOppPlayAreaScreen_HandleInput:
 	inc hl
 	inc hl
 
-	bit D_UP_F, a
+	bit B_PAD_UP, a
 	jr nz, .process_dpad ; use location in hl if Up button was pressed
 	inc hl
-	bit D_DOWN_F, a
+	bit B_PAD_DOWN, a
 	jr nz, .process_dpad ; use location in hl if Down button was pressed
 	inc hl
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr nz, .process_dpad ; use location in hl if Right button was pressed
 	inc hl
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr z, .check_button ; move on to A/B button if last D-pad direction wasn't pressed
 	; use location in hl if Left button was pressed
 .process_dpad
@@ -1562,9 +1559,9 @@ YourOrOppPlayAreaScreen_HandleInput:
 ; check if either the left or right dpad is pressed.
 ; if not, just go back to the start.
 	ldh a, [hDPadHeld]
-	bit D_RIGHT_F, a
+	bit B_PAD_RIGHT, a
 	jr nz, .left_or_right
-	bit D_LEFT_F, a
+	bit B_PAD_LEFT, a
 	jr z, YourOrOppPlayAreaScreen_HandleInput
 
 .left_or_right
@@ -1604,10 +1601,10 @@ YourOrOppPlayAreaScreen_HandleInput:
 	ld [wCheckMenuCursorBlinkCounter], a
 .check_button
 	ldh a, [hKeysPressed]
-	and A_BUTTON | B_BUTTON
+	and PAD_A | PAD_B
 	jr z, .return
 
-	and A_BUTTON
+	and PAD_A
 	jr nz, .a_button
 
 	ld a, -1 ; cancel

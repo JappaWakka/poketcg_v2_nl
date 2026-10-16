@@ -20,7 +20,7 @@ UnusedCopyrightScreen:
 	call UpdateRNGSources
 	pop bc
 	ldh a, [hKeysPressed]
-	and START
+	and PAD_START
 	jr nz, .exit
 	dec bc
 	ld a, b

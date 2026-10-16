@@ -211,11 +211,11 @@ WhiteFlashScreen:
 	ld de, wTempBackgroundPalettesCGB
 	ld b, 8 palettes
 	call CopyNBytesFromHLToDE
-	ld de, FLASH_WHITE
+	ld de, PALRGB_WHITE
 	ld hl, wBackgroundPalettesCGB
 	ld bc, (8 palettes) / 2
 	call FillMemoryWithDE
-	xor a
+	xor a ; all white
 	call SetBGP
 	call FlushAllPalettes
 

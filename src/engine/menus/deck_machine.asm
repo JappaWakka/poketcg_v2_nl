@@ -68,7 +68,7 @@ HandleDeckMissingCardsList:
 	call HandleLeftRightInCardList
 	jr c, .loop_input
 	ldh a, [hDPadHeld]
-	and START
+	and PAD_START
 	jr z, .loop_input
 	; START button was pressed
 
@@ -120,8 +120,6 @@ HandleDeckMissingCardsList:
 	inc a
 	ld hl, wDefaultText
 	call ConvertToNumericalDigits
-	ld a, TX_FULLWIDTH3
-	ld [hli], a
 	ldfw [hl], "." ; period punctuation mark
 	inc hl
 	ld [hl], TX_END
@@ -291,7 +289,7 @@ HandleDeckMachineSelection:
 	call .HandleListJumps
 	jr c, .start
 	ldh a, [hDPadHeld]
-	and START
+	and PAD_START
 	jr z, .start
 
 ; START button
@@ -359,9 +357,9 @@ HandleDeckMachineSelection:
 	ld a, [wCardListVisibleOffset]
 	ld c, a
 	ldh a, [hDPadHeld]
-	cp D_RIGHT
+	cp PAD_RIGHT
 	jr z, .d_right
-	cp D_LEFT
+	cp PAD_LEFT
 	jr z, .d_left
 	or a
 	ret
@@ -543,10 +541,8 @@ PrintDeckMachineEntry:
 	ld hl, wDefaultText
 	inc a ; entry indices start at 0, not 1
 	call ConvertToNumericalDigits
-	ld a, TX_FULLWIDTH3
-	ld [hli], a
 	ldfw [hl], "." ; period punctuation mark
-	ld [hli], a
+	inc hl
 	ld [hl], TX_END
 	ld hl, wDefaultText
 	call InitTextPrinting_ProcessText
@@ -1482,7 +1478,7 @@ HandleAutoDeckMenu:
 
 ; check whether to show deck confirmation list
 	ldh a, [hDPadHeld]
-	and START
+	and PAD_START
 	jr z, .wait_input
 
 	ld a, [wCardListVisibleOffset]

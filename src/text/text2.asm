@@ -271,16 +271,16 @@ ChooseBasicFightingPokemonText:
 ProcedureForEnergyTransferText:
 	text "Hoe je Energietransfer gebruikt:"
 	line ""
-	line "1. Kies de Pokémon om de <GRASS> Energie"
+	line "1) Kies de Pokémon om de <GRASS> Energie"
 	line "   van te verplaatsen. Druk op de"
 	line "   A-knop."
 	line ""
-	line "2. Kies de Pokémon om de Energie aan"
+	line "2) Kies de Pokémon om de Energie aan"
 	line "   te hechten en druk op de A-knop."
 	line ""
-	line "3. Herhaal stappen 1 en 2."
+	line "3) Herhaal stappen 1 en 2."
 	line ""
-	line "4. Druk op de B-knop om te stoppen."
+	line "4) Druk op de B-knop om te stoppen."
 	done
 
 ChooseABellsproutFromDeckText:
@@ -300,15 +300,15 @@ ChoosePkmnToRemoveDamageCounterText:
 ProcedureForCurseText:
 	text "Hoe je Vervloeken gebruikt:"
 	line ""
-	line "1. Kies een Pokémon om de"
+	line "1) Kies een Pokémon om de"
 	line "   schadeteller van te ver-"
 	line "   plaatsen en druk op de A-knop."
 	line ""
-	line "2. Kies een Pokémon om de schade-"
+	line "2) Kies een Pokémon om de schade-"
 	line "   teller naartoe te verplaatsen"
 	line "   en druk op de A-knop."
 	line ""
-	line "3. Druk op de B-knop om te stoppen."
+	line "3) Druk op de B-knop om te stoppen."
 	done
 
 Choose2EnergyCardsFromDiscardPileText:
@@ -324,17 +324,17 @@ ChooseAnEnergyCardText:
 ProcedureForProphecyText:
 	text "Hoe je Voorspelling gebruikt:"
 	line ""
-	line "1. Selecteer jouw deck óf het"
+	line "1) Selecteer jouw deck óf het"
 	line "   deck van je tegenstander."
 	line ""
-	line "2. Kies de kaarten die je"
+	line "2) Kies de kaarten die je"
 	line "   bovenop wilt leggen en"
 	line "   druk op de A-knop."
 	line ""
-	line "3. Kies Ja nadat je de 3 kaarten"
+	line "3) Kies Ja nadat je de 3 kaarten"
 	line "   en hun volgorde hebt bepaald."
 	line ""
-	line "4. Annuleer met de B-knop."
+	line "4) Annuleer met de B-knop."
 	done
 
 ChooseTheOrderOfTheCardsText:
@@ -345,50 +345,50 @@ ChooseTheOrderOfTheCardsText:
 ProcedureForDamageSwapText:
 	text "Hoe je Schadeverwisseling"
 	line "gebruikt:"
-	line "1. Kies een Pokémon waar je"
+	line "1) Kies een Pokémon waar je"
 	line "   een schadeteller van wilt"
 	line "   verplaatsen en druk op de"
 	line "   A-knop."
-	line "2. Kies een Pokémon om de schade-"
+	line "2) Kies een Pokémon om de schade-"
 	line "   teller naartoe te verplaatsen"
 	line "   en druk op de A-knop."
 	line "   (Je mag een Pokémon geen"
 	line "   schadeteller geven als dat"
 	line "   die Pokémon zou Uitschakelen.)"
 	line ""
-	line "3. Herhaal stap 1 en 2."
+	line "3) Herhaal stap 1 en 2."
 	line ""
-	line "4. Druk op de B-knop om te stoppen."
+	line "4) Druk op de B-knop om te stoppen."
 	done
 
 ProcedureForDevolutionBeamText:
 	text "Hoe je Devolutiestraal gebruikt:"
 	line ""
-	line "1. Selecteer een Pokémon in jouw"
+	line "1) Selecteer een Pokémon in jouw"
 	line "   speelveld óf in je tegen-"
 	line "   standers speelveld en druk"
 	line "   op de A-knop."
 	line ""
-	line "2. Kies de Pokémon om te Devolueren"
+	line "2) Kies de Pokémon om te Devolueren"
 	line "   en druk op de A-knop."
 	line ""
-	line "3. Annuleer met de B-knop."
+	line "3) Annuleer met de B-knop."
 	done
 
 ProcedureForStrangeBehaviorText:
 	text "Hoe je Vreemd gedrag gebruikt:"
 	line ""
-	line "1. Kies de Pokémon met de schade-"
+	line "1) Kies de Pokémon met de schade-"
 	line "   tellers die je naar Slowbro"
 	line "   wilt verplaatsen en druk op"
 	line "   de A-knop."
-	line "2. Herhaal stap 1 zo vaak als je de"
+	line "2) Herhaal stap 1 zo vaak als je de"
 	line "   schadetellers wilt verplaatsen."
 	line "   (Je mag geen schadeteller"
 	line "   verplaatsen als dat Slowbro"
 	line "   zou Uitschakelen.)"
 	line ""
-	line "3. Druk op de B-knop om te stoppen."
+	line "3) Druk op de B-knop om te stoppen."
 	done
 
 ChooseOppAttackToBeUsedWithMetronomeText:
@@ -535,9 +535,9 @@ ChooseCardToPlaceInHandText:
 	line "in je hand te nemen."
 	done
 
-ChoosePokemonToAttachDefenderToText:
-	text "Kies een Pokémon om"
-	line "Verdediger aan te hechten."
+YouMustAttachThisCardTo1OfYourPokemonText:
+	text "Je moet deze kaart aan 1 van je"
+	line "Pokémon hechten."
 	done
 
 UnusedText0159: ; Unused
@@ -809,6 +809,14 @@ ReceivedLegendaryCardText:
 	line "kaart <RAMTEXT>!"
 	done
 
+UnusedText0192: ; Unused
+	text "????"
+	done
+
+UnusedText0193: ; Unused
+	text "????"
+	done
+	
 ReceivedPromotionalFlyingPikachuText:
 	text "<RAMNAME> ontving de Promokaart"
 	line "Vliegende Pikachu!"
@@ -928,43 +936,43 @@ PressBToFinishPracticeDuelText:
 	done
 
 Turn1Instr1PracticeDuelText:
-	text "1. Kies ”Hand” in het Menu."
+	text "1) Kies ”Hand” in het Menu."
 	line "   Kies een Water Energiekaart."
 	done
 
 Turn1Instr2PracticeDuelText:
-	text "2. Hecht een Water Energiekaart"
+	text "2) Hecht een Water Energiekaart"
 	line "   aan je Actieve Pokémon, Goldeen."
 	done
 
 Turn1Instr3PracticeDuelText:
-	text "3. Kies ”Val Aan” in het Menu"
+	text "3) Kies ”Val Aan” in het Menu"
 	line "   en dan Hoornaanval."
 	done
 
 Turn2Instr1PracticeDuelText:
-	text "1. Evolueer Goldeen door"
+	text "1) Evolueer Goldeen door"
 	line "   Seaking eraan te hechten."
 	done
 
 Turn2Instr2PracticeDuelText:
-	text "2. Hecht een Psychische Energiekaart"
+	text "2) Hecht een Psychische Energiekaart"
 	line "   aan de Geëvolueerde Seaking."
 	done
 
 Turn2Instr3PracticeDuelText:
-	text "3. Kies ”Val Aan” in het Menu"
+	text "3) Kies ”Val Aan” in het Menu"
 	line "   en dan Waterval om je"
 	line "   tegenstander aan te vallen."
 	done
 
 Turn3Instr1PracticeDuelText:
-	text "1. Hecht een Water Energiekaart"
+	text "1) Hecht een Water Energiekaart"
 	line "   aan je Staryu op de Bank."
 	done
 
 Turn3Instr2PracticeDuelText:
-	text "2. Kies ”Val Aan” in het Menu en"
+	text "2) Kies ”Val Aan” in het Menu en"
 	line "   en val je tegenstander aan"
 	line "   met Hoornaanval."
 	done
@@ -973,79 +981,79 @@ Turn3Instr3PracticeDuelText:
 	done
 
 Turn4Instr1PracticeDuelText:
-	text "1. Neem Drowzee uit je hand"
+	text "1) Neem Drowzee uit je hand"
 	line "   en plaats hem op je Bank."
 	done
 
 Turn4Instr2PracticeDuelText:
-	text "2. Hecht een Water Energiekaart"
+	text "2) Hecht een Water Energiekaart"
 	line "   aan je Drowzee op de Bank."
 	done
 
 Turn4Instr3PracticeDuelText:
-	text "3. Selecteer Seaking en val je"
+	text "3) Selecteer Seaking en val je"
 	line "   tegenstander Aan met Waterval."
 	done
 
 Turn5Instr1PracticeDuelText:
-	text "1. Kies een Water Energiekaart uit"
+	text "1) Kies een Water Energiekaart uit"
 	line "   je hand en hecht hem aan"
 	line "   Staryu."
 	done
 
 Turn5Instr2PracticeDuelText:
-	text "2. Selecteer Staryu en val je"
+	text "2) Selecteer Staryu en val je"
 	line "   tegenstander Aan met Klap."
 	done
 
 Turn6Instr1PracticeDuelText:
-	text "1. Kies de Trainerkaart Drankje"
+	text "1) Kies de Trainerkaart Drankje"
 	line "   uit je hand om Staryu's IP"
 	line "   te herstellen."
 	done
 
 Turn6Instr2PracticeDuelText:
-	text "2. Hecht een Water Energiekaart aan"
+	text "2) Hecht een Water Energiekaart aan"
 	line "   Staryu."
 	done
 
 Turn6Instr3PracticeDuelText:
-	text "3. Selecteer Staryu en val je"
+	text "3) Selecteer Staryu en val je"
 	line "   tegenstander aan met Klap."
 	done
 
 Turn7Instr1PracticeDuelText:
-	text "1. Evolueer Staryu door"
+	text "1) Evolueer Staryu door"
 	line "   Starmie aan hem te hechten."
 	done
 
 Turn7Instr2PracticeDuelText:
-	text "2. Selecteer de Geëvolueerde Starmie"
+	text "2) Selecteer de Geëvolueerde Starmie"
 	line "   en val je tegenstander aan met"
 	line "   Sterbevriezing."
 	done
 
 Turn8Instr1PracticeDuelText:
-	text "1. Selecteer Starmie en val je"
+	text "1) Selecteer Starmie en val je"
 	line "   tegenstander aan met"
 	line "   Sterbevriezing."
 	line "   "
 	done
 
 Turn8Instr2PracticeDuelText:
-	text "2. Je hebt Machop Uitgeschakeld."
+	text "2) Je hebt Machop Uitgeschakeld."
 	line "   Nu mag je een Prijskaart pakken."
 	done
 
 SamTurn4Instr1PracticeDuelText:
-	text "1. Je Seaking is Uitgeschakeld."
+	text "1) Je Seaking is Uitgeschakeld."
 	line "   Kies Staryu op je Bank"
 	line "   en druk op de A-knop om hem als"
 	line "   je Actieve Pokémon te gebruiken."
 	done
 
 SamTurn4Instr2PracticeDuelText:
-	text "2. Je kunt de kaarten in je hand"
+	text "2) Je kunt de kaarten in je hand"
 	line "   of het speelveld bekijken"
 	line "   door op de SELECT-toets"
 	line "   te drukken."

@@ -167,7 +167,7 @@ wc900:: ; c900
 SECTION "WRAM0 1", WRAM0
 
 wOAM:: ; ca00
-	ds $a0
+	ds OAM_SIZE
 
 ; 16-byte buffer to store text, usually a name or a number
 ; used by TX_RAM1 but not exclusively
@@ -644,11 +644,13 @@ wDuelType:: ; cc09
 wGotHeadsFromSmokescreenCheck:: ; cc0a
 	ds $1
 
-wAlreadyPlayedEnergy:: ; cc0b
+; a series of bit flags that are reset each turn in a duel
+;	bit 0 (PLAYED_ENERGY_THIS_TURN_F):     set if an Energy card is played from the hand
+;	bit 1 (UNABLE_TO_RETREAT_THIS_TURN_F): set if retreat is unsuccessful because of confusion
+wOncePerTurnFlags:: ; cc0b
 	ds $1
 
-; set to TRUE if the confusion check coin toss in AttemptRetreat is tails
-wConfusionRetreatCheckWasUnsuccessful:: ; cc0c
+; Unused wram byte, included when saving and loading duel data
 	ds $1
 
 ; DUELIST_TYPE_* of the turn holder
@@ -660,6 +662,7 @@ wDuelistType:: ; cc0d
 wOpponentDeckID:: ; cc0e
 	ds $1
 
+; maybe unused, is written to but never read
 wcc0f:: ; cc0f
 	ds $1
 
@@ -776,6 +779,7 @@ wNumberPrizeCardsToTake:: ; ccc8
 	ds $1
 
 ; set to TRUE if the coin toss in the confusion check is tails (CheckSelfConfusionDamage)
+; maybe unused, is written to but never read
 wConfusionAttackCheckWasUnsuccessful:: ; ccc9
 	ds $1
 
@@ -798,6 +802,7 @@ wStatusConditionQueue:: ; ccce
 wIsDamageToSelf:: ; cce6
 	ds $1
 
+; maybe unused, is written to but never read
 wcce7:: ; cce7
 	ds $1
 
@@ -842,7 +847,7 @@ wNoEffectFromWhichStatus:: ; ccf1
 	ds $1
 
 ; when non-0, allows the player to skip some delays during a duel by pressing B.
-; value read from sSkipDelayAllowed. probably only used for debugging.
+; value read from sSkipDelayAllowed.
 wSkipDelayAllowed:: ; ccf2
 	ds $1
 
@@ -1262,7 +1267,8 @@ wAIRetreatedThisTurn:: ; ce03
 ; used by AI to store information of VenusaurLv67 while handling Energy Trans logic.
 wAIVenusaurLv67DeckIndex:: ; ce04
 	ds $1
-wAIVenusaurLv67PlayAreaLocation:: ; ce05
+
+; Unused wram byte
 	ds $1
 
 wce06:: ; ce06
@@ -1516,24 +1522,50 @@ wPrinterStatus:: ; ce6f
 wSerialDataPtr:: ; ce70
 	ds $2
 
-; determines whether only Basic Energy cards are included in a list of Energy cards
-wEnergyCardListFilter:: ; ce72
-
-; keeps track of which Benched Pokemon is pointed
-; by the cursor during Gigashock selection screen
-wCurGigashockItem:: ; ce72
-	ds $1
-
 ; card index and its attack index chosen to be used by Metronome.
-wMetronomeSelectedAttack:: ; ce73
+wMetronomeSelectedAttack:: ; ce72
 	ds $2
 
-; stores the amount of cards that are being ordered.
-wNumberOfCardsToOrder:: ; ce75
+; Unused wram bytes
+	ds $2
+
+UNION
+
+; determines whether only Basic Energy cards are included in a list of Energy cards
+wEnergyCardListFilter:: ; ce76
 	ds $1
 
+; used in ChooseMultiplePokemon_PlayerSelection to keep track of
+; which item should be selected by the cursor after the previous selection is canceled.
+wPreviousSelectionItem:: ; ce77
+	ds $1
+
+; used in ChooseMultiplePokemon_PlayerSelection to keep track of
+; whether or not the Active Pokémon may be chosen (either TRUE or FALSE).
+wIgnoreActiveDuringSelection:: ; ce78
+	ds $1
+
+; used in ChooseMultiplePokemon_PlayerSelection and TargetMultiplePokemon_AISelection.
+; total number of Pokémon that need to be chosen during some selection effect functions.
+wNumPokemonToChoose:: ; ce79
+	ds $1
+
+; used in ChooseMultiplePokemon_PlayerSelection to keep track of
+; which symbol (tile ID) to draw next to the cursor after making a selection.
+wSelectionMarkerTile:: ; ce7a
+	ds $1
+
+; stores the amount of cards that are being ordered.
+wNumberOfCardsToOrder:: ; ce7b
+	ds $1
+
+NEXTU
+
+; only ever used in unreferenced effect functions
 wBackupPlayerAreaHP:: ; ce76
 	ds MAX_PLAY_AREA_POKEMON ; ds $6
+
+ENDU
 
 ; used in CountPokemonIDInPlayArea
 wTempPokemonID_ce7c:: ; ce7c
