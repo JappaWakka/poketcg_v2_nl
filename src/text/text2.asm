@@ -809,6 +809,14 @@ ReceivedLegendaryCardText:
 	line "kaart <RAMTEXT>!"
 	done
 
+UnusedText0192: ; Unused
+	text "????"
+	done
+
+UnusedText0193: ; Unused
+	text "????"
+	done
+	
 ReceivedPromotionalFlyingPikachuText:
 	text "<RAMNAME> ontving de Promokaart"
 	line "Vliegende Pikachu!"
