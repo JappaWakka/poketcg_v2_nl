@@ -35,12 +35,8 @@ clean: tidy
 	     \( -iname '*.1bpp' \
 	        -o -iname '*.2bpp' \
 	        -o -iname '*.pal' \
-	        -o -iname '*.attrmap' \) \
-	     -delete
-
-	find src/data \
-	     \( -iname '*.lz' \
-	        -o -iname '*.bgmap' \) \
+	        -o -iname '*.attrmap' \
+	        -o -iname '*.lz' \) \
 	     -delete
 
 	find src/data \
@@ -159,8 +155,8 @@ src/gfx/titlescreen/title_screen_cgb.2bpp: rgbgfx += -x 12
 	$(RGBGFX) $(rgbgfx) -d1 -o $@ $<
 	$(if $(tools/gfx),\
 		tools/gfx $(tools/gfx) -d1 -o $@ $@)
-		
-%.bgmap: %.bin ../dimensions/%.dimensions
+
+%.bgmap: %.bin ./dimensions/%.dimensions
 	tools/bgmap $(tools/bgmap) $^ $@
 
 %.lz: %

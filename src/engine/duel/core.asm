@@ -5132,7 +5132,7 @@ DrawLargePictureOfCard:
 	ld e, HEADER_TRAINER
 	ld a, [wLoadedCard1Type]
 	cp TYPE_TRAINER
-	jr z, .draw
+	jr nc, .draw
 	ld e, HEADER_ENERGY
 	and TYPE_ENERGY
 	jr nz, .draw
