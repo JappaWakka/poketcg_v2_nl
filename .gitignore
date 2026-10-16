@@ -21,6 +21,7 @@
 *.1bpp
 *.2bpp
 *.pal
+*.attrmap
 
 # intermediate BG map files
 *.bgmap
