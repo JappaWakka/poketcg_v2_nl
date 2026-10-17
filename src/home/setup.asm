@@ -32,15 +32,20 @@ SetupRegisters::
 NoOp::
 	ret
 
-
 ; sets wConsole and, if CGB, selects WRAM bank 1 and switches to double speed mode
-DetectConsole::
-	ld a, CONSOLE_CGB
+DetectConsole:
+	ld b, CONSOLE_CGB
+	cp BOOTUP_A_CGB
+	jr z, .got_console
+	ld b, CONSOLE_DMG
+.got_console
+	ld a, b
 	ld [wConsole], a
+	cp CONSOLE_CGB
+	ret nz
 	ld a, $01
-	ldh [rWBK], a
+	ldh [rSVBK], a
 	jp SwitchToCGBDoubleSpeed
-
 
 ; initializes the palettes (both monochrome and color)
 SetupPalettes::
@@ -54,6 +59,9 @@ SetupPalettes::
 	ld [hl], a ; wOBP1
 	xor a
 	ld [wFlushPaletteFlags], a
+	ld a, [wConsole]
+	cp CONSOLE_CGB
+	ret nz
 	ld de, wBackgroundPalettesCGB
 	ld c, 16
 .copy_pals_loop
