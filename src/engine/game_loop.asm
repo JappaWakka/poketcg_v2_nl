@@ -17,6 +17,12 @@ GameLoop::
 ;	ld [wUppercaseHalfWidthLetters], a
 	ei
 ;	farcall StubbedUnusedSaveDataValidation
+
+;	disclaimer for GB
+	ld a, [wConsole]
+	cp CONSOLE_CGB
+	jp nz, CGBDisclaimer
+
 	ldh a, [hKeysHeld]
 	cp PAD_A | PAD_B
 	jr z, .ask_erase_backup_ram
@@ -45,3 +51,20 @@ SetupResetBackUpRamScreen:
 	call SetDefaultConsolePalettes
 	lb de, $38, $7f
 	jp SetupText
+	
+; shows disclaimer in case player is not playing in CGB
+; return carry if disclaimer was shown
+CGBDisclaimer:
+	call SetupResetBackUpRamScreen
+	call EmptyScreen
+	lb de, 0, 11
+	lb bc, 20, 7
+	call DrawRegularTextBox
+	lb de, 4, 13
+	call InitTextPrinting
+	ldtx hl, ExclusiveToGameBoyColorsText
+	call PrintTextNoDelay
+	call EnableLCD
+.loop
+	call DoFrame
+	jr .loop

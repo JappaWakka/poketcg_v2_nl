@@ -6,7 +6,8 @@
 ; or until Start button is pressed
 UnusedCopyrightScreen:
 	call DisableLCD
-	farcall LoadConsolePaletteData
+	xor a
+	ld [wd317], a
 	farcall InitMenuScreen
 	ld bc, $0
 	ld a, SCENE_COPYRIGHT

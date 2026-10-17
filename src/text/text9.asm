@@ -122,7 +122,7 @@ Text0686:
 	line "Ik heb net een nieuwe kaartstrategie"
 	line "bedacht en ik was op zoek naar"
 	line "iemand om hem op te testen."
-	line "Je wilt natuurlijk wel tegen me"
+	line "Je wil natuurlijk wel tegen me"
 	line "duelleren, or niet soms?"
 	done
 
@@ -454,7 +454,7 @@ Text06ba:
 	line "verzamelen om de Legendarische"
 	line "Kaarten over te mogen nemen?"
 	line "Wat!?! Je hebt bijna geen kaarten!"
-	line "Als je tegen me wilt duelleren, ga"
+	line "Als je tegen me wil duelleren, ga"
 	line "dan eerst meer kaarten verzamelen!"
 	done
 
@@ -462,8 +462,8 @@ Text06bb:
 	text "Ik ben Ken, de Vuur-Clubmeester!"
 	line "Je moet nog steeds meer kaarten"
 	line "verzamelen als je de Legendarische"
-	line "Pokémonkaarten wilt overnemen!"
-	line "Als je tegen me wilt duelleren, ga"
+	line "Pokémonkaarten wil overnemen!"
+	line "Als je tegen me wil duelleren, ga"
 	line "dan eerst meer kaarten verzamelen!"
 	done
 

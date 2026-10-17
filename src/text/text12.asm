@@ -411,7 +411,7 @@ EnergyBurnName:
 	done
 
 EnergyBurnDescription:
-	text "Je mag zo vaak als je wilt tijdens"
+	text "Je mag zo vaak als je wil tijdens"
 	line "je beurt (vóór je aanval) alle aan"
 	line "Charizard gehechte Energie omzetten"
 	line "naar <FIRE> Energie voor de rest van"
@@ -759,7 +759,7 @@ WildfireDescription:
 	text "Als je deze aanval gebruikt mag je"
 	line "zoveel aan Moltres gehechte <FIRE>"
 	line "Energiekaarten weggooien als je"
-	line "wilt. Als je dit doet, gooi dan net"
+	line "wil. Als je dit doet, gooi dan net"
 	line "zoveel kaarten weg van de bovenkant"
 	line "van je tegenstander's deck."
 	done
@@ -860,7 +860,7 @@ RainDanceName:
 	done
 
 RainDanceDescription:
-	text "Je mag zo vaak als je wilt tijdens"
+	text "Je mag zo vaak als je wil tijdens"
 	line "je beurt (vóór je aanval) 1 <WATER>"
 	line "Energiekaart aan 1 van je <WATER> Pokémon"
 	line "hechten. (Hiermee wordt de "

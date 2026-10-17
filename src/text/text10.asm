@@ -13,14 +13,14 @@ Text0704:
 	line "Wil je misschien helpen de planten"
 	line "te verzorgen?"
 	line "We kunnen ook duelleren met kaarten"
-	line "als je dat liever wilt..."
+	line "als je dat liever wil..."
 	done
 
 Text0705:
 	text "Hoi, wil je misschien de planten"
 	line "verzorgen met mij?"
 	line "We kunnen ook duelleren met kaarten"
-	line "als je dat liever wilt..."
+	line "als je dat liever wil..."
 	done
 
 Text0706:
@@ -28,7 +28,7 @@ Text0706:
 	done
 
 Text0707:
-	text "Als je me wilt verontschuldigen,"
+	text "Als je me wil verontschuldigen,"
 	line "ik heb planten om voor te zorgen!"
 	done
 
@@ -61,7 +61,7 @@ Text070b:
 Text070c:
 	text "Oh! Ik won. Ik zei toch dat je me"
 	line "niet makkelijk zou kunnen verslaan?"
-	line "Als je me nu wilt verontschuldigen,"
+	line "Als je me nu wil verontschuldigen,"
 	line "ik heb planten om voor te zorgen!"
 	done
 
@@ -90,7 +90,7 @@ Text070f:
 
 Text0710:
 	text "Ik duelleer graag tegen je wanneer"
-	line "je maar wilt."
+	line "je maar wil."
 	done
 
 Text0711:
@@ -121,14 +121,14 @@ Text0716:
 	text "Nou, dat was niet echt een duel!"
 	line ""
 	line "Ik duelleer graag tegen je wanneer"
-	line "je maar wilt."
+	line "je maar wil."
 	done
 
 Text0717:
 	text "Ik vraag me af of je laatste over-"
 	line "winning gewoon geluk was?"
 	line "Ik duelleer graag tegen je wanneer"
-	line "je maar wilt."
+	line "je maar wil."
 	done
 
 Text0718:
@@ -148,10 +148,10 @@ Text071a:
 	done
 
 Text071b:
-	text "Oh... Je wilt niet duelleren?"
+	text "Oh... Je wil niet duelleren?"
 	line "Ik zal nog een tijdje in de Club"
 	line "zijn, dus kom gerust langs wanneer"
-	line "wanneer je wilt."
+	line "wanneer je wil."
 	done
 
 Text071c:
@@ -208,7 +208,7 @@ Text0723:
 	line "ik je liet wachten."
 	line "Ik was een beetje onderzoek aan het"
 	line "doen hier."
-	line "Ik neem aan dat je wilt duelleren?"
+	line "Ik neem aan dat je wil duelleren?"
 	line "Ik duelleer alleen in de Club."
 	line "Het spijt me, maar zou je me daar"
 	line "willen ontmoeten?"
@@ -226,14 +226,14 @@ Text0724:
 Text0725:
 	text "Oh nee hoor!"
 	line "Je schrijft me te veel eer toe..."
-	line "Als je nog eens iets wilt"
+	line "Als je nog eens iets wil"
 	line "onderzoeken, kom dan alsjeblieft"
 	line "naar me toe!"
 	done
 
 Text0726:
 	text "Heel erg bedankt, Ishihara."
-	line "Als je me wilt verontschuldigen..."
+	line "Als je me wil verontschuldigen..."
 	done
 
 Text0727:
@@ -256,7 +256,7 @@ Text0728:
 	line "Er zijn geen kaarten die ik wil"
 	line "of kan ruilen op het moment."
 	line "Laten we een andere keer ruilen."
-	line "Als je wilt, lees dan gerust wat"
+	line "Als je wil, lees dan gerust wat"
 	line "van de boeken die ik heb geschreven."
 	line "Ik denk dat ze nuttig zullen zijn!"
 	done
@@ -708,7 +708,7 @@ Text0765:
 	line "Wetenschap is overweldigend!"
 	line "De uitkomst zal hetzelfde zijn,"
 	line "maar ik zal opnieuw tegen je"
-	line "duelleren, als je dat wilt."
+	line "duelleren, als je dat wil."
 	done
 
 Text0766:
@@ -746,7 +746,7 @@ Text076c:
 	line "Rick, de Clubmeester, zit middenin"
 	line "een belangrijk experiment!"
 	line "Hij heeft geen tijd om iemand zoals"
-	line "jij te spreken! Als je hem echt wilt"
+	line "jij te spreken! Als je hem echt wil"
 	line "spreken, moet je mij eerst verslaan!"
 	done
 
@@ -855,7 +855,7 @@ Text077f:
 Text0780:
 	text "Dat was goed voor mijn training!"
 	line "Kom terug wanneer het je uitkomt!"
-	line "Ik versla je wanneer je maar wilt!"
+	line "Ik versla je wanneer je maar wil!"
 	done
 
 Text0781:
@@ -891,7 +891,7 @@ Text0785:
 	text "Wat?"
 	line "Ben je bang voor mij?"
 	line "Nou, kom maar terug wanneer je"
-	line "tegen me wilt duelleren."
+	line "tegen me wil duelleren."
 	done
 
 Text0786:

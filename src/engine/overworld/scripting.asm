@@ -82,13 +82,7 @@ Func_c998:
 	ld a, [wd3d0]
 	or a
 	ret z
-	ld b, $4
-	ld a, [wConsole]
-	cp CONSOLE_CGB
-	jr nz, .not_cgb
-	ld b, $e
-.not_cgb
-	ld a, b
+	ld a, SPRITE_ANIM_BLUE_NPC_UP
 	ld [wNPCAnim], a
 	ld a, $0
 	ld [wNPCAnimFlags], a
@@ -1524,25 +1518,15 @@ ScriptCommand_SetNextNPCAndScript:
 ScriptCommand_SetSpriteAttributes:
 	ld a, [wScriptNPC]
 	ld [wLoadedNPCTempIndex], a
-	push bc
-	call GetScriptArgs3AfterPointer
-	ld a, [wScriptNPC]
 	ld l, LOADED_NPC_FLAGS
 	call GetItemInLoadedNPCIndex
 	res NPC_FLAG_DIRECTIONLESS_F, [hl]
 	ld a, [hl]
-	or c
+	or b
 	ld [hl], a
-	pop bc
-	ld e, c
-	ld a, [wConsole]
-	cp CONSOLE_CGB
-	jr nz, .not_cgb
-	ld e, b
-.not_cgb
-	ld a, e
+	ld a, c
 	farcall SetNPCAnimation
-	jp IncreaseScriptPointerBy4
+	jp IncreaseScriptPointerBy3
 
 
 ; preserves de and hl

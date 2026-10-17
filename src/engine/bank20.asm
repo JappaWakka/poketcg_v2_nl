@@ -33,7 +33,6 @@ ReloadMapAfterTextClose:
 ; preserves de and hl
 LoadMapTilesAndPals:
 	farcall LoadMapHeader
-	farcall SetSGB2AndSGB3MapPalette
 	lb bc, 0, 0
 	call LoadTilemap_ToSRAM
 
@@ -200,11 +199,7 @@ LoadTilemap:
 	push de
 	ld hl, wDecompressionBuffer
 	call CopyBGDataToVRAMOrSRAM
-	ld a, [wConsole]
-	cp CONSOLE_CGB
-	jr nz, .next_row
-
-	; cgb only
+	
 	; copy the second "half" to VRAM1
 	call BankswitchVRAM1
 	ld a, [wBGMapWidth]
@@ -220,7 +215,6 @@ LoadTilemap:
 	call CopyBGDataToVRAMOrSRAM
 	call BankswitchVRAM0
 
-.next_row
 	pop de
 	ld hl, TILEMAP_WIDTH
 	add hl, de
@@ -332,9 +326,6 @@ SafelyCopyBGMapFromSRAMToVRAM:
 	push de
 	ld b, $20
 	call SafeCopyDataHLtoDE
-	ld a, [wConsole]
-	cp CONSOLE_CGB
-	jr nz, .skip_vram1
 	pop de
 	pop hl
 	push hl
@@ -345,7 +336,6 @@ SafelyCopyBGMapFromSRAMToVRAM:
 	ld b, $20
 	call SafeCopyDataHLtoDE
 	call BankswitchVRAM0
-.skip_vram1
 
 	pop hl
 	ld de, $20
@@ -571,10 +561,6 @@ LoadTilesetGfx:
 	lb bc, $0, LOW(v0Tiles1 / TILE_SIZE) ; $80
 	call .CopyGfxData
 	jr z, .done
-	; VRAM1 only used in CGB console
-	ld a, [wConsole]
-	cp CONSOLE_CGB
-	jr nz, .done
 	lb bc, $1, LOW(v1Tiles2 / TILE_SIZE) ; $00
 	call .CopyGfxData
 	jr z, .done
@@ -846,16 +832,8 @@ DoMapOWFrame:
 	push hl
 	push bc
 	ld a, [wCurMap]
-	add a
-	add a ; *4
+	add a ; *2
 	ld c, a
-	ld a, [wConsole]
-	cp CONSOLE_CGB
-	jr nz, .not_cgb
-	ld a, c
-	add 2
-	ld c, a
-.not_cgb
 	ld b, $0
 	ld hl, MapOWFramesetPointers
 	add hl, bc
@@ -1230,12 +1208,6 @@ Func_80baa:
 	inc hl
 	ld c, [hl]
 	inc hl
-
-	ld a, [wConsole]
-	cp CONSOLE_CGB
-	jr nz, .got_tilemap
-	inc hl
-.got_tilemap
 	ld a, [hl]
 	ld [wCurTilemap], a
 
@@ -1285,29 +1257,29 @@ Func_80baa:
 	dw .ChallengeMachine     ; MAP_EVENT_CHALLENGE_MACHINE
 	assert_table_length NUM_MAP_EVENTS
 
-; x coordinate, y coordinate, non-cgb tilemap, cgb tilemap
+; x coordinate, y coordinate,cgb tilemap
 .PokemonDomeDoor
-	db $16, $00, TILEMAP_POKEMON_DOME_DOOR_MAP_EVENT, TILEMAP_POKEMON_DOME_DOOR_MAP_EVENT_CGB
+	db $16, $00, TILEMAP_POKEMON_DOME_DOOR_MAP_EVENT
 .HallOfHonorDoor
-	db $0e, $00, TILEMAP_HALL_OF_HONOR_DOOR_MAP_EVENT, TILEMAP_HALL_OF_HONOR_DOOR_MAP_EVENT_CGB
+	db $0e, $00, TILEMAP_HALL_OF_HONOR_DOOR_MAP_EVENT
 .FightingDeckMachine
-	db $06, $02, TILEMAP_DECK_MACHINE_MAP_EVENT, TILEMAP_DECK_MACHINE_MAP_EVENT_CGB
+	db $06, $02, TILEMAP_DECK_MACHINE_MAP_EVENT
 .RockDeckMachine
-	db $0a, $02, TILEMAP_DECK_MACHINE_MAP_EVENT, TILEMAP_DECK_MACHINE_MAP_EVENT_CGB
+	db $0a, $02, TILEMAP_DECK_MACHINE_MAP_EVENT
 .WaterDeckMachine
-	db $0e, $02, TILEMAP_DECK_MACHINE_MAP_EVENT, TILEMAP_DECK_MACHINE_MAP_EVENT_CGB
+	db $0e, $02, TILEMAP_DECK_MACHINE_MAP_EVENT
 .LightningDeckMachine
-	db $12, $02, TILEMAP_DECK_MACHINE_MAP_EVENT, TILEMAP_DECK_MACHINE_MAP_EVENT_CGB
+	db $12, $02, TILEMAP_DECK_MACHINE_MAP_EVENT
 .GrassDeckMachine
-	db $0e, $0a, TILEMAP_DECK_MACHINE_MAP_EVENT, TILEMAP_DECK_MACHINE_MAP_EVENT_CGB
+	db $0e, $0a, TILEMAP_DECK_MACHINE_MAP_EVENT
 .PsychicDeckMachine
-	db $12, $0a, TILEMAP_DECK_MACHINE_MAP_EVENT, TILEMAP_DECK_MACHINE_MAP_EVENT_CGB
+	db $12, $0a, TILEMAP_DECK_MACHINE_MAP_EVENT
 .ScienceDeckMachine
-	db $0e, $12, TILEMAP_DECK_MACHINE_MAP_EVENT, TILEMAP_DECK_MACHINE_MAP_EVENT_CGB
+	db $0e, $12, TILEMAP_DECK_MACHINE_MAP_EVENT
 .FireDeckMachine
-	db $12, $12, TILEMAP_DECK_MACHINE_MAP_EVENT, TILEMAP_DECK_MACHINE_MAP_EVENT_CGB
+	db $12, $12, TILEMAP_DECK_MACHINE_MAP_EVENT
 .ChallengeMachine
-	db $0a, $00, TILEMAP_CHALLENGE_MACHINE_MAP_EVENT, TILEMAP_CHALLENGE_MACHINE_MAP_EVENT_CGB
+	db $0a, $00, TILEMAP_CHALLENGE_MACHINE_MAP_EVENT
 
 
 SpriteNullAnimationPointer::
@@ -1526,8 +1498,7 @@ SpriteNullAnimationFrame:
 ;.DrawNPCSprite
 ;	ld a, [wLoadedNPCTempIndex]
 ;	ld c, a
-;	add a
-;	add c ; *3
+;	add a; *2
 ;	ld c, a
 ;	ld b, $0
 ;	ld hl, .NPCSpriteAnimData - 3
@@ -1536,11 +1507,6 @@ SpriteNullAnimationFrame:
 ;	cp $ff
 ;	ret z ; skip draw sprite
 ;	farcall CreateSpriteAndAnimBufferEntry
-;	ld a, [wConsole]
-;	cp CONSOLE_CGB
-;	jr nz, .not_cgb
-;	inc hl
-;.not_cgb
 ;	ld a, [wLoadNPCDirection]
 ;	add [hl]
 ;	farcall StartNewSpriteAnimation
@@ -1553,47 +1519,47 @@ SpriteNullAnimationFrame:
 ;	ret
 ;
 ;.NPCSpriteAnimData
-;	db SPRITE_OW_PLAYER,   SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_RED_NPC_UP       ; $01
-;	db $ff,                SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_LIGHT_NPC_UP     ; $02
-;	db SPRITE_OW_RONALD,   SPRITE_ANIM_DARK_NPC_UP,      SPRITE_ANIM_BLUE_NPC_UP      ; $03
-;	db $ff,                SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_LIGHT_NPC_UP     ; $04
-;	db SPRITE_OW_DRMASON,  SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_WHITE_NPC_UP     ; $05
-;	db SPRITE_OW_ISHIHARA, SPRITE_ANIM_DARK_NPC_UP,      SPRITE_ANIM_PURPLE_NPC_UP    ; $06
-;	db SPRITE_OW_IMAKUNI,  SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_BLUE_NPC_UP      ; $07
-;	db SPRITE_OW_NIKKI,    SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_GREEN_NPC_UP     ; $08
-;	db SPRITE_OW_RICK,     SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_BLUE_NPC_UP      ; $09
-;	db SPRITE_OW_KEN,      SPRITE_ANIM_DARK_NPC_UP,      SPRITE_ANIM_RED_NPC_UP       ; $0a
-;	db SPRITE_OW_AMY,      SPRITE_ANIM_DARK_NPC_UP,      SPRITE_ANIM_BLUE_NPC_UP      ; $0b
-;	db SPRITE_OW_ISAAC,    SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_YELLOW_NPC_UP    ; $0c
-;	db SPRITE_OW_MITCH,    SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_BLUE_NPC_UP      ; $0d
-;	db SPRITE_OW_GENE,     SPRITE_ANIM_DARK_NPC_UP,      SPRITE_ANIM_PURPLE_NPC_UP    ; $0e
-;	db SPRITE_OW_MURRAY,   SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_PINK_NPC_UP      ; $0f
-;	db SPRITE_OW_COURTNEY, SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_PINK_NPC_UP      ; $10
-;	db $ff,                SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_LIGHT_NPC_UP     ; $11
-;	db SPRITE_OW_STEVE,    SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_INDIGO_NPC_UP    ; $12
-;	db $ff,                SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_LIGHT_NPC_UP     ; $13
-;	db SPRITE_OW_JACK,     SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_WHITE_NPC_UP     ; $14
-;	db $ff,                SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_LIGHT_NPC_UP     ; $15
-;	db SPRITE_OW_ROD,      SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_BLUE_NPC_UP      ; $16
-;	db $ff,                SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_LIGHT_NPC_UP     ; $17
-;	db SPRITE_OW_BOY,      SPRITE_ANIM_DARK_NPC_UP,      SPRITE_ANIM_YELLOW_NPC_UP    ; $18
-;	db SPRITE_OW_LAD,      SPRITE_ANIM_DARK_NPC_UP,      SPRITE_ANIM_GREEN_NPC_UP     ; $19
-;	db SPRITE_OW_SPECS,    SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_PURPLE_NPC_UP    ; $1a
-;	db SPRITE_OW_BUTCH,    SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_YELLOW_NPC_UP    ; $1b
-;	db SPRITE_OW_MANIA,    SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_WHITE_NPC_UP     ; $1c
-;	db SPRITE_OW_JOSHUA,   SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_WHITE_NPC_UP     ; $1d
-;	db SPRITE_OW_HOOD,     SPRITE_ANIM_DARK_NPC_UP,      SPRITE_ANIM_RED_NPC_UP       ; $1e
-;	db SPRITE_OW_TECH,     SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_BLUE_NPC_UP      ; $1f
-;	db SPRITE_OW_CHAP,     SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_GREEN_NPC_UP     ; $20
-;	db SPRITE_OW_MAN,      SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_YELLOW_NPC_UP    ; $21
-;	db SPRITE_OW_PAPPY,    SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_PURPLE_NPC_UP    ; $22
-;	db SPRITE_OW_GIRL,     SPRITE_ANIM_DARK_NPC_UP,      SPRITE_ANIM_BLUE_NPC_UP      ; $23
-;	db SPRITE_OW_LASS1,    SPRITE_ANIM_DARK_NPC_UP,      SPRITE_ANIM_PURPLE_NPC_UP    ; $24
-;	db SPRITE_OW_LASS2,    SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_RED_NPC_UP       ; $25
-;	db SPRITE_OW_LASS3,    SPRITE_ANIM_DARK_NPC_UP,      SPRITE_ANIM_GREEN_NPC_UP     ; $26
-;	db SPRITE_OW_SWIMMER,  SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_YELLOW_NPC_UP    ; $27
-;	db SPRITE_OW_CLERK,    SPRITE_ANIM_SGB_CLERK_NPC_UP, SPRITE_ANIM_CGB_CLERK_NPC_UP ; $28
-;	db SPRITE_OW_GAL,      SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_YELLOW_NPC_UP    ; $29
-;	db SPRITE_OW_WOMAN,    SPRITE_ANIM_DARK_NPC_UP,      SPRITE_ANIM_RED_NPC_UP       ; $2a
-;	db SPRITE_OW_GRANNY,   SPRITE_ANIM_LIGHT_NPC_UP,     SPRITE_ANIM_YELLOW_NPC_UP    ; $2b
-;	db SPRITE_OW_AMY,      SPRITE_ANIM_SGB_AMY_LAYING,   SPRITE_ANIM_CGB_AMY_LAYING   ; $2c
+;	db SPRITE_OW_PLAYER,   SPRITE_ANIM_RED_NPC_UP       ; $01
+;	db $ff,                SPRITE_ANIM_LIGHT_NPC_UP     ; $02
+;	db SPRITE_OW_RONALD,   SPRITE_ANIM_BLUE_NPC_UP      ; $03
+;	db $ff,                SPRITE_ANIM_LIGHT_NPC_UP     ; $04
+;	db SPRITE_OW_DRMASON,  SPRITE_ANIM_WHITE_NPC_UP     ; $05
+;	db SPRITE_OW_ISHIHARA, SPRITE_ANIM_PURPLE_NPC_UP    ; $06
+;	db SPRITE_OW_IMAKUNI,  SPRITE_ANIM_BLUE_NPC_UP      ; $07
+;	db SPRITE_OW_NIKKI,    SPRITE_ANIM_GREEN_NPC_UP     ; $08
+;	db SPRITE_OW_RICK,     SPRITE_ANIM_BLUE_NPC_UP      ; $09
+;	db SPRITE_OW_KEN,      SPRITE_ANIM_RED_NPC_UP       ; $0a
+;	db SPRITE_OW_AMY,      SPRITE_ANIM_BLUE_NPC_UP      ; $0b
+;	db SPRITE_OW_ISAAC,    SPRITE_ANIM_YELLOW_NPC_UP    ; $0c
+;	db SPRITE_OW_MITCH,    SPRITE_ANIM_BLUE_NPC_UP      ; $0d
+;	db SPRITE_OW_GENE,     SPRITE_ANIM_PURPLE_NPC_UP    ; $0e
+;	db SPRITE_OW_MURRAY,   SPRITE_ANIM_PINK_NPC_UP      ; $0f
+;	db SPRITE_OW_COURTNEY, SPRITE_ANIM_PINK_NPC_UP      ; $10
+;	db $ff,                SPRITE_ANIM_LIGHT_NPC_UP     ; $11
+;	db SPRITE_OW_STEVE,    SPRITE_ANIM_INDIGO_NPC_UP    ; $12
+;	db $ff,                SPRITE_ANIM_LIGHT_NPC_UP     ; $13
+;	db SPRITE_OW_JACK,     SPRITE_ANIM_WHITE_NPC_UP     ; $14
+;	db $ff,                SPRITE_ANIM_LIGHT_NPC_UP     ; $15
+;	db SPRITE_OW_ROD,      SPRITE_ANIM_BLUE_NPC_UP      ; $16
+;	db $ff,                SPRITE_ANIM_LIGHT_NPC_UP     ; $17
+;	db SPRITE_OW_BOY,      SPRITE_ANIM_YELLOW_NPC_UP    ; $18
+;	db SPRITE_OW_LAD,      SPRITE_ANIM_GREEN_NPC_UP     ; $19
+;	db SPRITE_OW_SPECS,    SPRITE_ANIM_PURPLE_NPC_UP    ; $1a
+;	db SPRITE_OW_BUTCH,    SPRITE_ANIM_YELLOW_NPC_UP    ; $1b
+;	db SPRITE_OW_MANIA,    SPRITE_ANIM_WHITE_NPC_UP     ; $1c
+;	db SPRITE_OW_JOSHUA,   SPRITE_ANIM_WHITE_NPC_UP     ; $1d
+;	db SPRITE_OW_HOOD,     SPRITE_ANIM_RED_NPC_UP       ; $1e
+;	db SPRITE_OW_TECH,     SPRITE_ANIM_BLUE_NPC_UP      ; $1f
+;	db SPRITE_OW_CHAP,     SPRITE_ANIM_GREEN_NPC_UP     ; $20
+;	db SPRITE_OW_MAN,      SPRITE_ANIM_YELLOW_NPC_UP    ; $21
+;	db SPRITE_OW_PAPPY,    SPRITE_ANIM_PURPLE_NPC_UP    ; $22
+;	db SPRITE_OW_GIRL,     SPRITE_ANIM_BLUE_NPC_UP      ; $23
+;	db SPRITE_OW_LASS1,    SPRITE_ANIM_PURPLE_NPC_UP    ; $24
+;	db SPRITE_OW_LASS2,    SPRITE_ANIM_RED_NPC_UP       ; $25
+;	db SPRITE_OW_LASS3,    SPRITE_ANIM_GREEN_NPC_UP     ; $26
+;	db SPRITE_OW_SWIMMER,  SPRITE_ANIM_YELLOW_NPC_UP    ; $27
+;	db SPRITE_OW_CLERK,    SPRITE_ANIM_CLERK_NPC_UP ; $28
+;	db SPRITE_OW_GAL,      SPRITE_ANIM_YELLOW_NPC_UP    ; $29
+;	db SPRITE_OW_WOMAN,    SPRITE_ANIM_RED_NPC_UP       ; $2a
+;	db SPRITE_OW_GRANNY,   SPRITE_ANIM_YELLOW_NPC_UP    ; $2b
+;	db SPRITE_OW_AMY,      SPRITE_ANIM_AMY_LAYING   ; $2c

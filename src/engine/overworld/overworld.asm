@@ -7,7 +7,7 @@ LoadMap::
 	ld [wReloadOverworldCallbackPtr], a
 	ld [wReloadOverworldCallbackPtr + 1], a
 	ld [wMatchStartTheme], a
-	farcall LoadConsolePaletteData
+	ld [wd317], a
 	call WhiteOutDMGPals
 	call ZeroObjectPositions
 	call LoadSymbolsFont
@@ -767,10 +767,6 @@ Func_c4b9:
 	ld [wd4cb], a
 	ld a, PALETTE_29
 	farcall LoadPaletteData
-	ld b, SPRITE_ANIM_LIGHT_NPC_UP
-	ld a, [wConsole]
-	cp CONSOLE_CGB
-	jr nz, .got_anim
 
 	ld a, EVENT_PLAYER_GENDER
 	farcall GetEventValue

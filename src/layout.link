@@ -115,10 +115,8 @@ ROMX $1b
 ROMX $1c
 	"Text Offsets"
 ROMX $1d
-	"SGB"
-ROMX $1e
 	"Gfx 1"
-ROMX $1f
+ROMX $1e
 	"Gfx 2"
 ROMX $20
 	"Bank 20"
@@ -177,6 +175,8 @@ ROMX $3a
 	"Card Gfx 10"
 ROMX $3b
 	"Card Gfx 11"
+ROMX $3c
+	"Card Gfx 12"
 ROMX $3d
 	"Audio 1"
 ROMX $3e

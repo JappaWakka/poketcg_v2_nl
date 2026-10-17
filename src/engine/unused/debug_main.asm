@@ -6,8 +6,6 @@ Func_12661:
 	xor a
 	ld [wDebugMenuSelection], a
 	ld [wDebugBoosterSelection], a
-	ld a, $03
-	ld [wDebugSGBBorder], a
 .asm_1266d
 	call DisableLCD
 	ld a, $00
@@ -64,7 +62,6 @@ Unknown_126bb:
 	dw DebugDuelMode
 	dw MainMenu_ContinueFromDiary
 	dw DebugCGBTest
-	dw DebugSGBFrame
 	dw DebugStandardBGCharacter
 	dw DebugLookAtSprite
 	dw DebugVEffect

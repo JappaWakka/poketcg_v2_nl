@@ -255,7 +255,7 @@ TryHandleSpriteAnimationFrame:
 	ret
 
 
-; plays animation SPRITE_ANIM_SGB_OWMAP_CURSOR_FAST (non-cgb) or SPRITE_ANIM_CGB_OWMAP_CURSOR_FAST (cgb)
+; play animation SPRITE_ANIM_OWMAP_CURSOR_FAST
 ; to make the cursor blink faster after a selection is made
 ; preserves all registers except af
 OverworldMap_UpdateCursorAnimation:

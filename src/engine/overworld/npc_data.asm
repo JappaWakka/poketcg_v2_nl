@@ -21,7 +21,6 @@ GetNPCHeaderPointer:
 ;	a = NPC ID (NPC_* constant)
 LoadNPCSpriteData:
 	push hl
-	push bc
 	call GetNPCHeaderPointer
 	ld a, [hli]
 	ld [wTempNPC], a
@@ -30,17 +29,7 @@ LoadNPCSpriteData:
 	ld a, [hli]
 	ld [wNPCAnim], a
 	ld a, [hli]
-	push af
-	ld a, [hli]
 	ld [wNPCAnimFlags], a
-	pop bc
-	ld a, [wConsole]
-	cp CONSOLE_CGB
-	jr nz, .not_cgb
-	ld a, b
-	ld [wNPCAnim], a
-.not_cgb
-	pop bc
 	pop hl
 	ret
 

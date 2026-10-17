@@ -189,7 +189,7 @@ DamageSwapName:
 	done
 
 DamageSwapDescription:
-	text "Je mag zo vaak als je wilt tijdens"
+	text "Je mag zo vaak als je wil tijdens"
 	line "je beurt (vóór je aanval) 1 schade-"
 	line "teller van een van je Pokémon naar"
 	line "een van je andere verplaatsen,"
@@ -263,7 +263,7 @@ StrangeBehaviorName:
 	done
 
 StrangeBehaviorDescription:
-	text "Je mag zo vaak als je wilt tijdens"
+	text "Je mag zo vaak als je wil tijdens"
 	line "je beurt (vóór je aanval) 1 schade-"
 	line "teller van een van je Pokémon naar"
 	line "Slowbro verplaatsen, zolang je"
@@ -463,7 +463,7 @@ ProphecyDescription:
 	text "Bekijk tot 3 kaarten van de boven-"
 	line "kant van het deck van elke speler"
 	line "en leg ze terug in de volgorde die"
-	line "je wilt."
+	line "je wil."
 	done
 
 HypnoDescription:

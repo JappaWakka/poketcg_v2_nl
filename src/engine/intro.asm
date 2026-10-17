@@ -1,16 +1,17 @@
 PlayIntroSequence:
 	call DisableLCD
-	farcall LoadConsolePaletteData
+	xor a
+	ld [wd317], a
 	farcall InitMenuScreen
 	call EnableAndClearSpriteAnimations
 	ld hl, HandleAllSpriteAnimations
 	call SetDoFrameFunction
 	call LoadTitleScreenSprites
 
-	ld hl, wSequenceCmdPtr
 	ld a, LOW(IntroSequence)
-	ld [hli], a
-	ld [hl], HIGH(IntroSequence)
+	ld [wSequenceCmdPtr + 0], a
+	ld a, HIGH(IntroSequence)
+	ld [wSequenceCmdPtr + 1], a
 
 	xor a
 	ld [wd317], a
@@ -55,13 +56,7 @@ PlayIntroSequence:
 	ld [hli], a ; x
 	ld a, 116
 	ld [hl], a ; y
-	ld c, SPRITE_ANIM_190
-	ld a, [wConsole]
-	cp CONSOLE_CGB
-	jr nz, .asm_1d3c5
-	ld c, SPRITE_ANIM_191
-.asm_1d3c5
-	ld a, c
+	ld a, SPRITE_ANIM_191
 	ld bc, 60
 	farcall Func_12ac9
 	jp EnableLCD

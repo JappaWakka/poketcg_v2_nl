@@ -2684,6 +2684,7 @@ HandleColorChangeScreen:
 	call EmptyScreen
 	call ZeroObjectPositions
 	call LoadDuelCardSymbolTiles
+	bank1call SetDefaultConsolePalettes
 
 ; load card data
 	pop af
@@ -2702,13 +2703,13 @@ HandleColorChangeScreen:
 	call InitTextPrinting_ProcessText
 
 ; draw card gfx
-	bank1call LoadLoaded1CardGfx_UseDefaultSettings
+	bank1call LoadLoadedCard1Gfx_UseDefaultSettings
 	ld a, $a0
 	lb hl, 6, 1
 	lb de, 9, 2
 	lb bc, 8, 6
 	call FillRectangle
-	bank1call ApplyBGP6OrSGB3ToCardImage
+	bank1call ApplyCardCGBAttributes
 
 ; list all the colors
 	ld hl, ShiftMenuData
@@ -2747,9 +2748,6 @@ HandleColorChangeScreen:
 	lb bc, 2, 2
 	call FillRectangle
 
-	ld a, [wConsole]
-	cp CONSOLE_CGB
-	jr nz, .skip_vram1
 	pop hl
 	push hl
 	call BankswitchVRAM1
@@ -2759,7 +2757,6 @@ HandleColorChangeScreen:
 	call FillRectangle
 	call BankswitchVRAM0
 
-.skip_vram1
 	pop hl
 	pop bc
 	pop de
@@ -2782,12 +2779,12 @@ ShiftMenuData:
 
 ColorTileAndBGP:
 	; tile, cgb palette
-	db ICON_TILE_GRASS,     $02
-	db ICON_TILE_FIRE,      $01
-	db ICON_TILE_WATER,     $02
-	db ICON_TILE_LIGHTNING, $01
-	db ICON_TILE_FIGHTING,  $03
-	db ICON_TILE_PSYCHIC,   $03
+	db ICON_TILE_GRASS,     $03
+	db ICON_TILE_FIRE,      $02
+	db ICON_TILE_WATER,     $03
+	db ICON_TILE_LIGHTNING, $02
+	db ICON_TILE_FIGHTING,  $04
+	db ICON_TILE_PSYCHIC,   $04
 
 
 ; loads wTxRam2 and wTxRam2_b:

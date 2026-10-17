@@ -675,7 +675,7 @@ PokedexName:
 PokedexDescription:
 	text "Bekijk ten hoogste 5 kaarten van"
 	line "de bovenkant van je deck en leg"
-	line "ze in de volgorde die jij wilt."
+	line "ze in de volgorde die jij wil."
 	done
 
 PlusPowerName:
@@ -900,4 +900,9 @@ Draw2CardsText:
 	
 RivalText:
 	text "Rivaal"
+	done
+
+ExclusiveToGameBoyColorsText:
+	text "Dit spel is exclusief"
+	line "voor de Game Boy Color."
 	done

@@ -5,7 +5,7 @@ Text05de:
 	line "mensen om te kijken hoe goed je"
 	line "deck presteert."
 	line "De Auto-Deckmachines zijn handig"
-	line "als je je deck opnieuw wilt bouwen."
+	line "als je je deck opnieuw wil bouwen."
 	line "Als je de kaarten hebt die je nodig"
 	line "hebt, zal het automatisch een deck"
 	line "voor je bouwen. Verzamel nieuwe"
@@ -59,12 +59,11 @@ Text05e2:
 	done
 
 Text05e3:
-	text "Oh! Waarom zo'n"
-	line "haast, <RAMNAME>?"
+	text "Oh! Waarom zo'n haast, <RAMNAME>?"
 	line "Wat?"
-	line "Je wilt leren hoe je het"
+	line "Je wil leren hoe je het"
 	line "Pokémon Ruilkaartspel speelt?"
-	line "Dus, ook jij wilt beginnen"
+	line "Dus... ook jij wil beginnen"
 	line "met het kaartspel spelen!"
 	line "Nou, duelleren is veel leuker"
 	line "dan alleen kaarten verzamelen!"
@@ -73,7 +72,7 @@ Text05e3:
 	line "Hier, neem dit deck van mij maar."
 	line "En nu een tegenstander..."
 	line "Hey, Sam!"
-	line "Speel eens een potje met hem!"
+	line "Heb je een momentje voor me?"
 	done
 
 DoYouWantToTryAPracticeGameText:
@@ -234,7 +233,7 @@ Text05f9:
 	line "machine."
 	line "Als je een deck hebt opgeslagen,"
 	line "kan deze machine hem opnieuw bouwen"
-	line "voor je wanneer je maar wilt, zolang"
+	line "voor je wanneer je maar wil, zolang"
 	line "je maar de juiste kaarten hebt."
 	line "Als je een geweldig deck hebt"
 	line "gebouwd, moet je hem hier opslaan."
@@ -282,7 +281,7 @@ Text05ff:
 
 Text0600:
 	text "Ho-ho! Kies het deck maar waartegen"
-	line "je wilt duelleren."
+	line "je wil duelleren."
 	done
 
 Text0601:
@@ -515,7 +514,7 @@ Text0627:
 Text0628:
 	text "Heb ik je geschokt?"
 	line "Mijn Bliksem-deck is erg sterk!"
-	line "Als je opnieuw geschokt wilt worden,"
+	line "Als je opnieuw geschokt wil worden,"
 	line "kom dan later weer terug..."
 	line "Ik zal hier wachten!"
 	done
@@ -643,7 +642,7 @@ Text063c:
 
 Text063d:
 	text "Ik ben niet meer druk, dus je kunt"
-	line "me wanneer je maar wilt uitdagen!"
+	line "me wanneer je maar wil uitdagen!"
 	done
 
 Text063e:
@@ -679,7 +678,7 @@ Text0642:
 	done
 
 Text0643:
-	text "Wat? Je wilt de Legendarische"
+	text "Wat? Je wil de Legendarische"
 	line "Pokémonkaarten overnemen?"
 	line "Ik zou ze ook wel willen, maar ik"
 	line "ben nog steeds niet goed genoeg."
@@ -1042,5 +1041,5 @@ Text0672:
 	text "Je bent nog steeds niet goed genoeg"
 	line "om me te verslaan!"
 	line "Ik zal later opnieuw duelleren"
-	line "wanneer je maar wilt."
+	line "wanneer je maar wil."
 	done
