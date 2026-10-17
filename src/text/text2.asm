@@ -136,17 +136,17 @@ DuelistIsSelectingPokemonToPlaceInArenaText:
 	done
 
 ChooseWeaknessYouWishToChangeText:
-	text "Kies de Zwakte die je wilt"
+	text "Kies de Zwakte die je wil"
 	line "veranderen met Conversie 1."
 	done
 
 ChooseResistanceYouWishToChangeText:
-	text "Kies de Weerstand die je wilt"
+	text "Kies de Weerstand die je wil"
 	line "veranderen met Conversie 2."
 	done
 
 ChoosePokemonToCopyWithShiftText:
-	text "Kies de Pokémon wiens type je wilt"
+	text "Kies de Pokémon wiens type je wil"
 	line "kopiëren met Venomoth's Verander."
 	done
 
@@ -294,7 +294,7 @@ ChooseABellsproutText:
 
 ChoosePkmnToRemoveDamageCounterText:
 	text "Kies een Pokémon om de"
-	line "schadeteller van te verwijderen."
+	line "schadeteller(s) van te verwijderen."
 	done
 
 ProcedureForCurseText:
@@ -328,7 +328,7 @@ ProcedureForProphecyText:
 	line "   deck van je tegenstander."
 	line ""
 	line "2) Kies de kaarten die je"
-	line "   bovenop wilt leggen en"
+	line "   bovenop wil leggen en"
 	line "   druk op de A-knop."
 	line ""
 	line "3) Kies Ja nadat je de 3 kaarten"
@@ -346,7 +346,7 @@ ProcedureForDamageSwapText:
 	text "Hoe je Schadeverwisseling"
 	line "gebruikt:"
 	line "1) Kies een Pokémon waar je"
-	line "   een schadeteller van wilt"
+	line "   een schadeteller van wil"
 	line "   verplaatsen en druk op de"
 	line "   A-knop."
 	line "2) Kies een Pokémon om de schade-"
@@ -380,10 +380,10 @@ ProcedureForStrangeBehaviorText:
 	line ""
 	line "1) Kies de Pokémon met de schade-"
 	line "   tellers die je naar Slowbro"
-	line "   wilt verplaatsen en druk op"
+	line "   wil verplaatsen en druk op"
 	line "   de A-knop."
 	line "2) Herhaal stap 1 zo vaak als je de"
-	line "   schadetellers wilt verplaatsen."
+	line "   schadetellers wil verplaatsen."
 	line "   (Je mag geen schadeteller"
 	line "   verplaatsen als dat Slowbro"
 	line "   zou Uitschakelen.)"
@@ -992,7 +992,7 @@ Turn4Instr2PracticeDuelText:
 
 Turn4Instr3PracticeDuelText:
 	text "3) Selecteer Seaking en val je"
-	line "   tegenstander Aan met Waterval."
+	line "   tegenstander aan met Waterval."
 	done
 
 Turn5Instr1PracticeDuelText:
@@ -1003,7 +1003,7 @@ Turn5Instr1PracticeDuelText:
 
 Turn5Instr2PracticeDuelText:
 	text "2) Selecteer Staryu en val je"
-	line "   tegenstander Aan met Klap."
+	line "   tegenstander aan met Klap."
 	done
 
 Turn6Instr1PracticeDuelText:

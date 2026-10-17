@@ -234,7 +234,7 @@ Text0570:
 	text "Wij zijn de Grootmeesters die"
 	line "de Legendarische Pokémonkaarten"
 	line "bewaken! Daag ons zo vaak uit als"
-	line "je wilt!"
+	line "je wil!"
 	done
 
 Text0571:
@@ -616,7 +616,7 @@ Text05ae:
 	line "speler is!?!"
 	line "De Legendarische Pokémonkaarten"
 	line "zijn van mij!"
-	line "Als je nog steeds niet op wilt"
+	line "Als je nog steeds niet op wil"
 	line "geven, zal ik je uitdaging"
 	line "opnieuw aannemen..."
 	line "Maar eerst zul je alle 4 de Groot-"
@@ -782,14 +782,14 @@ Tech2LegendaryCardsExplanationText:
 	text "Hoop jij ook de Legendarische"
 	line "Pokémonkaarten over te mogen nemen?"
 	line "Als je de Legendarische Pokémon-"
-	line "kaarten wilt, moet je de Groot-"
+	line "kaarten wil, moet je de Groot-"
 	line "meesters verslaan. Om te duelleren"
 	line "tegen de Grootmeesters moet je eerst"
 	line "de Meestermedailles verzamelen."
 	line "De 8 Meesters van de Kaartclubs"
 	line "hebben elk een Meestermedaille."
 	line "Ga naar de Pokémon-Koepel als"
-	line "je meer wilt leren over de"
+	line "je meer wil leren over de"
 	line "Legendarische Kaarten."
 	done
 
@@ -1037,7 +1037,7 @@ Text05dc:
 Text05dd:
 	text "Informatie verzamelen is belangrijk"
 	line "als je de Legendarische Pokémon-"
-	line "kaarten wilt overnemen!"
+	line "kaarten wil overnemen!"
 	line "Luister naar wat mensen te zeggen"
 	line "hebben en lees de boeken in de"
 	line "boekenkasten."

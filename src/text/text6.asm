@@ -44,7 +44,7 @@ DrawingDesiredCardsBookName:
 DrawingDesiredCardsBookText:
 	text "De Trainerkaart Zoeken per Computer"
 	line "is handig wanneer je een bepaalde"
-	line "kaart wilt hebben! Detector en"
+	line "kaart wil hebben! Detector en"
 	line "PokéBal helpen daar ook bij!"
 	done
 

@@ -675,7 +675,7 @@ PokedexName:
 PokedexDescription:
 	text "Bekijk ten hoogste 5 kaarten van"
 	line "de bovenkant van je deck en leg"
-	line "ze in de volgorde die jij wilt."
+	line "ze in de volgorde die jij wil."
 	done
 
 PlusPowerName:

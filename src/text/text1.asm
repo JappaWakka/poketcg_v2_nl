@@ -354,7 +354,7 @@ DamageToSelfDueToConfusionText:
 
 ChooseEnergyCardToDiscardText:
 	text "Kies de Energiekaart die je weg"
-    line "wilt gooien."
+    line "wil gooien."
 	done
 
 ChooseNextActivePokemonText:
@@ -382,7 +382,7 @@ TransmissionErrorText:
 ; printed in a narrow text box (10 tiles per line)
 ChooseTheCardYouWishToExamineText:
 	text "Kies de kaart die"
-	line "je wilt bekijken."
+	line "je wil bekijken."
 	done
 
 TransmittingDataText:

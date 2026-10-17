@@ -8,7 +8,7 @@ JoshuaAmyIsRestingText:
 JoshuaGoDefeatSaraAndAmandaText:
 	text "Degene die daar ligt te rusten"
 	line "is Amy, de Clubmeester."
-	line "Als je met Amy wilt duelleren,"
+	line "Als je met Amy wil duelleren,"
 	line "versla dan eerst Sara en Amanda."
 	line "Dan zal ik je vaardigheden op de"
 	line "proef stellen, en mocht je bij"
@@ -258,7 +258,7 @@ Man1DontHaveText:
 	done
 
 Man1CardInDeckText:
-	text "Je wilt hem aan me geven?"
+	text "Je wil hem aan me geven?"
 	line "Dankjewel!"
 	line "Maar jouw <RAMTEXT>"
 	line "zit nog in je deck."
@@ -267,7 +267,7 @@ Man1CardInDeckText:
 	done
 
 Man1GiveCardText:
-	text "Je wilt hem aan me geven?"
+	text "Je wil hem aan me geven?"
 	line "Ik zal hem meteen in mijn"
 	line "verzameling stoppen."
 	line "Ik zal goed voor deze kaart zorgen."
@@ -317,7 +317,7 @@ ImakuniWouldLikeToDuelInitialText:
 	line "Hé!"
 	line "Dansen met die voeten!"
 	line "Wat? Kaarten?"
-	line "Je wilt tegen me duelleren?"
+	line "Je wil tegen me duelleren?"
 	line "Oké, maar als ik win, dans jij!"
 	done
 
@@ -427,7 +427,7 @@ MitchFirstInteractionText:
 	line "Vecht-Club!"
 	line "Ik moet je waarschuwen dat je mij"
 	line "niet zult kunnen verslaan!"
-	line "Als je met mij wilt duelleren, moet"
+	line "Als je met mij wil duelleren, moet"
 	line "je eerst mijn leerlingen verslaan!"
 	line "Mijn leerlingen zijn aan het"
 	line "trainen bij andere Clubs!"
@@ -436,7 +436,7 @@ MitchFirstInteractionText:
 	done
 
 Mitch3PupilsRemainingText:
-	text "Als je met mij wilt duelleren, moet"
+	text "Als je met mij wil duelleren, moet"
 	line "je eerst mijn leerlingen verslaan!"
 	line "Mijn leerlingen zijn aan het"
 	line "trainen bij andere Clubs!"
@@ -449,7 +449,7 @@ Mitch2PupilsRemainingText:
 	line "verslagen."
 	line "Je moet vast een goede speler zijn."
 	line "Maar je bent niet goed genoeg!"
-	line "Als je met mij wilt duelleren, moet"
+	line "Als je met mij wil duelleren, moet"
 	line "je eerst mijn 2 overgebleven"
 	line "leerlingen verslaan!"
 	done
@@ -728,7 +728,7 @@ CardsVol3BookText:
 	line "te gebruiken kaarten die meteen"
 	line "in werking gaan en dan weg worden"
 	line "gegooid. Je kan zo veel Trainer-"
-	line "kaarten spelen als je wilt tijdens"
+	line "kaarten spelen als je wil tijdens"
 	line "je beurt."
 	done
 
@@ -830,7 +830,7 @@ RainDanceBookText:
 	line "Regendans, is een grote zegen voor"
 	line "je Water-Pokémon! Je kunt daarmee"
 	line "zoveel Water Energiekaarten aan je"
-	line "Water-Pokémon hechten als je wilt."
+	line "Water-Pokémon hechten als je wil."
 	line "Maak je Pokémon sterker en val aan!"
 	done
 

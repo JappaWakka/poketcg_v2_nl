@@ -70,7 +70,7 @@ Text079a:
 Text079b:
 	text "Hoera!"
 	line "Het moet mijn geluksdag zijn!"
-	line "Kom me opzoeken wanneer je wilt!"
+	line "Kom me opzoeken wanneer je wil!"
 	line "Ik zal dan tegen je duelleren!"
 	done
 
@@ -834,7 +834,7 @@ EnergyTransName:
 	done
 
 EnergyTransDescription:
-	text "Je mag zo vaak als je wilt tijdens"
+	text "Je mag zo vaak als je wil tijdens"
 	line "je beurt (vóór je aanval) 1 <GRASS>"
 	line "Energiekaart pakken die gehecht"
 	line "is aan 1 van je Pokémon en hem"

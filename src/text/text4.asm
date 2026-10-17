@@ -722,7 +722,7 @@ GrassAndPsychicDeckChoiceText:
 
 SelectDeckToDuelText:
 	text "Kies het deck waar je"
-	line "tegen wilt duelleren."
+	line "tegen wil duelleren."
 	done
 
 CharmanderAndFriendsDeckChoiceText:
@@ -738,7 +738,7 @@ BulbasaurAndFriendsDeckChoiceText:
 	done
 
 SelectDeckToTakeText:
-	text "Kies het deck dat je wilt."
+	text "Kies het deck dat je wil."
 	done
 
 HowCanIHelpText:
@@ -771,7 +771,7 @@ Mail1Part1Text:
 	line "al een beetje onder de knie?"
 	line "Ik heb wat informatie voor je"
 	line "over Booster-Pakjes: Als je"
-	line "dezelfde soorten kaarten wilt"
+	line "dezelfde soorten kaarten wil"
 	line "verzamelen, duelleer dan vaak tegen"
 	line "dezelfde persoon om een specifiek"
 	line "Booster-Pakje te krijgen!"
@@ -1196,7 +1196,7 @@ Gal1WantToTrade1Text:
 Gal1WantToTrade2Text:
 	text "Hé! Daar ben je weer!"
 	line "Heb je al besloten of je jouw"
-	line "Lapras wilt ruilen voor mijn"
+	line "Lapras wil ruilen voor mijn"
 	line "zeldzame Arcanine?"
 	done
 
