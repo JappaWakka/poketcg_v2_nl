@@ -93,21 +93,6 @@ DrawLabeledTextBox::
 	; top border done, draw the rest of the text box
 	jr ContinueDrawingTextBoxCGB
 
-
-; draws a 12x6 text box aligned to the bottom left of the screen
-DrawNarrowTextBox::
-	lb de, 0, 12
-	lb bc, 12, 6
-	call AdjustCoordinatesForBGScroll
-	jr DrawRegularTextBox
-
-; draws a 20x6 text box aligned to the bottom of the screen
-DrawWideTextBox::
-	lb de, 0, 12
-	lb bc, 20, 6
-	call AdjustCoordinatesForBGScroll
-;	fallthrough
-
 DrawRegularTextBoxDMG::
 	call DECoordToBGMap0Address
 	; top line (border) of the text box
@@ -165,6 +150,19 @@ CopyLine::
 	add sp, TILEMAP_WIDTH
 	ret
 
+; draws a 12x6 text box aligned to the bottom left of the screen
+DrawNarrowTextBox::
+	lb de, 0, 12
+	lb bc, 12, 6
+	call AdjustCoordinatesForBGScroll
+	jr DrawRegularTextBox
+
+; draws a 20x6 text box aligned to the bottom of the screen
+DrawWideTextBox::
+	lb de, 0, 12
+	lb bc, 20, 6
+	call AdjustCoordinatesForBGScroll
+;	fallthrough
 
 ; Draws a bxc text box at de to print menu data in the overworld.
 ; Also used to print a text box during a duel.
