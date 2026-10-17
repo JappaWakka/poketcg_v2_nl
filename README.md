@@ -7,7 +7,7 @@ This is a modified disassembly of Pokémon Trading Card Game for the Game Boy Co
 
 Here are a bunch of screenshots showcasing the differences between the original Pokémon Trading Card Game and my translation:
 
-![Comparison Screenshots](https://github.com/user-attachments/assets/66e1312e-d374-4dad-805c-7dec147f977e)
+![Comparison Screenshots](https://github.com/user-attachments/assets/c43b9817-e00f-4b6c-8384-bc380f67c329)
 <br/>
 ## Building the rom file
 To assemble, install cygwin (if you're using Windows) with packages **make**, **git** and **gcc-core** and then download the [latest version of RGBDS](https://github.com/gbdev/rgbds/releases) and extract it to **/usr/local/bin** (inside the folder where you installed Cygwin64 on Windows).<br/>
